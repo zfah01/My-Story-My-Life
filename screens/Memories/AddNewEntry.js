@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, ImageBackground, TextInput, TouchableOpacity, ScrollView, Image, Keyboard } from 'react-native';
-
-// Imports the documents styling.
+import { Text, View,  StyleSheet, TextInput, TouchableOpacity, ScrollView, Image, Button, Keyboard,  ActivityIndicator } from 'react-native';
+import * as ImagePicker from "expo-image-picker";
+//import {launchCameraAsync, useCameraPermissions, PermissionStatus, launchImageLibraryAsync} from 'expo-image-picker'
 import { entryStyles } from './Styles';
-
-// Imports firestore from firebase to save user entries to the firstore database.
-//import firestore from '@react-native-firebase/firestore';
-import { db, timestamp } from '../../firebase/firebase';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { st, db, timestamp } from '../../firebase/firebase';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
+import { Audio } from "expo-av";
 
 
 export default function AddNewEntry(props) {
@@ -18,14 +18,27 @@ export default function AddNewEntry(props) {
     const [meh, setMeh] = useState(false);
     const [happy, setHappy] = useState(false);
 
-    // Initializing the state so that once a user has entered all of their details it can be stored to the firestore database.
+    const [title, setTitle] = useState('');
     const [journalEntry, setJournalEntry] = useState('');
+    
     const [usefulDate, setUsefulDate] = useState(null);
     const [displayDate, setDisplayDate] = useState(null);
     const [entryMood, setEntryMood] = useState('');
-    const [obsession, setObsession] = useState('');
 
-    // Creates a reference to the journal list collection in firestore to save data.
+      //photo
+      const [image, setImage] = useState(null);
+      const [uploading, setUploading] = useState(false);
+      const [transferred, setTransferred] = useState(0);
+      const [status, requestPermission] = ImagePicker.useCameraPermissions();
+  //voice
+  const [recording, setRecording] = useState();
+  const [recordings, setRecordings] = useState([]);
+  const [message, setMessage] = useState("");
+  const [voiceInfo, setVoiceInfo] = useState(null);
+
+
+    
+
     const journalsRef = db.collection('journalList');
     // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
@@ -45,18 +58,207 @@ export default function AddNewEntry(props) {
 
     }, []);
 
+    const takePhotoFromCamera = async () => {
+      const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+      if (granted) {
+        let result = await ImagePicker.launchCameraAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 0.1,
+          base64: true,
+        });
+        console.log(result);
+  
+        if (!result.canceled) {
+          setImage(result?.assets[0].uri);
+        }
+      }
+    };
+  
+    const choosePhotoFromLibrary = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 0.1,
+        base64: true,
+      });
+      console.log(result);
+  
+      if (!result.canceled) {
+        setImage(result?.assets[0].uri);
+      }
+    };
 
-    // On submission, checks if there is an input for journal entry, then creates a timestamp and collects the userID,
-    // mood, date, and jorunal entry to be stored in the firestore databse, then clears the fields and notifies the user if
-    // the upload was successful or if an error occurs.
-    const onSubmitButtonPress = () => {
+    const uploadImage = async () => {
+      const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          resolve(xhr.response);
+        };
+        xhr.onerror = function (e) {
+          console.log(e);
+          reject(new TypeError("Network request failed"));
+        };
+        xhr.responseType = "blob";
+        xhr.open("GET", image, true);
+        xhr.send(null);
+      });
+      if (image == null) {
+        return null;
+      }
+      const uploadUri = image;
+      let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
+  
+      // Add timestamp to File Name
+      const extension = filename.split(".").pop();
+      const name = filename.split(".").slice(0, -1).join(".");
+      filename = name + Date.now() + "." + extension;
+  
+      setUploading(true);
+      setTransferred(0);
+  
+      const storageRef = st.ref(`photos/${filename}`);
+      const task = storageRef.put(blob);
+  
+      // Set transferred state
+      task.on("state_changed", (taskSnapshot) => {
+        console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+  
+        setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
+      });
+  
+      try {
+        await task;
+  
+        const url = await storageRef.getDownloadURL();
+  
+        setUploading(false);
+        setImage(null);
+        return url;
+      } catch (e) {
+        console.log(e);
+        return null;
+      }
+    };
+
+    
+
+      //VOICE RECORDING
+  const RECORDING_OPTIONS_PRESET_HIGH_QUALITY = {
+    isMeteringEnabled: true,
+    android: {
+      extension: ".m4a",
+      outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
+      audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
+      sampleRate: 44100,
+      numberOfChannels: 2,
+      bitRate: 128000,
+    },
+    ios: {
+      extension: ".m4a",
+      outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC,
+      audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
+      sampleRate: 44100,
+      numberOfChannels: 2,
+      bitRate: 128000,
+      linearPCMBitDepth: 16,
+      linearPCMIsBigEndian: false,
+      linearPCMIsFloat: false,
+    },
+  };
+
+  async function startRecording() {
+    try {
+      const permission = await Audio.requestPermissionsAsync();
+
+      if (permission.status === "granted") {
+        await Audio.setAudioModeAsync({
+          allowsRecordingIOS: true,
+          playsInSilentModeIOS: true,
+        });
+        const { recording } = await Audio.Recording.createAsync(
+          RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+        );
+        setRecording(recording);
+      } else {
+        setMessage("Please grant permission to app to access microphone");
+      }
+    } catch (error) {
+      console.log("Failed to start recording", error);
+    }
+  }
+
+  async function stopRecording() {
+    setRecording(undefined);
+    await recording.stopAndUnloadAsync();
+
+    let updatedRecordings = [...recordings];
+    const { sound, status } = await recording.createNewLoadedSoundAsync();
+    updatedRecordings.push({
+      sound: sound,
+      duration: getDurationFormatted(status.durationMillis),
+      file: recording.getURI(),
+    });
+    audioUpload();
+  }
+
+  const audioUpload = async () => {
+    //const storage = getStorage();
+    if (recording) {
+      const voiceName = uuidv4();
+      const path = `audio/${userID}/${voiceName}`;
+      const ref_con = ref(st, path);
+      setVoiceInfo(path);
+      const voiceFile = await fetch(recording._uri);
+      const bytes = await voiceFile.blob();
+      await uploadBytes(ref_con, bytes);
+    }
+  };
+
+  function getDurationFormatted(millis) {
+    const minutes = millis / 1000 / 60;
+    const minutesDisplay = Math.floor(minutes);
+    const seconds = Math.round((minutes - minutesDisplay) * 60);
+    const secondsDisplay = seconds < 10 ? `0${seconds}` : seconds;
+    return `${minutesDisplay}:${secondsDisplay}`;
+  }
+
+  function getRecordingLines() {
+    return recordings.map((recordingLine, index) => {
+      return (
+        <View key={index} style={styles.row}>
+          <Text style={styles.fill}>
+            Recording {index + 1} - {recordingLine.duration}
+          </Text>
+          <Button
+            //size="xs"
+            //variant="outline"
+            //colorScheme="indigo"
+            style={styles.playButton}
+            onPress={() => recordingLine.sound.replayAsync()}
+          >
+            <Ionicons name="play" size={15} color="#999DC3" />
+          </Button>
+        </View>
+      );
+    });
+  }
+
+
+    const onSubmitButtonPress = async() => {
 
         if (journalEntry && journalEntry.length > 0) {
+          const imageUrl = await uploadImage();
+          console.log("Image Url: ", imageUrl);
             const data = {
                 authorID: userID,
+                titleText: title,
                 moodSelected: entryMood,
+                photo: imageUrl,
+                voice: voiceInfo,
                 journalText: journalEntry,
-                obsessionText: obsession,
                 moodCalendarDate: usefulDate,
                 dateOfEntry: displayDate,
                 createdAt: timestamp
@@ -66,15 +268,20 @@ export default function AddNewEntry(props) {
                 .then(() => {
                     Keyboard.dismiss();
 
+                    setTitle('');
                     setJournalEntry('');
+                    setImage(null);
+                    setRecording(null);
                     setEntryMood('');
-                    setObsession('');
                     setAngry(false);
                     setSad(false);
                     setMeh(false);
                     setHappy(false);
+           
 
-                    alert('Entry Successfully Added');
+                    alert('Your memory has successfully been added to diary!');
+                    //navigation.navigate('Diary');
+                    
 
                 })
                 .catch((error) => {
@@ -84,8 +291,7 @@ export default function AddNewEntry(props) {
         //END REFERENCE
     };
 
-    // ---------- Functions to set the user mood ----------
-    // Used to highlight the users mood as well as set the mood to the state.
+
     const isAngry = () => {
         if (!angry) {
             setAngry(true);
@@ -126,10 +332,21 @@ export default function AddNewEntry(props) {
     return (
         <View style={entryStyles.mainContainer}>
         <View style={entryStyles.contentContainer}>
-            <ScrollView>
-                <Text style={entryStyles.header}>How are you feeling today?</Text>
 
-                <View style={entryStyles.moodModules}>
+            <ScrollView>
+            <Text testID='dateID' style={entryStyles.date}>Today's Date: {displayDate}</Text>
+                
+                <Text style={entryStyles.subHeader}>Title</Text>
+                    <TextInput style={entryStyles.obsessionEntry}
+                        placeholder='Title'
+                        numberOfLines={1}
+                        multiline={true}
+                        onChangeText={(text) => setTitle(text)}
+                        value={title}
+                    />
+          <Text style={entryStyles.subHeader}>How are you feeling?</Text>
+          <View style={entryStyles.moodModules}>
+                  
 
                     <TouchableOpacity style={angry ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isAngry} >
                      <FontAwesome5 name="angry" style={entryStyles.moodFaces} />
@@ -153,34 +370,131 @@ export default function AddNewEntry(props) {
                     </TouchableOpacity>
                 </View>
 
-                <View>
-                    <Text style={entryStyles.subHeader}>Any comments for the day? </Text>
+            <View>
+                    <Text style={entryStyles.subHeader}>Your Story: </Text>
                     <TextInput style={entryStyles.journalEntry}
-                        placeholder='Feel free to dump as much or as little information in here as you want. We wont judge you. We promise! '
+                        placeholder='Write your story here! '
                         numberOfLines={10}
                         multiline={true}
                         onChangeText={(text) => setJournalEntry(text)}
                         value={journalEntry}
                         testID='journalInput'
                     />
-                    <Text style={entryStyles.subHeader}>Obsession of the day?</Text>
-                    <TextInput style={entryStyles.obsessionEntry}
-                        placeholder='Enter your random obsession here!'
-                        numberOfLines={1}
-                        multiline={true}
-                        onChangeText={(text) => setObsession(text)}
-                        value={obsession}
-                        testID='obsessionInput'
-                    />
-                    <Text testID='dateID' style={entryStyles.date}>Todays Date: {displayDate}</Text>
+
+                
+
+            <View style={styles.recordUploadContainer}>
+                    <Text>{message}</Text>
+                    <Button
+                        size="sm"
+                        style={styles.buttons}
+                        onPress={recording ? stopRecording : startRecording}
+                        title= {recording ? "Stop Recording" : "Start Recording"}
+                    >
+                        
+                    </Button>
+                    <Button size="sm" style={styles.buttons} onPress={choosePhotoFromLibrary} title="Upload Image">
+                      
+                        
+                    </Button>
+                    <Button size="sm" style={styles.buttons} onPress={takePhotoFromCamera} title="Take Photo">
+                      
+                        
+                      </Button>
+                    </View>
+                    
+                    {getRecordingLines()}
+                    {image != null ?  
+                        <Image
+                        source={{ uri: image }}
+                        style={{ width: 200, height: 200 }} />: null}
+
+                    {uploading ? (
+                              <View>
+
+                              </View>
+                            ) : (
+                              image && (
+                        
                     <View style={entryStyles.submitButtonContainer}>
                         <TouchableOpacity style={entryStyles.submitButton} onPress={onSubmitButtonPress} accessibilityLabel='Submit Button' testID='submitBTN' >
                             <Text style={entryStyles.submitText}>Submit</Text>
                         </TouchableOpacity>
                     </View>
+                    )
+                    )}
                 </View>
             </ScrollView>
         </View>
     </View>
     );
 }
+
+const styles=StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 10,
+        width:"50%",
+        justifyContent: "center",
+        alignSelf: "center",
+        borderRadius:5,
+        backgroundColor: "rgba(255, 255, 255, 0.77)",
+        marginBottom:10,
+      },
+      heading: {
+        fontFamily: "GiveYouGlory_400Regular",
+        fontSize: 40,
+        paddingTop: "10%",
+      },
+      title: {
+        textAlign: "left",
+        fontSize: 20,
+        fontWeight: "bold",
+      },
+      datePickerStyle: {
+        width: 230,
+      },
+      text: {
+        textAlign: "left",
+        width: 230,
+        fontSize: 16,
+        fontFamily: "Jaldi_400Regular",
+        color: "#000",
+        backgroundColor: "rgba(255, 255, 255, 0.77)",
+    
+      },
+      subtitle: {
+        alignItems: "center",
+        fontSize: 16,
+        fontFamily: "Jaldi_400Regular",
+      },
+      recordUploadContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginBottom: "3%",
+      },
+      buttons: {
+        marginRight: "2%",
+        backgroundColor: "#999DC3",
+        borderColor: "white",
+        borderWidth: 1,
+        borderRadius: 5,
+      },
+      playButton: {
+        width: 200,
+        marginBottom: "3%",
+      },
+      row: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      fill: {
+        flex: 1,
+        margin: 16,
+      },
+      button: {
+        margin: 16,
+      },
+   
+    });

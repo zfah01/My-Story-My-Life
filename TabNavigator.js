@@ -41,11 +41,24 @@ export default function BottomTabNavigator(props) {
                     },
                     null]
             }} >
+            <Tab.Screen
+                name='Home'
+                options={{
+                    tabBarLabel: 'Home',
+                    tabBarIcon: ({ color, size }) => (
+                        {/* Adds custom styling for center button to be bigger and circular. */ },
+                        
+                            <MaterialCommunityIcons name='home' color={color} size={size} />
+                        
+                    )
+                }} >
+                {props => <Home {...props} extraData={userData} logout={logout} />}
+            </Tab.Screen>
 
             <Tab.Screen
-                name='View all Entries' // Adds the page heading to the top of the screen. Can be removed by removing line.
+                name='Diary' // Adds the page heading to the top of the screen. Can be removed by removing line.
                 options={{
-                    tabBarLabel: 'View all Entries',
+                    tabBarLabel: 'Diary',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name='book' color={color} size={size} />) // Sets the icon to the default color and size.
                 }} >
@@ -56,31 +69,21 @@ export default function BottomTabNavigator(props) {
             <Tab.Screen
                 name='Add an Entry'
                 options={{
-                    tabBarLabel: 'Add an Entry',
+                    tabBarLabel: '',
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name='plus-circle' color={color} size={size} />)
+                        <View style={styles.centerNavBTN}>
+                        <MaterialCommunityIcons name='plus-circle' color={color} size={size} />
+                        </View>)
                 }} >
                 {props => <AddNewEntry {...props} extraData={userData} />}
             </Tab.Screen>
 
-            <Tab.Screen
-                name='Home'
-                options={{
-                    tabBarLabel: 'Home',
-                    tabBarIcon: ({ color, size }) => (
-                        {/* Adds custom styling for center button to be bigger and circular. */ },
-                        <View style={styles.centerNavBTN}>
-                            <MaterialCommunityIcons name='home' color={color} size={size} />
-                        </View>
-                    )
-                }} >
-                {props => <Home {...props} extraData={userData} logout={logout} />}
-            </Tab.Screen>
+          
 
             <Tab.Screen
-                name='View Moods'
+                name='Timeline'
                 options={{
-                    tabBarLabel: 'View Moods',
+                    tabBarLabel: 'Timeline',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name='calendar-multiselect' color={color} size={size} />)
                 }} >

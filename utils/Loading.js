@@ -8,7 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 export default function Loading(props) {
     const loading = props.loading;
     return (
-        <ImageBackground source={require('../assets/logo.png')} style={{ width: '100%', height: '100%', opacity: 50}} >
+        <ImageBackground source={require('../assets/logo.png')} style={{ width: '100%', height: '70%', opacity: 50}} >
             <Spinner
             visible={loading}
             textContent={'Loading...'}

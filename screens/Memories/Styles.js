@@ -19,7 +19,8 @@ const entryStyles = StyleSheet.create({
     date: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#000000'
+        color: '#000000',
+        textAlign: 'center',
     },
     moodModules: {
         flexDirection: 'row',

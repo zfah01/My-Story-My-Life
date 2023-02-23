@@ -25,5 +25,8 @@ const db = firebaseApp.firestore();
 const auth = firebase.auth();
 const st = firebase.storage();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+const stateChanged = firebase.storage.TaskEvent.STATE_CHANGED;
+const firestore = firebase.firestore();
 
-export { auth, db, st, timestamp };
+
+export { auth, db, st, timestamp, stateChanged, firestore };
