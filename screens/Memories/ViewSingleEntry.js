@@ -20,7 +20,8 @@ export default function ViewSingleEntry(props) {
     const [journalEntry, setJournalEntry] = useState('');
     const [displayDate, setDisplayDate] = useState('');
     const [title, setTitle] = useState('');
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState(null);
+    const [video, setVideo] = useState(null);
 
     const [isClicked, setIsClicked] = useState(false);
     const memory = props.memory || "";
@@ -53,6 +54,7 @@ export default function ViewSingleEntry(props) {
                         setDisplayDate(journal.dateOfEntry);
                         setTitle(journal.titleText);
                         setImage(journal.postImg);
+                        setVideo(journal.postVid);
                         setVoice(journal.postAudio);
                     });
                 },
@@ -126,7 +128,7 @@ export default function ViewSingleEntry(props) {
                 </View>
 
 
-                    <View>
+                    <View style={styles.container}>
                    
                         <Image
                         source={{ uri: image }}
@@ -134,7 +136,7 @@ export default function ViewSingleEntry(props) {
                         />
 
                         <Video
-                        source={{ uri: image }}
+                        source={{ uri: video }}
                         useNativeControls
                         resizeMode="contain"
                         isLooping
@@ -234,25 +236,23 @@ const styles = StyleSheet.create({
     },
     video: {
       width: "100%", height: 350,
-      marginTop: -100,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
      
 
     },
 
     image: {
       width: "100%", height: 350,
-      marginTop: 46,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
 
     },
     emojiLabels: {
       textAlign: 'center',
       marginTop: 5,
-    }
+    },
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      marginTop: 100
+  },
 
   });

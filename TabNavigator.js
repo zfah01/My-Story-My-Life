@@ -56,10 +56,11 @@ export default function BottomTabNavigator(props) {
             </Tab.Screen>
 
             <Tab.Screen
-                name='Diary' // Adds the page heading to the top of the screen. Can be removed by removing line.
+                name='Diary' 
+                style={styles.diary}
                 options={{
                     tabBarLabel: 'Diary',
-                    //headerShown: false,
+                    headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name='book' color={color} size={size} />) // Sets the icon to the default color and size.
                 }} >
@@ -69,11 +70,13 @@ export default function BottomTabNavigator(props) {
 
             <Tab.Screen
                 name='Add an Entry'
+                style={styles.add}
                 options={{
+                    headerShown: false,
                     tabBarLabel: '',
                     tabBarIcon: ({ color, size }) => (
                         <View style={styles.centerNavBTN}>
-                        <MaterialCommunityIcons name='plus-circle' color={color} size={size} />
+                        <MaterialCommunityIcons name='plus-circle' color={color} size={50} />
                         </View>)
                 }} >
                 {props => <AddNewEntry {...props} extraData={userData} />}
@@ -105,5 +108,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#00e676',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    add: {
+        marginTop: 2,
+
     },
 });

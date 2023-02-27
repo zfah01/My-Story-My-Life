@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, ImageBackground, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SearchBar } from '@rneui/themed';
 
 // Imports the documents styling.
@@ -11,6 +11,7 @@ import { db }from '../../firebase/firebase';
 
 // Imports the View Single Entry component so when an entry is pressed the user is able to view the entry.
 import ViewSingleEntry from './ViewSingleEntry';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Diary(props) {
 
@@ -54,7 +55,7 @@ export default function Diary(props) {
         setSearchText(searchText);
         const filteredEntries = allEntries.filter(function (item) {
             // use title, mood, date to view entry 
-            return item.dateOfEntry.includes(searchText) || item.moodSelected.toLowerCase().includes(searchText.toLowerCase()) || item.titleText.toLowerCase().includes(searchText.toLowerCase());
+            return item.dateOfEntry.includes(searchText) || item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
         });
         setFilteredEntries(filteredEntries);
     };
@@ -77,14 +78,15 @@ export default function Diary(props) {
 
     return (
         // Sets the background image to half opacity.
-            <>
+            <SafeAreaView style={styles.diary}>
             <SearchBar
                 round={true}
                 lightTheme={true}
                 placeholder='Search'
                 autoCapitalize='none'
                 onChangeText={search}
-                value={searchText} />
+                value={searchText}
+                 />
                 <View style={listStyles.contentContainer}>
                 <FlatList
                     // REFERENCE ACCESSED 07/12/2021 https://stackoverflow.com/a/55949691
@@ -101,6 +103,13 @@ export default function Diary(props) {
                 </TouchableOpacity>
                 } />
             </View>
-            </>
+            </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    diary: {
+      
+
+    },
+});
