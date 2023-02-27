@@ -59,6 +59,7 @@ export default function BottomTabNavigator(props) {
                 name='Diary' // Adds the page heading to the top of the screen. Can be removed by removing line.
                 options={{
                     tabBarLabel: 'Diary',
+                    //headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name='book' color={color} size={size} />) // Sets the icon to the default color and size.
                 }} >

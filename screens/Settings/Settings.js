@@ -32,84 +32,94 @@ export default function Settings(props) {
     // Used to be able to use the camera and image library of the device to capture / select an image to use for the profile picture of the user and save that image to storage in firebase.
 
     // Sets how the image should be saved
-    const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
+    const takePhotoFromCamera = async () => {
+        const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+        if (granted) {
+          let result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 0.1,
+            base64: true,
+          });
+          console.log(result);
+    
+          if (!result.canceled) {
+            setImage(result?.assets[0].uri);
+          }
+        }
+      };
+    
+      const choosePhotoFromLibrary = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
           allowsEditing: true,
           aspect: [4, 3],
-          quality: 1,
+          quality: 0.1,
+          base64: true,
         });
-    
         console.log(result);
     
         if (!result.canceled) {
-          setImage(result.assets[0].uri);
+          setImage(result?.assets[0].uri);
         }
       };
-    
-
-      const takeImage = async () => {
-        // No permissions request is necessary for launching the image library
-        let result = await ImagePicker.launchCameraAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
-        });
-    
-        console.log(result);
-    
-        if (!result.canceled) {
-          setImage(result.assets[0].uri);
-        }
-      };
-    
-
+  
       const uploadImage = async () => {
-
-        // Gets the image uri and preps the image for saving. 
-        const uploadU = image;
-        const filename = uploadU.substring(uploadU.lastIndexOf('/') + 1);
+        const blob = await new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.onload = function () {
+            resolve(xhr.response);
+          };
+          xhr.onerror = function (e) {
+            console.log(e);
+            reject(new TypeError("Network request failed"));
+          };
+          xhr.responseType = "blob";
+          xhr.open("GET", image, true);
+          xhr.send(null);
+        });
+        if (image == null) {
+          return null;
+        }
+        const uploadUri = image;
+        let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
+    
+        // Add timestamp to File Name
+        const extension = filename.split(".").pop();
+        const name = filename.split(".").slice(0, -1).join(".");
+        filename = name + Date.now() + "." + extension;
+    
         const profilePicName = filename;
-        const uploadUri = Platform.OS === 'ios' ? uploadU.replace('file://', '') : uploadU;
-        
 
-        //enables the progress bar to render.
         setUploading(true);
         setTransferred(0);
-
-        // Creates a reference to where to save the profile picture.
+    
         const storageRef = st.ref('users/' + user.uid + '/profilePicture/' + filename);
-        const task = storageRef.put(uploadUri);
-
-        // Increments the progress bar for photo upload.
-        task.on('state_changed', snapshot => {
-            try{
-                setTransferred(
-                    snapshot.Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000
-                );
-            } catch(e){
-                //
-            }
-            
+        const task = storageRef.put(blob);
+    
+        // Set transferred state
+        task.on("state_changed", (taskSnapshot) => {
+          console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+    
+          setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
         });
-
-        // Waits for the profile picture to upload then sets the users photo url to the image.
+    
         try {
-            await task;
-            user.updateProfile({
-                photoURL: profilePicName
-            });
-        } catch (error) {
-            console.error(error);
+          await task;
+    
+          user.updateProfile({
+            photoURL: profilePicName
+        });
+    
+          setUploading(false);
+          setImage(null);
+          Alert.alert('Your profile picture has been set!');
+        } catch (e) {
+          console.log(e);
+          return null;
         }
-
-        // Removes the progress indicator and sets the image back to null
-        setUploading(false);
-        setImage(null);
-        Alert.alert('Your profile picture has been set!');
-    };
+      };
 
     return (
 
@@ -124,10 +134,10 @@ export default function Settings(props) {
                     {image !== null ? (
                         <Image source={{ uri: image }} style={settingStyles.imageBox} />
                     ) : null}
-                    <TouchableOpacity style={settingStyles.pictureButton} onPress={takeImage} >
+                    <TouchableOpacity style={settingStyles.pictureButton} onPress={takePhotoFromCamera} >
                         <Text style={settingStyles.buttonText}>Take a picture</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={settingStyles.pictureButton} onPress={pickImage} >
+                    <TouchableOpacity style={settingStyles.pictureButton} onPress={choosePhotoFromLibrary} >
                         <Text style={settingStyles.buttonText}>Select a profile picture</Text>
                     </TouchableOpacity>
                     {/* Changes the upload image button to a progress indicator upon image upload. */}

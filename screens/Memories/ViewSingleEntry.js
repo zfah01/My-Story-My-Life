@@ -11,7 +11,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
 import { inMemoryPersistence } from "firebase/auth";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import * as FileSystem from "expo-file-system";
+import { Video } from 'expo-av';
 
 export default function ViewSingleEntry(props) {
 
@@ -20,13 +20,13 @@ export default function ViewSingleEntry(props) {
     const [journalEntry, setJournalEntry] = useState('');
     const [displayDate, setDisplayDate] = useState('');
     const [title, setTitle] = useState('');
+    const [image, setImage] = useState(null)
+
     const [isClicked, setIsClicked] = useState(false);
     const memory = props.memory || "";
     const [url, setUrl] = useState();
     const [voice, setVoice] = useState();
 
-    const [voiceInfo, setVoiceInfo] = useState(null);
-    const [imageInfo, setimageInfo] = useState(null);
     // Parses the userID from the entries list.
     const userID = props.extraData;
     // Parses the onBack method to return the user to the entries list when the back button is pressed.
@@ -52,8 +52,8 @@ export default function ViewSingleEntry(props) {
                         setJournalEntry(journal.journalText);
                         setDisplayDate(journal.dateOfEntry);
                         setTitle(journal.titleText);
-                        setimageInfo(journal.photo);
-                        setVoiceInfo(journal.voice);
+                        setImage(journal.postImg);
+                        setVoice(journal.postAudio);
                     });
                 },
                 error => {
@@ -62,27 +62,7 @@ export default function ViewSingleEntry(props) {
             );
     }, []);
 
-    useEffect(() => {
-        const func = async () => {
-          const storage = getStorage();
-          const reference = ref(storage, `/${memory.photo}`);
-          await getDownloadURL(reference).then((x) => {
-            setUrl(x);
-          });
-        };
-        func();
-      }, []);
     
-      useEffect(() => {
-        const func = async () => {
-          const storage = getStorage();
-          const reference = ref(storage, `/${memory.voice}`);
-          await getDownloadURL(reference).then((x) => {
-            setVoice(x);
-          });
-        };
-        func();
-      }, []);
     
       async function playSound() {
         try {
@@ -97,9 +77,12 @@ export default function ViewSingleEntry(props) {
       };
 
     return (
+      <>
+    <Text style={entryStyles.date}>Date of Entry: {displayDate} </Text>
         <View style={entryStyles.contentContainer}>
+          
         <ScrollView>
-        <Text style={entryStyles.dateTitle}>Date of Entry: {displayDate} </Text>
+        
         <Text style={entryStyles.subHeader}>Title</Text>
                 <TextInput style={entryStyles.obsessionEntry}
                     placeholder='Title'
@@ -111,20 +94,20 @@ export default function ViewSingleEntry(props) {
 
             <View style={entryStyles.moodModules}>
                 <View style={selectedMood === 'Angry' ? entryStyles.moodModSelected : entryStyles.moodModUnselected} >
-                <FontAwesome5 name="angry" style={entryStyles.moodFaces} />
-                    <Text>Angry</Text>
+                <Image source={require('../../assets/1F600_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Happy</Text>
                 </View>
                 <View style={selectedMood === 'Sad' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <FontAwesome5 name="sad-tear" style={entryStyles.moodFaces} />
-                    <Text>Sad</Text>
+                <Image source={require('../../assets/1F625_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Sad</Text>
                 </View>
                 <View style={selectedMood === 'Meh' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <FontAwesome5 name="meh" style={entryStyles.moodFaces} />
-                    <Text>Meh</Text>
+                <Image source={require('../../assets/1F610_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Meh</Text>
                 </View>
                 <View style={selectedMood === 'Happy' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <FontAwesome5 name="smile" style={entryStyles.moodFaces} />
-                    <Text>Happy</Text>
+                <Image source={require('../../assets/1F620_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Angry</Text>
                 </View>
             </View>
 
@@ -140,54 +123,54 @@ export default function ViewSingleEntry(props) {
                     editable={false}
                     value={journalEntry}
                 />
+                </View>
 
-            <Button
-                   
-                    style={styles.memoryButton}
-                    onPress={handleClick}
-                   title={memory.title}
-                >
-                    
-                </Button>
 
-                {isClicked ? (
                     <View>
-                    {url && (
+                   
                         <Image
-                        source={{ uri: url }}
-                        style={{ width: "100%", height: 300 }}
+                        source={{ uri: image }}
+                        style={styles.image}
                         />
-                    )}
 
-                    {voice && (
-                        <View style={styles.headerBox}>
-                        <Button
-                            style={styles.voiceButton}
-                            onPress={playSound}
-                            title="play"
-                        >
-                            <Ionicons name="play" size={15} color="#999DC3" />
-                        </Button>
-                        <Button
+                        <Video
+                        source={{ uri: image }}
+                        useNativeControls
+                        resizeMode="contain"
+                        isLooping
+                        //onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        style={styles.video} 
+                        />
+
+                      {voice && (
+                                  <View style={styles.headerBox}>
+                                    <Button
+                                      size="xs"
+                                      variant="outline"
+                                      colorScheme="indigo"
+                                      style={styles.voiceButton}
+                                      _text={styles.buttonText}
+                                      onPress={playSound}
+                                    >
+                                      <Ionicons name="play" size={15} color="#999DC3" />
+                                    </Button>
+                                    <Button
+                                      size="xs"
+                                      variant="outline"
+                                      colorScheme="indigo"
+                                      style={styles.voiceButton}
+                                      _text={styles.buttonText}
+                                    >
+                                      <Ionicons name="pause" size={15} color="#999DC3" />
+                                    </Button>
+                                  </View>
+                                )}
+
                         
-                            style={styles.voiceButton}
-                            title=""
-                        >
-                            <Ionicons name="pause" size={15} color="#999DC3" />
-                        </Button>
-                        </View>
-                    )}
+                      </View>
+                   
+
                     
-                    <Button
-                        style={styles.deleteButton}
-                        title="edit"
-
-                    >
-                        <Ionicons name="pencil" size={15} color="white" />
-                    </Button>
-                    </View>
-                ) : null}
-
                 
 
             
@@ -196,9 +179,10 @@ export default function ViewSingleEntry(props) {
                         <Text style={entryStyles.returnText}>Return to Entries</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            
         </ScrollView>
     </View>
+    </>
     );
 }
 
@@ -248,4 +232,27 @@ const styles = StyleSheet.create({
       marginVertical: "2%",
       marginHorizontal: "1%",
     },
+    video: {
+      width: "100%", height: 350,
+      marginTop: -100,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+     
+
+    },
+
+    image: {
+      width: "100%", height: 350,
+      marginTop: 46,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+
+    },
+    emojiLabels: {
+      textAlign: 'center',
+      marginTop: 5,
+    }
+
   });

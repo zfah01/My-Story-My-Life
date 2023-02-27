@@ -3,14 +3,14 @@ import { Text, View,  StyleSheet, TextInput, TouchableOpacity, ScrollView, Image
 import * as ImagePicker from "expo-image-picker";
 //import {launchCameraAsync, useCameraPermissions, PermissionStatus, launchImageLibraryAsync} from 'expo-image-picker'
 import { entryStyles } from './Styles';
-import { st, db, timestamp } from '../../firebase/firebase';
+import { st, db, timestamp, auth } from '../../firebase/firebase';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
-import { Audio } from "expo-av";
+import { Audio, Video } from "expo-av";
 
 
-export default function AddNewEntry(props) {
+export default function AddNewEntry(props, {navigation}) {
 
     // Initializing the state so that when a user selects a mood, it is outlined to show they have selected it.
     const [angry, setAngry] = useState(false);
@@ -30,18 +30,20 @@ export default function AddNewEntry(props) {
       const [uploading, setUploading] = useState(false);
       const [transferred, setTransferred] = useState(0);
       const [status, requestPermission] = ImagePicker.useCameraPermissions();
+
   //voice
-  const [recording, setRecording] = useState();
+  const [recording, setRecording] = useState(null);
   const [recordings, setRecordings] = useState([]);
   const [message, setMessage] = useState("");
   const [voiceInfo, setVoiceInfo] = useState(null);
-
+  const video = React.useRef(null);
 
     
 
     const journalsRef = db.collection('journalList');
     // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
+    const user = auth.currentUser;
 
     useEffect(() => {
         // Gets the current date and creates an object on how to display the date.
@@ -62,7 +64,7 @@ export default function AddNewEntry(props) {
       const { granted } = await ImagePicker.requestCameraPermissionsAsync();
       if (granted) {
         let result = await ImagePicker.launchCameraAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
           allowsEditing: true,
           aspect: [4, 3],
           quality: 0.1,
@@ -119,7 +121,7 @@ export default function AddNewEntry(props) {
       setUploading(true);
       setTransferred(0);
   
-      const storageRef = st.ref(`photos/${filename}`);
+      const storageRef = st.ref('users/' + user.uid + '/images/' + filename);
       const task = storageRef.put(blob);
   
       // Set transferred state
@@ -142,6 +144,9 @@ export default function AddNewEntry(props) {
         return null;
       }
     };
+
+   
+  
 
     
 
@@ -203,17 +208,67 @@ export default function AddNewEntry(props) {
     });
     audioUpload();
   }
+  
 
-  const audioUpload = async () => {
-    //const storage = getStorage();
-    if (recording) {
-      const voiceName = uuidv4();
-      const path = `audio/${userID}/${voiceName}`;
-      const ref_con = ref(st, path);
-      setVoiceInfo(path);
-      const voiceFile = await fetch(recording._uri);
-      const bytes = await voiceFile.blob();
-      await uploadBytes(ref_con, bytes);
+   const audioUpload = async () => {
+    const uri = recording.getURI();
+    let filename = uri.substring(uri.lastIndexOf("/") + 1);
+    // Add timestamp to File Name
+    const extension = filename.split(".").pop();
+    const name = filename.split(".").slice(0, -1).join(".");
+    filename = name + Date.now() + "." + extension;
+
+    try {
+      const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+          try {
+            resolve(xhr.response);
+          } catch (error) {
+            console.log("error:", error);
+          }
+        };
+        xhr.onerror = (e) => {
+          console.log(e);
+          reject(new TypeError("Network request failed"));
+        };
+        xhr.responseType = "blob";
+        xhr.open("GET", uri, true);
+        xhr.send(null);
+      });
+      if (blob != null) {
+        const uriParts = uri.split(".");
+        const fileType = uriParts[uriParts.length - 1];
+     
+          st.ref()
+          .child('users/' + user.uid + '/recordings/' + filename)
+          .put(blob, {
+            contentType: `audio/${fileType}`,
+          })
+          .then(() => {
+            console.log("Sent!");
+          })
+          .catch((e) => console.log("error:", e));
+      } else {
+        console.log("erroor with blob");
+      }
+    } catch (error) {
+      console.log("error:", error);
+    }
+  };
+
+  const downloadAudio = async () => {
+    const uri = await st.ref('users/' + user.uid + '/recordings/' + filename).getDownloadURL();
+
+    console.log("uri:", uri);
+
+    // The rest of this plays the audio
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync({ uri });
+      await soundObject.playAsync();
+    } catch (error) {
+      console.log("error:", error);
     }
   };
 
@@ -233,9 +288,9 @@ export default function AddNewEntry(props) {
             Recording {index + 1} - {recordingLine.duration}
           </Text>
           <Button
-            //size="xs"
-            //variant="outline"
-            //colorScheme="indigo"
+            size="xs"
+            variant="outline"
+            colorScheme="indigo"
             style={styles.playButton}
             onPress={() => recordingLine.sound.replayAsync()}
           >
@@ -248,16 +303,17 @@ export default function AddNewEntry(props) {
 
 
     const onSubmitButtonPress = async() => {
-
+      const imageUrl = await uploadImage();
+      //const audioUrl = await downloadAudio();
+      console.log("Image Url: ", imageUrl);
+      //console.log("Voice Url: ", audioUrl);
         if (journalEntry && journalEntry.length > 0) {
-          const imageUrl = await uploadImage();
-          console.log("Image Url: ", imageUrl);
             const data = {
                 authorID: userID,
                 titleText: title,
                 moodSelected: entryMood,
-                photo: imageUrl,
-                voice: voiceInfo,
+                postImg: imageUrl,
+                //postAudio: audioUrl,
                 journalText: journalEntry,
                 moodCalendarDate: usefulDate,
                 dateOfEntry: displayDate,
@@ -270,10 +326,10 @@ export default function AddNewEntry(props) {
 
                     setTitle('');
                     setJournalEntry('');
-                    setImage(null);
-                    setRecording(null);
                     setEntryMood('');
                     setAngry(false);
+                    setImage(null);
+                    setRecording(null);
                     setSad(false);
                     setMeh(false);
                     setHappy(false);
@@ -331,10 +387,11 @@ export default function AddNewEntry(props) {
 
     return (
         <View style={entryStyles.mainContainer}>
+          <Text testID='dateID' style={entryStyles.date}>Today's Date: {displayDate}</Text>
         <View style={entryStyles.contentContainer}>
-
+ 
             <ScrollView>
-            <Text testID='dateID' style={entryStyles.date}>Today's Date: {displayDate}</Text>
+           
                 
                 <Text style={entryStyles.subHeader}>Title</Text>
                     <TextInput style={entryStyles.obsessionEntry}
@@ -347,27 +404,29 @@ export default function AddNewEntry(props) {
           <Text style={entryStyles.subHeader}>How are you feeling?</Text>
           <View style={entryStyles.moodModules}>
                   
+                    <TouchableOpacity style={happy ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isHappy}>
+                    <Image source={require('../../assets/1F600_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Happy</Text>
 
-                    <TouchableOpacity style={angry ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isAngry} >
-                     <FontAwesome5 name="angry" style={entryStyles.moodFaces} />
-                        <Text>Angry</Text>
                     </TouchableOpacity>
+                    
 
                     <TouchableOpacity style={sad ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isSad}>
-                    <FontAwesome5 name="sad-tear" style={entryStyles.moodFaces} />
-                        <Text>Sad</Text>
+                    <Image source={require('../../assets/1F625_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Sad</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={meh ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isMeh}>
-                    <FontAwesome5 name="meh" style={entryStyles.moodFaces} />
-                        <Text>Meh</Text>
+                    <Image source={require('../../assets/1F610_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Meh</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity style={angry ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isAngry} >
+                     <Image source={require('../../assets/1F620_color.png')} style={entryStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Angry</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={happy ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isHappy}>
-                     <FontAwesome5 name="smile" style={entryStyles.moodFaces} />
-                        <Text>Happy</Text>
-
-                    </TouchableOpacity>
+                    
                 </View>
 
             <View>
@@ -402,27 +461,40 @@ export default function AddNewEntry(props) {
                         
                       </Button>
                     </View>
+                    <View>
                     
                     {getRecordingLines()}
-                    {image != null ?  
+                    {image && (
                         <Image
                         source={{ uri: image }}
-                        style={{ width: 200, height: 200 }} />: null}
+                        style={styles.image} 
+                        />
+                        
+                        
+                        )} 
 
-                    {uploading ? (
-                              <View>
-
-                              </View>
-                            ) : (
-                              image && (
+                    {image && (
+                        <Video
+                        ref={video}
+                        source={{ uri: image }}
+                        useNativeControls
+                        resizeMode="contain"
+                        isLooping
+                        //onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        style={styles.video} 
+                        />
+                        
+                        )}  
+                    </View>
+                    
                         
                     <View style={entryStyles.submitButtonContainer}>
                         <TouchableOpacity style={entryStyles.submitButton} onPress={onSubmitButtonPress} accessibilityLabel='Submit Button' testID='submitBTN' >
                             <Text style={entryStyles.submitText}>Submit</Text>
                         </TouchableOpacity>
                     </View>
-                    )
-                    )}
+                    
+                    
                 </View>
             </ScrollView>
         </View>
@@ -496,5 +568,26 @@ const styles=StyleSheet.create({
       button: {
         margin: 16,
       },
+      video: {
+        width: "100%", height: 350,
+        marginTop: -100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+       
+
+      },
+      image: {
+        width: "100%", height: 350,
+        marginTop: 46,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+      }, 
+      emojiLabels: {
+        textAlign: 'center',
+        marginTop: 5,
+      }
    
     });

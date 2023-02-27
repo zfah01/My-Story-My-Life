@@ -49,13 +49,12 @@ export default function Diary(props) {
             );
     }, []);
 
-    // REFERENCE ACCESSED 07/12/2021 https://stackoverflow.com/a/55949691
-    // Used to allow the user to search for journal entires based on the date for easier viewing.
+    
     const search = (searchText) => {
         setSearchText(searchText);
         const filteredEntries = allEntries.filter(function (item) {
-            // Returns either all entries with the same month or same mood searched for by the user.
-            return item.dateOfEntry.includes(searchText) || item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
+            // use title, mood, date to view entry 
+            return item.dateOfEntry.includes(searchText) || item.moodSelected.toLowerCase().includes(searchText.toLowerCase()) || item.titleText.toLowerCase().includes(searchText.toLowerCase());
         });
         setFilteredEntries(filteredEntries);
     };
@@ -82,7 +81,7 @@ export default function Diary(props) {
             <SearchBar
                 round={true}
                 lightTheme={true}
-                placeholder='Search by Date or Mood...'
+                placeholder='Search'
                 autoCapitalize='none'
                 onChangeText={search}
                 value={searchText} />
@@ -94,7 +93,8 @@ export default function Diary(props) {
                     keyExtractor={(item) => item.id}
                     // END REFERENCE
                     renderItem={({ item }) => <TouchableOpacity style={listStyles.listView} onPress={() => setSelectedID(item.createdAt)}>
-                    <Text style={listStyles.entryDate}>{item.dateOfEntry}</Text>
+                    <Text style={listStyles.entryDesc}>{item.dateOfEntry}</Text>
+                    <Text style={listStyles.entryDate}>{item.titleText}</Text>
                     <Text style={listStyles.entryDesc} numberOfLines={2} >{item.journalText}</Text>
                     {/* Uses arrayed styles to set default styling and to set the colour of the text based on the mood. */}
                     <Text style={[listStyles.entryMood, { color: item.moodSelected === 'Happy' ? '#108206' : item.moodSelected === 'Meh' ? '#e38e07' : item.moodSelected === 'Sad' ? '#112dec' : '#f90505' }]}>Your mood: {item.moodSelected} </Text>
