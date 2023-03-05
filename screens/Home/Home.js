@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Button, Image, ImageBackground, Text, TouchableOpacity, ScrollView, View, } from 'react-native';
+import { Alert, Modal, Button, Image, TextInput, StyleSheet, Text, TouchableOpacity, ScrollView, View, } from 'react-native';
 import Loading from '../../utils/Loading';
 
 // Imports the documents styling.
@@ -12,6 +12,7 @@ import Settings from '../Settings/Settings';
 // Imports firestore and storage from firebase to save the days used and retrieve image data relating to the bonsai tree.
 
 import  { auth, db, st } from '../../firebase/firebase';
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default function Home(props) {
@@ -31,6 +32,15 @@ export default function Home(props) {
     const [quoteAuthor, setQuoteAuthor] = useState(null);
     const [settingsPressed, setSettingsPressed] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    const [past, setPast] = useState('');
+    const [present, setPresent] = useState('');
+    const [future, setFuture] = useState('');
+    const [dob, setDob] = useState('');
+    const [skills, setSkills] = useState('');
+    const [tenseModal, setTenseModal] = useState(false);
+    const [aboutModal, setAboutModal] = useState(false);
+
 
     // Creates references to firebase objects to get the user collection and profile picture. 
     const userCounterRef = db.collection('userCounter');
@@ -114,6 +124,7 @@ export default function Home(props) {
         });
 
     };
+
     // Gets and sets the random API quote, called in useEffect.
     const setDailyQuote = async () => {
         let quotes = await ajax.fetchRandomQuotes();
@@ -121,6 +132,7 @@ export default function Home(props) {
         setQuoteAPI(jsonText.split('"')[3]);
         setQuoteAuthor(jsonText.split('"')[7]);
     };
+
     // Sets the users profile picture, called in useEffect.
     const setProfilePic = async () => {
         // Sets the profile picture, if not available, sets to a default image.
@@ -168,9 +180,159 @@ export default function Home(props) {
                                 <Text style={homeStyles.dailyStreakCounter} > {dailyStreakText} {dailyStreak}</Text>
                             </TouchableOpacity>
                         </View>
+                <View style={styles.modals}>
+                        <TouchableOpacity
+                                style={styles.touchableMod}
+                                onPress={() => setAboutModal(true)}>
+                                    <Text style={styles.modHeader}>About Me</Text>
+                                    <Image style={styles.pic} source={{ uri: profilePicUrl }} />
+                         </TouchableOpacity>
+
+                        <Modal
+                        animationType='fade'
+                        visible={aboutModal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setAboutModal(!aboutModal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setAboutModal(!aboutModal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modHead}>About Me:</Text>
+                            <View>
+                            <View>
+                                <Text style={styles.tenseHeader}>Name:</Text>
+                                    <TextInput
+                                        style={styles.contentContainer}
+                                        multiline={true}
+                                        editable={false}
+                                        value={username}
+                                    />
+                             </View>
+
+                             <View>
+                                <Text style={styles.tenseHeader}>Date of Birth</Text>
+                                    <TextInput 
+                                        style={styles.contentContainer}
+                                        placeholder='Please enter your date of birth'
+                                        multiline={true}
+                                        onChangeText={(text) => setDob(text)}
+                                        value={dob}
+                                    />
+                                    </View>
+
+                                
+                                    <View>
+                                    <Text style={styles.tenseHeader}>Skills and Hobbies</Text>
+                                    <TextInput 
+                                        style={styles.contentContainer}
+                                        placeholder='What are your skills and hobbies?'
+                                        multiline={true}
+                                        onChangeText={(text) => setSkills(text)}
+                                        value={skills}
+                                    />
+                                    </View>
+
+
+                            </View>
+                                <Button
+                                title='Save'
+                                //containerStyle={{width:'30%',borderRadius:30}}
+                                style={styles.modButton}
+                                onPress={() => setAboutModal(!aboutModal)}
+                                />
+                        </View>
+                        </View>
+                        </Modal>
+
+                        <TouchableOpacity
+                                style={styles.touchableMod}
+                                onPress={() => setTenseModal(true)}>
+                                    <Text style={styles.modHeader}>Life Journey {'\n'} and Aspirations</Text>
+                         </TouchableOpacity>
+
+                        <Modal
+                        animationType='fade'
+                        visible={tenseModal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setTenseModal(!tenseModal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setTenseModal(!tenseModal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modHead}>Your Life Journey:</Text>
+                            <View>
+                            <View>
+                                <Text style={styles.tenseHeader}>Past</Text>
+                                    <TextInput
+                                        style={styles.contentContainer}
+                                        placeholder='Please enter information about your past'
+                                        multiline={true}
+                                        onChangeText={(text) => setPast(text)}
+                                        value={past}
+                                    />
+                             </View>
+
+                             <View>
+                                <Text style={styles.tenseHeader}>Present</Text>
+                                    <TextInput 
+                                        style={styles.contentContainer}
+                                        placeholder='How are you currently getting on in life?'
+                                        multiline={true}
+                                        onChangeText={(text) => setPresent(text)}
+                                        value={present}
+                                    />
+                                    </View>
+
+                                
+                                    <View>
+                                    <Text style={styles.tenseHeader}>Future</Text>
+                                    <TextInput 
+                                        style={styles.contentContainer}
+                                        placeholder='What are your future aspirations?'
+                                        multiline={true}
+                                        onChangeText={(text) => setFuture(text)}
+                                        value={future}
+                                    />
+                                    </View>
+
+
+                            </View>
+                                <Button
+                                title='Save'
+                                //containerStyle={{width:'30%',borderRadius:30}}
+                                style={styles.modButton}
+                                onPress={() => setTenseModal(!tenseModal)}
+                                />
+                        </View>
+                        </View>
+                        </Modal>
+                        </View>
+
                         <View style={homeStyles.treeFrame}>
-                            <Text style={homeStyles.inspireQuote}>{quoteAPI} {'\n'} -{quoteAuthor}</Text>
-                            <Text style={homeStyles.daysUsed}> Days Used: {daysUsed}</Text>
                             <Button style={homeStyles.detailsBTN}
                                 onPress={showDailyUseDetails}
                                 title="Find Out More"
@@ -201,3 +363,100 @@ const showDailyUseDetails = () => {
             }
         ]);
 };
+
+const styles = StyleSheet.create({
+    tenseHeader: {
+        textAlign: 'left', 
+        
+       
+    },
+    contentContainer: {
+        flexWrap: 'wrap',
+        height: 80,
+        margin: 20,
+        padding: 10,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 25,
+        alignSelf: 'flex-start',
+       
+    },
+
+    questions: {
+        margin: 10,
+        marginTop: 30,
+    },
+
+    centerView:{
+        flex:1,
+        justifyContent: 'center',
+        allignItems: 'center',
+        //marginTop:56,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        position: 'relative'
+      },
+      modalView:{
+        width: '88%',
+        height: 550,
+        backgroundColor: '#FFF', 
+        margin:28,
+        shadowColor:'#3E4985',
+        shadowRadius:10,
+        shadowOffset:10,
+        borderRadius:10,
+        padding:20,
+        alignItems:'center',
+        shadowColor:'#000',
+      },
+  
+
+    selfEnd: {
+
+    },
+
+    modHeader: {
+        fontSize: 20,
+        margin: 30,
+        textAlign: 'center',
+        fontStyle: 'italic' 
+    }, 
+    modHead: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    }, 
+    modButton: {
+        backgroundColor: 'green', 
+        width:'30%',
+        borderRadius:30,
+        
+    },
+    touchableMod: {
+        backgroundColor: '#00e676',
+        width: 170,
+        height: 150,
+        margin: 20,
+        marginTop: 30,
+        borderRadius: 9,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+
+        elevation: 2, // Android
+    },
+    modals: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pic: {
+        position: 'absolute',
+        margin: 60,
+        marginLeft: 45,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+
+    },
+
+});

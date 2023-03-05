@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 import { SearchBar } from '@rneui/themed';
 
 // Imports the documents styling.
@@ -12,6 +12,7 @@ import { db }from '../../firebase/firebase';
 // Imports the View Single Entry component so when an entry is pressed the user is able to view the entry.
 import ViewSingleEntry from './ViewSingleEntry';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Diary(props) {
 
@@ -59,7 +60,9 @@ export default function Diary(props) {
         });
         setFilteredEntries(filteredEntries);
     };
-    // END REFERENCE
+
+
+   
 
     // Sets the selectedID back to null when returning from the ViewSingleEntry page.
     const unsetCurrentEntry = () => {
@@ -76,6 +79,7 @@ export default function Diary(props) {
         );
     }
 
+
     return (
         // Sets the background image to half opacity.
             <SafeAreaView style={styles.diary}>
@@ -89,15 +93,33 @@ export default function Diary(props) {
                  />
                 <View style={listStyles.contentContainer}>
                 <FlatList
-                    // REFERENCE ACCESSED 07/12/2021 https://stackoverflow.com/a/55949691
-                    // Used to allow the user to search for journal entires based on the date for easier viewing.
                     data={filteredEntries && filteredEntries.length > 0 ? filteredEntries : allEntries}
                     keyExtractor={(item) => item.id}
-                    // END REFERENCE
+
                     renderItem={({ item }) => <TouchableOpacity style={listStyles.listView} onPress={() => setSelectedID(item.createdAt)}>
                     <Text style={listStyles.entryDesc}>{item.dateOfEntry}</Text>
                     <Text style={listStyles.entryDate}>{item.titleText}</Text>
                     <Text style={listStyles.entryDesc} numberOfLines={2} >{item.journalText}</Text>
+                    <ScrollView horizontal={true}>
+                    <View style={{flexDirection: "row"}}>
+                    {item.postImages &&
+                        item.postImages.map(image => 
+                        <Image
+                            key={image}
+                            source={{ uri: image}} style={{ 
+                            width: 300, 
+                            marginLeft: 35,
+                            height: 180,
+                            borderRadius: 9,
+                            alignSelf:'center',
+                            marginTop:10
+                            }}
+                            resizeMode='cover' 
+                        />
+                        )
+                    }
+                    </View>
+                    </ScrollView>
                     {/* Uses arrayed styles to set default styling and to set the colour of the text based on the mood. */}
                     <Text style={[listStyles.entryMood, { color: item.moodSelected === 'Happy' ? '#108206' : item.moodSelected === 'Meh' ? '#e38e07' : item.moodSelected === 'Sad' ? '#112dec' : '#f90505' }]}>Your mood: {item.moodSelected} </Text>
                 </TouchableOpacity>

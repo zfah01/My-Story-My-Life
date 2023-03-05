@@ -22,12 +22,9 @@ export default function Timeline(props) {
     // Generates a list of all the moods from allData.
     const allMoods = [];
     // Generates a list of all the obsessions from allData.
-    const allObsessions = [];
-    const [obsession, setObsession] = useState('');
+    const allJournals = [];
+    const [journalEntry, setJournalEntry] = useState('');
 
-
-    const [time, setTime] = useState('');
-    const [desc, setDesc] = useState('');
     // Changes the render based on if a user has interacted with the calendar.
     const [entryPressed, setEntryPressed] = useState(false);
 
@@ -61,7 +58,7 @@ export default function Timeline(props) {
     for (let i = 0; i < allData.length; i++) {
         allDates.push(allData[i].moodCalendarDate);
         allMoods.push(allData[i].moodSelected);
-        allObsessions.push(allData[i].obsessionText);
+        allJournals.push(allData[i].journalText);
     }
 
     // REFERENCE ACCESSED 08/12/2021 https://github.com/wix/react-native-calendars/issues/160#issuecomment-408405419
@@ -71,10 +68,7 @@ export default function Timeline(props) {
     let allDatesObject = {};
     // Variables that are used to display data to the user.
     let selectedMood = '';
-    let selectedObsession = '';
-
-    let selectedDesc = '';
-    let selectedTime = '';
+    let selectedJournalText = '';
 
     // For each day in allDates array, cycle through the day, select the mood colour and add the current day to the calendar.
     allDates.forEach((day) => {
@@ -86,39 +80,30 @@ export default function Timeline(props) {
         }
         // Checks if the day is the same as the date and then adds the obsession for the date to the calendar.
         // Adds a mark to the calendar.
-        for (let i = 0; i < allObsessions.length; i++) {
+        for (let i = 0; i < allJournals.length; i++) {
             if (day === allDates[i]) {
-                selectedObsession = allObsessions[i];
+                selectedJournalText = allJournals[i];
             }
         }
 
         allDatesObject[day] = {
             selected: true,
-            marked: selectedObsession === '' ? false : selectedObsession == null ? false : true,
+            marked: selectedJournalText === '' ? false : selectedJournalText == null ? false : true,
             selectedColor: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Meh' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : selectedMood === 'Angry' ? '#f90505' : '#000000',
         };
     });
     // END REFERENCE
 
     const displayObsessionsAndHeartRate = (day) => {
-        for (let i = 0; i < allObsessions.length; i++) {
+        for (let i = 0; i < allJournals.length; i++) {
             if (day.dateString === allDates[i]) {
-                selectedObsession = allObsessions[i];
-                    if (selectedDesc === '' || selectedDesc == null) {
-                        setTime('');
-                        setDesc('');
-                        break;
-                    } else {
-                        setTime(selectedTime);
-                        setDesc(selectedDesc);
-                        break;
-                    }
+                selectedJournalText = allJournals[i];
                 }
-                if (selectedObsession === '' || selectedObsession == null) {
-                    setObsession('');
+                if (selectedJournalText === '' || selectedJournalText == null) {
+                    setJournalEntry('');
                     break;
                 } else {
-                    setObsession(selectedObsession);
+                    setJournalEntry(selectedJournalText);
                     break;
                 }
             }
@@ -131,17 +116,8 @@ export default function Timeline(props) {
             {entryPressed ? (
                 <View style={journalStyles.popupMainContainer}>
                     <View style={[journalStyles.contentContainer, { padding: 25 }]}>
-                        <Text style={journalStyles.popupTitle}>Your Daily Obsession: </Text>
-                        <Text style={journalStyles.obsessionText}>{obsession} </Text>
-
-                        <View style={journalStyles.popupContainer}>
-                            <Text style={journalStyles.popupTitle}>Time of Entry: </Text>
-                            <Text style={journalStyles.popupText}>{time} </Text>
-                        </View>
-                        <View style={journalStyles.popupContainer}>
-                            <Text style={journalStyles.popupTitle}>Description: </Text>
-                            <Text style={journalStyles.popupText}>{desc}</Text>
-                        </View>
+                        <Text style={journalStyles.popupTitle}>Your Story: </Text>
+                        <Text style={journalStyles.obsessionText}>{journalEntry} </Text>
 
                         <TouchableOpacity onPress={() => setEntryPressed(false)} >
                             <Text style={journalStyles.buttonText}> {'>'} Return to Calendar </Text>

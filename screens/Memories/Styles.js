@@ -36,9 +36,9 @@ const entryStyles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 5,
         textAlign: 'center',
-        borderWidth: 1,
-        borderColor: '#000000',
-        borderRadius: 5,
+        borderWidth: 4,
+        borderColor: 'yellow',
+        borderRadius: 9,
         paddingLeft: 10,
     },
     moodFaces: {

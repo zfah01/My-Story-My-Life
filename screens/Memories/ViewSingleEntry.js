@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { inMemoryPersistence } from "firebase/auth";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { Video } from 'expo-av';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ViewSingleEntry(props) {
 
@@ -20,8 +21,8 @@ export default function ViewSingleEntry(props) {
     const [journalEntry, setJournalEntry] = useState('');
     const [displayDate, setDisplayDate] = useState('');
     const [title, setTitle] = useState('');
-    const [image, setImage] = useState(null);
-    const [video, setVideo] = useState(null);
+    const [images, setImages] = useState([]);
+    const [videos, setVideos] = useState([]);
 
     const [isClicked, setIsClicked] = useState(false);
     const memory = props.memory || "";
@@ -53,8 +54,8 @@ export default function ViewSingleEntry(props) {
                         setJournalEntry(journal.journalText);
                         setDisplayDate(journal.dateOfEntry);
                         setTitle(journal.titleText);
-                        setImage(journal.postImg);
-                        setVideo(journal.postVid);
+                        setImages(journal.postImages);
+                        setVideos(journal.postVideos);
                         setVoice(journal.postAudio);
                     });
                 },
@@ -80,22 +81,22 @@ export default function ViewSingleEntry(props) {
 
     return (
       <>
-    <Text style={entryStyles.date}>Date of Entry: {displayDate} </Text>
+      <SafeAreaView>
+    <Text style={styles.date}>Date of Entry: {displayDate} </Text>
+    </SafeAreaView>
+
         <View style={entryStyles.contentContainer}>
           
         <ScrollView>
         
-        <Text style={entryStyles.subHeader}>Title</Text>
-                <TextInput style={entryStyles.obsessionEntry}
-                    placeholder='Title'
-                    numberOfLines={1}
-                    multiline={true}
-                    value={title}
-                />
-            <Text style={entryStyles.header}>How you were feeling: </Text>
+        <Text style={styles.subHeaderTitle}>Title:</Text>
+                <Text style={styles.title}>
+                    {title}
+                    </Text> 
+            <Text style={styles.moodHeader}>How you were feeling: </Text>
 
             <View style={entryStyles.moodModules}>
-                <View style={selectedMood === 'Angry' ? entryStyles.moodModSelected : entryStyles.moodModUnselected} >
+                <View style={selectedMood === 'Happy' ? entryStyles.moodModSelected : entryStyles.moodModUnselected} >
                 <Image source={require('../../assets/1F600_color.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Happy</Text>
                 </View>
@@ -107,9 +108,9 @@ export default function ViewSingleEntry(props) {
                 <Image source={require('../../assets/1F610_color.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Meh</Text>
                 </View>
-                <View style={selectedMood === 'Happy' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
+                <View style={selectedMood === 'Angry' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
                 <Image source={require('../../assets/1F620_color.png')} style={entryStyles.moodFaces} />
-                        <Text style={styles.emojiLabels}>Angry</Text>
+                        <Text style={styles.emojiLabels}>Angry </Text>
                 </View>
             </View>
 
@@ -117,32 +118,41 @@ export default function ViewSingleEntry(props) {
                 You were feeling: {selectedMood}
             </Text>
             <View>
-                <Text style={entryStyles.subHeader}>Your Story: </Text>
-                <TextInput style={entryStyles.journalEntry}
-                    placeholder='Write your story here! '
-                    numberOfLines={5}
-                    multiline
-                    editable={false}
-                    value={journalEntry}
-                />
+                <Text style={styles.storyHeader}>Your Story: </Text>
+                <Text style={styles.story}>
+                    {journalEntry}
+                </Text>
                 </View>
 
 
                     <View style={styles.container}>
+                    <ScrollView horizontal={true}>
+                    <View style={{flexDirection: "row"}}>
                    
-                        <Image
-                        source={{ uri: image }}
+                    {images.map((item) => (
+                      <Image
+                        key={item}
                         style={styles.image}
-                        />
+                        source={{uri: item}}
+                      
+                      />
+                    ))}
 
-                        <Video
-                        source={{ uri: video }}
+                    {videos.map((item) => (
+                      <Video
+                        key={item}
+                        style={styles.video}
+                        source={{uri: item}}
                         useNativeControls
                         resizeMode="contain"
                         isLooping
-                        //onPlaybackStatusUpdate={status => setStatus(() => status)}
-                        style={styles.video} 
-                        />
+                      
+                      />
+                    ))}
+
+                    </View>
+                    </ScrollView>
+                    
 
                       {voice && (
                                   <View style={styles.headerBox}>
@@ -176,9 +186,9 @@ export default function ViewSingleEntry(props) {
                 
 
             
-                <View style={entryStyles.returnButtonContainer}>
-                    <TouchableOpacity style={entryStyles.returnButton} onPress={onBack}>
-                        <Text style={entryStyles.returnText}>Return to Entries</Text>
+                <View style={styles.returnButtonContainer}>
+                    <TouchableOpacity style={styles.returnButton} onPress={onBack}>
+                        <Text style={styles.returnText}>Back to Diary</Text>
                     </TouchableOpacity>
                 </View>
             
@@ -215,6 +225,36 @@ const styles = StyleSheet.create({
       fontFamily: "Jaldi_400Regular",
       fontSize: 18,
     },
+
+    returnButtonContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      paddingTop: 10
+  },
+  returnButton: {
+      padding: 15,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'orange',
+      borderRadius: 15,
+      width: 150,
+  },
+  returnText: {
+      textAlign: 'center',
+      fontWeight: 'bold',
+      fontSize: 18,
+      color: '#000000',
+  },
+
+    date: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: '#000000',
+      textAlign: 'center',
+  
+      
+    },
     memoryButton: {
       backgroundColor: "rgba(255, 255, 255, 0.77)",
       marginBottom: 6,
@@ -235,15 +275,35 @@ const styles = StyleSheet.create({
       marginHorizontal: "1%",
     },
     video: {
-      width: "100%", height: 350,
-     
+      width: 330, height: 240,
+      borderRadius: 9,
+      marginLeft: 10,
 
     },
 
     image: {
-      width: "100%", height: 350,
+      width: 330, height: 240,
+      borderRadius: 9,
+      marginLeft: 20,
+      
 
     },
+    subHeaderTitle: {
+      fontSize: 16,
+      textAlign: 'center',
+      fontStyle: 'italic',
+      fontWeight: 'bold',
+      color: '#000000',
+  },
+
+  storyHeader: {
+    fontSize: 16,
+    textAlign: 'left',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: '#000000',
+    paddingTop: 20
+  },
     emojiLabels: {
       textAlign: 'center',
       marginTop: 5,
@@ -252,7 +312,26 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'flex-start',
-      marginTop: 100
+      
   },
+    title: {
+      textAlign: 'center',
+      fontSize: 30,
+      paddingBottom: 10,
+    },
+
+    story: {
+      paddingBottom: 12,
+      paddingTop: 10,
+      fontSize: 16
+    },
+    moodHeader: {
+    fontSize: 16,
+    textAlign: 'left',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: '#000000',
+    paddingTop: 20
+    }
 
   });

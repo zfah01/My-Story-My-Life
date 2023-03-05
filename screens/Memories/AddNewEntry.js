@@ -4,7 +4,7 @@ import * as ImagePicker from "expo-image-picker";
 //import {launchCameraAsync, useCameraPermissions, PermissionStatus, launchImageLibraryAsync} from 'expo-image-picker'
 import { entryStyles } from './Styles';
 import { st, db, timestamp, auth } from '../../firebase/firebase';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { Audio, Video } from "expo-av";
@@ -26,8 +26,12 @@ export default function AddNewEntry(props, {navigation}) {
     const [entryMood, setEntryMood] = useState('');
 
       //photo
-      const [image, setImage] = useState(null);
-      const [video, setVideo] = useState(null);
+      const [images, setImages] = useState([]);
+      const [urls, setUrls] = useState([]);
+      const [progress, setProgress] = useState(0);
+
+      const [videos, setVideos] = useState([]);
+      const [vidUrls, setVidUrls] = useState([]);
 
       const [uploading, setUploading] = useState(false);
       const [transferred, setTransferred] = useState(0);
@@ -38,6 +42,11 @@ export default function AddNewEntry(props, {navigation}) {
   const [recordings, setRecordings] = useState([]);
   const [message, setMessage] = useState("");
   const [voiceInfo, setVoiceInfo] = useState(null);
+
+  const [change, setChange] = useState(false);
+  const ChangeColour = () => {
+    setChange(!change);
+  };
 
     
 
@@ -64,8 +73,6 @@ export default function AddNewEntry(props, {navigation}) {
     const takePhotoFromCamera = async () => {
       const { granted } = await ImagePicker.requestCameraPermissionsAsync();
       if (granted) {
-        setImage(null);
-        setVideo(null);
 
         let result = await ImagePicker.launchCameraAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -78,10 +85,14 @@ export default function AddNewEntry(props, {navigation}) {
   
         if (!result.canceled) {
           if (result.assets[0].type === 'image') {
-          setImage(result?.assets[0].uri);
-          }else if (result.assets[0].type === 'video') {
-            setVideo(result?.assets[0].uri)
-        }
+          setImages([...images, result?.assets[0].uri] );
+          } else if(result.assets[0].type === 'video'){
+            setVideos([...videos, result?.assets[0].uri] );
+          }
+          
+          //else if (result.assets[0].type === 'video') {
+           // setVideo( result?.assets[0].uri)
+        //}
         }
       }
     };
@@ -98,30 +109,17 @@ export default function AddNewEntry(props, {navigation}) {
   
       if (!result.canceled) {
         if (result.assets[0].type === 'image') {
-        setImage(result?.assets[0].uri);
-        }else if (result.assets[0].type === 'video') {
-          setVideo(result?.assets[0].uri)
-      }
+          setImages([...images, result?.assets[0].uri] );
+        } else if(result.assets[0].type === 'video'){
+          setVideos([...videos, result?.assets[0].uri])
+        }
       }
     };
 
-    const uploadImage = async () => {
-      const blob = await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-          resolve(xhr.response);
-        };
-        xhr.onerror = function (e) {
-          console.log(e);
-          reject(new TypeError("Network request failed"));
-        };
-        xhr.responseType = "blob";
-        xhr.open("GET", image, true);
-        xhr.send(null);
-      });
-      if (image == null) {
-        return null;
-      }
+    const uploadImage =  () => {
+      const promises = [];
+      images.map((image) => {
+
       const uploadUri = image;
       let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
   
@@ -129,35 +127,86 @@ export default function AddNewEntry(props, {navigation}) {
       const extension = filename.split(".").pop();
       const name = filename.split(".").slice(0, -1).join(".");
       filename = name + Date.now() + "." + extension;
-  
-      setUploading(true);
-      setTransferred(0);
-  
-      const storageRef = st.ref('users/' + user.uid + '/images/' + filename);
-      const task = storageRef.put(blob);
-  
-      // Set transferred state
-      task.on("state_changed", (taskSnapshot) => {
-        console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
-  
-        setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
+        const uploadTask = st.ref('users/' + user.uid + '/images/' + filename).put(image);
+        promises.push(uploadTask);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setProgress(progress);
+          },
+          (error) => {
+            console.log(error);
+          },
+          async () => {
+            await st
+              .ref('users/' + user.uid + '/images/')
+              .child(filename)
+              .getDownloadURL()
+              .then((urls) => {
+                setUrls((prevState) => [...prevState, urls]);
+              });
+          }
+        );
       });
   
-      try {
-        await task;
-  
-        const url = await storageRef.getDownloadURL();
-  
-        setUploading(false);
-        setImage(null);
-        return url;
-      } catch (e) {
-        console.log(e);
-        return null;
-      }
+      Promise.all(promises)
+        .then(() => console.log("All images uploaded"))
+        .catch((err) => console.log(err));
     };
 
-    const uploadVideo = async () => {
+    console.log("images: ", images);
+    console.log("urls", urls)
+
+    //upload video(s) to firebase 
+
+    const uploadVideo =  () => {
+      const promises = [];
+      videos.map((video) => {
+
+      const uploadUri = video;
+      let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
+  
+      // Add timestamp to File Name
+      const extension = filename.split(".").pop();
+      const name = filename.split(".").slice(0, -1).join(".");
+      filename = name + Date.now() + "." + extension;
+        const uploadTask = st.ref('users/' + user.uid + '/videos/' + filename).put(video);
+        promises.push(uploadTask);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setProgress(progress);
+          },
+          (error) => {
+            console.log(error);
+          },
+          async () => {
+            await st
+              .ref('users/' + user.uid + '/videos/')
+              .child(filename)
+              .getDownloadURL()
+              .then((vidUrls) => {
+                setVidUrls((prevState) => [...prevState, vidUrls]);
+              });
+          }
+        );
+      });
+  
+      Promise.all(promises)
+        .then(() => console.log("All images uploaded"))
+        .catch((err) => console.log(err));
+    };
+
+    console.log("videos: ", videos);
+    console.log("urls", vidUrls)
+
+    /*const uploadVideo = async () => {
       const blob = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.onload = function () {
@@ -199,6 +248,7 @@ export default function AddNewEntry(props, {navigation}) {
         await task;
   
         const url = await storageRef.getDownloadURL();
+
   
         setUploading(false);
         setVideo(null);
@@ -207,7 +257,7 @@ export default function AddNewEntry(props, {navigation}) {
         console.log(e);
         return null;
       }
-    };
+    };*/
 
    
   
@@ -367,19 +417,20 @@ export default function AddNewEntry(props, {navigation}) {
 
 
     const onSubmitButtonPress = async() => {
-      const imageUrl = await uploadImage();
-      const vidUrl = await uploadVideo();
+     // const imageUrl =  uploadImage();
+      //const vidUrl = await uploadVideo();
       //const audioUrl = await downloadAudio();
-      console.log("Image Url: ", imageUrl);
-      console.log("Video Url: ", vidUrl);
+      //console.log("Image Url: ", imageUrl);
+      //console.log("Video Url: ", vidUrl);
       //console.log("Voice Url: ", audioUrl);
         if (journalEntry && journalEntry.length > 0) {
             const data = {
                 authorID: userID,
                 titleText: title,
                 moodSelected: entryMood,
-                postImg: imageUrl,
-                postVid: vidUrl ,
+                postImages: images,
+                postVideos: videos,
+                //postVid: vidUrl ,
                 //postAudio: audioUrl,
                 journalText: journalEntry,
                 moodCalendarDate: usefulDate,
@@ -395,7 +446,8 @@ export default function AddNewEntry(props, {navigation}) {
                     setJournalEntry('');
                     setEntryMood('');
                     setAngry(false);
-                    setImage(null);
+                    setImages([]);
+                    setVideos([]);
                     setRecording(null);
                     setSad(false);
                     setMeh(false);
@@ -498,6 +550,7 @@ export default function AddNewEntry(props, {navigation}) {
 
             <View>
                     <Text style={entryStyles.subHeader}>Your Story: </Text>
+                    
                     <TextInput style={entryStyles.journalEntry}
                         placeholder='Write your story here! '
                         numberOfLines={10}
@@ -511,47 +564,52 @@ export default function AddNewEntry(props, {navigation}) {
 
             <View style={styles.recordUploadContainer}>
                     <Text>{message}</Text>
-                    <Button
-                        size="sm"
-                        style={styles.buttons}
-                        onPress={recording ? stopRecording : startRecording}
-                        title= {recording ? "Stop Recording" : "Start Recording"}
-                    >
+                    <TouchableOpacity>
+
+                     <FontAwesome5 name="microphone" size={22} color={recording ? 'red' : 'grey'} onPress={recording ? stopRecording : startRecording} />
                         
-                    </Button>
-                    <Button size="sm" style={styles.buttons} onPress={choosePhotoFromLibrary} title="Pick Image or Video">
+                    
+                        
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                    <FontAwesome5 name="photo-video" color={ "grey"} size={20} style={styles.mediaButtons} onPress={choosePhotoFromLibrary} />
                       
-                        
-                    </Button>
-                    <Button size="sm" style={styles.buttons} onPress={takePhotoFromCamera} title="Take Photo or Video">
-                      
-                        
-                      </Button>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
+                        <MaterialIcons name="add-a-photo" color={ "grey"} size={20} style={styles.mediaButtons} onPress={takePhotoFromCamera} />
+                    </TouchableOpacity>
+
                     </View>
 
                     <View style={styles.container}>
                     
                     {getRecordingLines()}
-                    {image && (
-                        <Image
-                        source={{ uri: image }}
-                        style={styles.image} 
-                        />
-                        
-                        
-                        )} 
+                    {images.map((item) => (
+                      <Image
+                        key={item}
+                        style={styles.image}
+                        source={{uri: item}}
+                      
+                      />
+                    ))}
 
-                    {video && (
-                        <Video
-                        source={{ uri: video }}
+                    {videos.map((item) => (
+                      <Video
+                        key={item}
+                        style={styles.video}
+                        source={{uri: item}}
                         useNativeControls
                         resizeMode="contain"
                         isLooping
                         //onPlaybackStatusUpdate={status => setStatus(() => status)}
-                        style={styles.video} 
-                        />
-                        
-                        )}  
+
+                                            
+                                            />
+                                          ))}
+
+
+                
                     </View>
                     
                         
@@ -636,12 +694,14 @@ const styles=StyleSheet.create({
         margin: 16,
       },
       video: {
-        width: 150, height: 150,
-        marginLeft: 30,
+        width: 100, height: 100,
+        marginLeft: 10,
+        borderRadius: 9,
       },
       image: {
-        width: 150, height: 150,
-        marginLeft: 30,
+        width: 100, height: 100,
+        marginLeft: 10,
+        borderRadius: 9,
 
       }, 
       emojiLabels: {
@@ -657,7 +717,14 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
 
 
-    },
+    }, 
+
+    mediaButtons: {
+      marginLeft: 20,
+      activeColor: 'tomato',
+      inactiveColor: 'gray',
+      
+    }
       
    
     });
