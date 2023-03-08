@@ -78,7 +78,6 @@ export const journalStyles = StyleSheet.create({
         color: '#000000',
     },
     popupMainContainer: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',

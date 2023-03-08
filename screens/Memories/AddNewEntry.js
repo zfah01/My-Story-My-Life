@@ -8,6 +8,7 @@ import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { Audio, Video } from "expo-av";
+import "react-native-get-random-values";
 
 
 export default function AddNewEntry(props, {navigation}) {
@@ -206,63 +207,7 @@ export default function AddNewEntry(props, {navigation}) {
     console.log("videos: ", videos);
     console.log("urls", vidUrls)
 
-    /*const uploadVideo = async () => {
-      const blob = await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-          resolve(xhr.response);
-        };
-        xhr.onerror = function (e) {
-          console.log(e);
-          reject(new TypeError("Network request failed"));
-        };
-        xhr.responseType = "blob";
-        xhr.open("GET", video, true);
-        xhr.send(null);
-      });
-      if (video == null) {
-        return null;
-      }
-      const uploadUri = video;
-      let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
-  
-      // Add timestamp to File Name
-      const extension = filename.split(".").pop();
-      const name = filename.split(".").slice(0, -1).join(".");
-      filename = name + Date.now() + "." + extension;
-  
-      setUploading(true);
-      setTransferred(0);
-  
-      const storageRef = st.ref('users/' + user.uid + '/videos/' + filename);
-      const task = storageRef.put(blob);
-  
-      // Set transferred state
-      task.on("state_changed", (taskSnapshot) => {
-        console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
-  
-        setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
-      });
-  
-      try {
-        await task;
-  
-        const url = await storageRef.getDownloadURL();
 
-  
-        setUploading(false);
-        setVideo(null);
-        return url;
-      } catch (e) {
-        console.log(e);
-        return null;
-      }
-    };*/
-
-   
-  
-
-    
 
       //VOICE RECORDING
   const RECORDING_OPTIONS_PRESET_HIGH_QUALITY = {
@@ -322,69 +267,21 @@ export default function AddNewEntry(props, {navigation}) {
     });
     audioUpload();
   }
-  
 
-   const audioUpload = async () => {
-    const uri = recording.getURI();
-    let filename = uri.substring(uri.lastIndexOf("/") + 1);
-    // Add timestamp to File Name
-    const extension = filename.split(".").pop();
-    const name = filename.split(".").slice(0, -1).join(".");
-    filename = name + Date.now() + "." + extension;
 
-    try {
-      const blob = await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.onload = () => {
-          try {
-            resolve(xhr.response);
-          } catch (error) {
-            console.log("error:", error);
-          }
-        };
-        xhr.onerror = (e) => {
-          console.log(e);
-          reject(new TypeError("Network request failed"));
-        };
-        xhr.responseType = "blob";
-        xhr.open("GET", uri, true);
-        xhr.send(null);
-      });
-      if (blob != null) {
-        const uriParts = uri.split(".");
-        const fileType = uriParts[uriParts.length - 1];
-     
-          st.ref()
-          .child('users/' + user.uid + '/recordings/' + filename)
-          .put(blob, {
-            contentType: `audio/${fileType}`,
-          })
-          .then(() => {
-            console.log("Sent!");
-          })
-          .catch((e) => console.log("error:", e));
-      } else {
-        console.log("erroor with blob");
+
+    const audioUpload = async () => {
+      if (recording) {
+        const voiceName = uuidv4();
+        const path = `audio/${userID}/${voiceName}`;
+        const ref_con = ref(st, path);
+        setVoiceInfo(path);
+        const voiceFile = await fetch(recording._uri);
+        const bytes = await voiceFile.blob();
+        await uploadBytes(ref_con, bytes);
       }
-    } catch (error) {
-      console.log("error:", error);
-    }
   };
 
-  const downloadAudio = async () => {
-    const uri = await st.ref('users/' + user.uid + '/recordings/' + filename).getDownloadURL();
-
-    console.log("uri:", uri);
-
-    // The rest of this plays the audio
-    const soundObject = new Audio.Sound();
-    try {
-      await soundObject.loadAsync({ uri });
-      await soundObject.playAsync();
-    } catch (error) {
-      console.log("error:", error);
-    }
-  };
 
   function getDurationFormatted(millis) {
     const minutes = millis / 1000 / 60;
@@ -402,11 +299,9 @@ export default function AddNewEntry(props, {navigation}) {
             Recording {index + 1} - {recordingLine.duration}
           </Text>
           <Button
-            size="xs"
-            variant="outline"
-            colorScheme="indigo"
             style={styles.playButton}
             onPress={() => recordingLine.sound.replayAsync()}
+            title="PLAY"
           >
             <Ionicons name="play" size={15} color="#999DC3" />
           </Button>
@@ -417,12 +312,7 @@ export default function AddNewEntry(props, {navigation}) {
 
 
     const onSubmitButtonPress = async() => {
-     // const imageUrl =  uploadImage();
-      //const vidUrl = await uploadVideo();
-      //const audioUrl = await downloadAudio();
-      //console.log("Image Url: ", imageUrl);
-      //console.log("Video Url: ", vidUrl);
-      //console.log("Voice Url: ", audioUrl);
+
         if (journalEntry && journalEntry.length > 0) {
             const data = {
                 authorID: userID,
@@ -430,6 +320,7 @@ export default function AddNewEntry(props, {navigation}) {
                 moodSelected: entryMood,
                 postImages: images,
                 postVideos: videos,
+                voice: voiceInfo || null,
                 //postVid: vidUrl ,
                 //postAudio: audioUrl,
                 journalText: journalEntry,
@@ -448,6 +339,8 @@ export default function AddNewEntry(props, {navigation}) {
                     setAngry(false);
                     setImages([]);
                     setVideos([]);
+                    setVoiceInfo(null);
+                    //setRecordings([]);
                     setRecording(null);
                     setSad(false);
                     setMeh(false);
@@ -584,7 +477,10 @@ export default function AddNewEntry(props, {navigation}) {
 
                     <View style={styles.container}>
                     
+                    
                     {getRecordingLines()}
+                    <ScrollView horizontal={true}>
+                    <View style={{flexDirection: "row"}}>
                     {images.map((item) => (
                       <Image
                         key={item}
@@ -608,8 +504,8 @@ export default function AddNewEntry(props, {navigation}) {
                                             />
                                           ))}
 
-
-                
+                </View>
+                </ScrollView>
                     </View>
                     
                         

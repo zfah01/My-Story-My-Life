@@ -28,8 +28,7 @@ export default function Home(props) {
     const [dailyStreak, setDailyStreak] = useState(0);
     const [dailyStreakText, setDailyStreakText] = useState('🔥: ');
     const [profilePicUrl, setProfilePicUrl] = useState(null);
-    const [quoteAPI, setQuoteAPI] = useState(null);
-    const [quoteAuthor, setQuoteAuthor] = useState(null);
+   
     const [settingsPressed, setSettingsPressed] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -59,11 +58,9 @@ export default function Home(props) {
         // default data from the state.
         userCounterRef.doc(userID).get().then((doc) => {
             if (doc.exists) {
-                //const storedDaysUsed = doc.data().daysUsedApplication;
                 const storedDate = doc.data().currentDay;
                 const storedStreak = doc.data().dailyStreak;
 
-                //setTreeDisplay(storedDaysUsed);
 
                 if (currentDay === storedDate) {
                     //setDaysUsed(storedDaysUsed);
@@ -71,7 +68,6 @@ export default function Home(props) {
                     setLoading(false);
                 } else {
                     const userStoredDate = new Date(storedDate).setUTCHours(0, 0, 0, 0);
-                    // REFERENCE ACCESSED 31/12/2021 https://stackoverflow.com/a/1296374
                     // Used to get the previous date.
                     const previousDateFromCurrent = new Date(new Date().setDate(new Date().getDate() - 1)).setUTCHours(0, 0, 0, 0);
                     // END REFERENCE
@@ -125,13 +121,6 @@ export default function Home(props) {
 
     };
 
-    // Gets and sets the random API quote, called in useEffect.
-    const setDailyQuote = async () => {
-        let quotes = await ajax.fetchRandomQuotes();
-        const jsonText = JSON.stringify(quotes);
-        setQuoteAPI(jsonText.split('"')[3]);
-        setQuoteAuthor(jsonText.split('"')[7]);
-    };
 
     // Sets the users profile picture, called in useEffect.
     const setProfilePic = async () => {
@@ -141,7 +130,7 @@ export default function Home(props) {
             .then((downloadURL) => {
                 setProfilePicUrl(downloadURL);
             }).catch(() => {
-                setProfilePicUrl('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
+                setProfilePicUrl('https://upload.wikimedia.org/wikipedia/commons/a/aa/Sin_cara.png');
             });
     };
   
@@ -152,7 +141,6 @@ export default function Home(props) {
     };
     // React hook that sets up the home page on component load.
     useEffect(() => {
-        setDailyQuote();
         setHomeScreenData();
         setProfilePic();
     }, []);

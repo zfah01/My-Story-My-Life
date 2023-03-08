@@ -27,8 +27,6 @@ export default function BottomTabNavigator(props) {
         // option is selected and returns the user to the home tab if back is pressed from any tab other than home,
         // where the application will close. 
 
-        // REFERENCE ACCESSED 18/11/2021 https://aboutreact.com/react-native-bottom-navigation/
-        // Used to learn how to create a bottom tab navigation bar.
 
         <Tab.Navigator
             initialRouteName='Home'

@@ -28,8 +28,7 @@ export default function Settings(props) {
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
 
-    // REFERENCE ACCESSED 16/12/2021 https://www.instamobile.io/mobile-development/react-native-firebase-storage/
-    // Used to be able to use the camera and image library of the device to capture / select an image to use for the profile picture of the user and save that image to storage in firebase.
+
 
     // Sets how the image should be saved
     const takePhotoFromCamera = async () => {
@@ -159,11 +158,6 @@ export default function Settings(props) {
                     </TouchableOpacity>
 
                     <View style={settingStyles.footer}>
-                        <TouchableOpacity onPress={() => Linking.openURL('https://zenquotes.io/')}>
-                            <Text style={settingStyles.footerText}>Inspirational quotes provided by: </Text>
-                            <Text style={settingStyles.hyperLink} onPress={() => Linking.openURL('https://zenquotes.io/')}>ZenQuotes API</Text>
-                        </TouchableOpacity>
-
                         <Text style={settingStyles.footerText}> My Story, My Life</Text>
                     </View>
                 </ScrollView>

@@ -25,8 +25,7 @@ export const checkEmail = (str) => {
 
 export default function CreateAccount({ navigation }) {
 
-    // REFERENCE ACCESSED 13/12/2021 https://www.freecodecamp.org/news/react-native-firebase-tutorial/
-    // Used to integrate firebase authentication into the application to create and sign into an account.
+
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -86,7 +85,7 @@ export default function CreateAccount({ navigation }) {
                 alert('Error: ' + error);
             });
     };
-    // END REFERENCE
+
 
     if (loading) {
         return (

@@ -56,7 +56,7 @@ export default function Diary(props) {
         setSearchText(searchText);
         const filteredEntries = allEntries.filter(function (item) {
             // use title, mood, date to view entry 
-            return item.dateOfEntry.includes(searchText) || item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
+            return item.dateOfEntry.includes(searchText) || item.journalText.toLowerCase().includes(searchText.toLowerCase())||item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
         });
         setFilteredEntries(filteredEntries);
     };

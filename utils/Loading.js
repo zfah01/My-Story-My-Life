@@ -16,4 +16,3 @@ export default function Loading(props) {
         </ImageBackground>
     );
 }
-// END REFERENCE

@@ -6,12 +6,12 @@ import { entryStyles } from './Styles';
 
 // Imports firestore from firebase to display the selected user entry.
 //import firestore from '@react-native-firebase/firestore';
-import { db }from '../../firebase/firebase';
+import { db, st}from '../../firebase/firebase';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
 import { inMemoryPersistence } from "firebase/auth";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { Video } from 'expo-av';
+import { Video, Audio } from 'expo-av';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ViewSingleEntry(props) {
@@ -27,7 +27,7 @@ export default function ViewSingleEntry(props) {
     const [isClicked, setIsClicked] = useState(false);
     const memory = props.memory || "";
     const [url, setUrl] = useState();
-    const [voice, setVoice] = useState();
+    const [voice, setVoice] = useState(null);
 
     // Parses the userID from the entries list.
     const userID = props.extraData;
@@ -56,7 +56,11 @@ export default function ViewSingleEntry(props) {
                         setTitle(journal.titleText);
                         setImages(journal.postImages);
                         setVideos(journal.postVideos);
-                        setVoice(journal.postAudio);
+                        //setVoice(journal.voice);
+                        const reference = ref(st, `/${journal.voice}`);
+                        getDownloadURL(reference).then((x) => {
+                          setVoice(x);
+                        });
                     });
                 },
                 error => {
@@ -65,7 +69,37 @@ export default function ViewSingleEntry(props) {
             );
     }, []);
 
-    
+
+    useEffect(() => {
+      const func = async () => {
+        journalsRef
+        .where('authorID', '==', userID)
+        .where('createdAt', '==', entryID)
+        .onSnapshot(
+            querySnapshot => {
+                querySnapshot.forEach((doc) => {
+                    const journal = doc.data();
+                    const reference = ref(st, `/${journal.voice}`);
+                    getDownloadURL(reference).then((x) => {
+                      setVoice(x);
+                    });
+                });
+                func();
+            },
+            error => {
+                console.error(error);
+            }
+        );
+
+      }
+
+  }, []);
+
+
+ 
+
+
+
     
       async function playSound() {
         try {
@@ -74,10 +108,15 @@ export default function ViewSingleEntry(props) {
           console.log("voice replaying error", error);
         }
       }
+
+      async function pauseSound() {
+        try {
+          await playSound.pauseAsync();
+        } catch (error) {
+          console.log("voice replaying error", error);
+        }
+      }
     
-      const handleClick = () => {
-        setIsClicked(!isClicked);
-      };
 
     return (
       <>
@@ -85,9 +124,9 @@ export default function ViewSingleEntry(props) {
     <Text style={styles.date}>Date of Entry: {displayDate} </Text>
     </SafeAreaView>
 
-        <View style={entryStyles.contentContainer}>
+        <View style={styles.contentContainerScroll}>
           
-        <ScrollView>
+        <ScrollView style={styles.scroll}>
         
         <Text style={styles.subHeaderTitle}>Title:</Text>
                 <Text style={styles.title}>
@@ -156,25 +195,23 @@ export default function ViewSingleEntry(props) {
 
                       {voice && (
                                   <View style={styles.headerBox}>
+                                  
                                     <Button
-                                      size="xs"
-                                      variant="outline"
-                                      colorScheme="indigo"
                                       style={styles.voiceButton}
-                                      _text={styles.buttonText}
                                       onPress={playSound}
+                                      title= "PLAY"
                                     >
                                       <Ionicons name="play" size={15} color="#999DC3" />
                                     </Button>
-                                    <Button
-                                      size="xs"
-                                      variant="outline"
-                                      colorScheme="indigo"
+                                   
+                                    <Button 
                                       style={styles.voiceButton}
-                                      _text={styles.buttonText}
+                                      title= "PAUSE"
+                                      onPress={pauseSound}
                                     >
                                       <Ionicons name="pause" size={15} color="#999DC3" />
                                     </Button>
+                                    
                                   </View>
                                 )}
 
@@ -332,6 +369,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
     paddingTop: 20
-    }
+    },
+    
+    contentContainerScroll: {
+      margin: 20,
+      padding: 10,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 25,
+      maxHeight: '80%',
+  },
 
   });

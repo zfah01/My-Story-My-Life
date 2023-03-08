@@ -21,7 +21,7 @@ import TabNavigator from './TabNavigator';
 const Stack = createStackNavigator();
 
 export default function App() {
-    // REFERENCE ACCESSED 14/12/2021 https://www.freecodecamp.org/news/react-native-firebase-tutorial/
+
     // Used to learn firebase authentication and keep a persistent user.
     const [user, setUser] = useState(null);
 
@@ -64,8 +64,6 @@ export default function App() {
     // If there is a user, take the user to the application else got to the welcome page.
     return (
         <NavigationContainer>
-            {/* REFERENCE ACCESSED 13/12/2021 https://dev.to/easybuoy/combining-stack-tab-drawer-navigations-in-react-native-with-react-navigation-5-da
-            Used to have both a stack and tab navigatior so that once a user has logged in they gain access to the full application navigation. */}
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {user ? (
                     <Stack.Screen name='HomeScreen' >
@@ -78,7 +76,6 @@ export default function App() {
                     </>
                 )}
             </Stack.Navigator>
-            {/* END REFERENCE */}
         </NavigationContainer>
     );
 }

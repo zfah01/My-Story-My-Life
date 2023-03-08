@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, TouchableOpacity, ScrollView, Text, View } from 'react-native';
+import { ImageBackground, TouchableOpacity, ScrollView, Text, View, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 // Imports the documents styling.
@@ -23,7 +23,11 @@ export default function Timeline(props) {
     const allMoods = [];
     // Generates a list of all the obsessions from allData.
     const allJournals = [];
+    const allTitles = [];
+    const allImages = [];
     const [journalEntry, setJournalEntry] = useState('');
+    const [title, setTitle] = useState('');
+    const [images, setImages] = useState([]);
 
     // Changes the render based on if a user has interacted with the calendar.
     const [entryPressed, setEntryPressed] = useState(false);
@@ -59,16 +63,18 @@ export default function Timeline(props) {
         allDates.push(allData[i].moodCalendarDate);
         allMoods.push(allData[i].moodSelected);
         allJournals.push(allData[i].journalText);
+        allImages.push(allData[i].postImages);
+        allTitles.push(allData[i].titleText);
     }
 
-    // REFERENCE ACCESSED 08/12/2021 https://github.com/wix/react-native-calendars/issues/160#issuecomment-408405419
-    // Used to learn how to make the calendar load a list of dates.
 
     // Turns dates into objects that can be used with the calendar to be displayed.
     let allDatesObject = {};
     // Variables that are used to display data to the user.
     let selectedMood = '';
     let selectedJournalText = '';
+    let chosentitleText = '';
+    let chosenImages = [];
 
     // For each day in allDates array, cycle through the day, select the mood colour and add the current day to the calendar.
     allDates.forEach((day) => {
@@ -80,67 +86,108 @@ export default function Timeline(props) {
         }
         // Checks if the day is the same as the date and then adds the obsession for the date to the calendar.
         // Adds a mark to the calendar.
+        for (let i = 0; i < allTitles.length; i++) {
+            if (day === allDates[i]) {
+                chosentitleText = allTitles[i];
+            }
+        }
         for (let i = 0; i < allJournals.length; i++) {
             if (day === allDates[i]) {
                 selectedJournalText = allJournals[i];
             }
         }
 
+        for (let i = 0; i < allImages.length; i++) {
+            if (day === allDates[i]) {
+                chosenImages = allImages[i];
+            }
+        }
+
         allDatesObject[day] = {
             selected: true,
             marked: selectedJournalText === '' ? false : selectedJournalText == null ? false : true,
+            textT: chosentitleText === '' ? false : chosentitleText == null ? false : true,
+            imageT: chosenImages === [] ? false : chosenImages == [] ? false : true,
             selectedColor: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Meh' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : selectedMood === 'Angry' ? '#f90505' : '#000000',
         };
     });
-    // END REFERENCE
+  
 
-    const displayObsessionsAndHeartRate = (day) => {
-        for (let i = 0; i < allJournals.length; i++) {
-            if (day.dateString === allDates[i]) {
-                selectedJournalText = allJournals[i];
-                }
-                if (selectedJournalText === '' || selectedJournalText == null) {
-                    setJournalEntry('');
-                    break;
-                } else {
-                    setJournalEntry(selectedJournalText);
-                    break;
+        const displayMemory = (day) => {
+            for (let i = 0; i < allTitles.length; i++) {
+                if (day.dateString === allDates[i]) {
+                    chosentitleText = allTitles[i];
+                    for (let i = 0; i < allJournals.length; i++) {
+                        if (day.dateString === allDates[i]) {
+                            selectedJournalText = allJournals[i]
+                         
+                        }
+                
+                    }  for (let i = 0; i < allImages.length; i++) {
+                        if (day.dateString === allDates[i]) {
+                            chosenImages = allImages[i]
+                         
+                        }
+                
+                    }
+                    if (selectedJournalText === '' || selectedJournalText == null) {
+                        setJournalEntry('');
+                        break;
+                    } else if(chosentitleText === '' || chosentitleText == null){
+                        setTitle('');
+                        break;
+
+                    }else if(chosenImages === []){
+                        setImages([]);
+                        break;
+
+                    }
+                    else {
+                        setJournalEntry(selectedJournalText);
+                        setTitle(chosentitleText);
+                        setImages(chosenImages);
+                        break;
+                    }
                 }
             }
-        setEntryPressed(true);
-    };
+            setEntryPressed(true);
+        };
 
     return (
         <View>
-            {/* Checks if a user has pressed on a calendar entry to display the data. */}
             {entryPressed ? (
                 <View style={journalStyles.popupMainContainer}>
-                    <View style={[journalStyles.contentContainer, { padding: 25 }]}>
+                    <View style={[journalStyles.contentContainer, { padding: 100 }]}>
+                    <Text style={journalStyles.popupTitle}>Title: </Text>
+                        <Text style={journalStyles.obsessionText}>{title} </Text>
                         <Text style={journalStyles.popupTitle}>Your Story: </Text>
                         <Text style={journalStyles.obsessionText}>{journalEntry} </Text>
+                        {images.map((item) => (
+                        <Image
+                        key={item}
+                        source={{uri: item}}
+                      
+                      />
+                    ))}
 
                         <TouchableOpacity onPress={() => setEntryPressed(false)} >
-                            <Text style={journalStyles.buttonText}> {'>'} Return to Calendar </Text>
+                            <Text style={journalStyles.buttonText}> {'>'} Back to Calendar </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             ) : (
                 <View style={journalStyles.contentContainer}>
                     <ScrollView>
-                        <Text style={journalStyles.title}> Your Mood Journal at a glance: </Text>
+                        <Text style={journalStyles.title}> View your memories on a specific day:  </Text>
 
-                        {/* REFERENCE ACCESSED 08/12/2021 https://github.com/wix/react-native-calendars 
-                         Used third party calendar dependency to be able to highlight specific dates that correspond to a users mood.*/}
                         <Calendar
                             current={Date.current}
                             minDate={'2015-01-01'}
                             enableSwipeMonths={true}
                             markedDates={allDatesObject}
                             // When a specific day is pressed it dispays the obsession if it exists.
-                            onDayPress={(day) => displayObsessionsAndHeartRate(day)}
-                            testID='calendarID'
+                            onDayPress={(day) => displayMemory(day)}
                         />
-                        {/* END REFERENCE */}
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             <View style={journalStyles.keyContainer} >
                                 <Text testID='keyID' style={journalStyles.keyTitle}>Mood Key:</Text>
