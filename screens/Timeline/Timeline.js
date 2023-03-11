@@ -212,7 +212,6 @@ export default function Timeline(props) {
                                     </View>
                                 </View>
                             </View>
-                            <Text style={journalStyles.contentText}>If a date is marked, then an obsession has been set. Press on the date to display it!</Text>
                         </View>
                     </ScrollView>
                 </View>

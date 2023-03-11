@@ -38,24 +38,17 @@ export const  homeStyles = StyleSheet.create({
     },
     tree: {
         alignSelf: 'center',
+        height: 400,
         width: 200,
-        height: 125,
+        resizeMode: 'contain',
     },
     treeFrame: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: (height / 7),
+        paddingTop: 4,
     },
-    inspireQuote: {
-        fontSize: 14,
-        fontStyle: 'italic',
-        textAlign: 'center',
-        paddingTop: 10,
-        color: '#7a7a7a',
-        paddingLeft: 4,
-        paddingRight: 4,
-    },
+
     daysUsed: {
         fontSize: 18,
         fontStyle: 'italic',

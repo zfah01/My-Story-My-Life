@@ -4,8 +4,7 @@ import Loading from '../../utils/Loading';
 
 // Imports the documents styling.
 import { homeStyles } from './Styles';
-// Imports the API handler.
-import ajax from '../../utils/ajax';
+
 
 import Settings from '../Settings/Settings';
 
@@ -24,7 +23,7 @@ export default function Home(props) {
     const user = auth.currentUser;
 
     // Initialising the state so that if a new user logs in they are set to the default values.
-    const [daysUsed, setDaysUsed] = useState(0);
+   
     const [dailyStreak, setDailyStreak] = useState(0);
     const [dailyStreakText, setDailyStreakText] = useState('🔥: ');
     const [profilePicUrl, setProfilePicUrl] = useState(null);
@@ -40,6 +39,16 @@ export default function Home(props) {
     const [tenseModal, setTenseModal] = useState(false);
     const [aboutModal, setAboutModal] = useState(false);
 
+    const[days, setDays] = useState(0);
+    const[growTree, setGrowTree]  = useState(null);
+    const tree0 = st.ref('tree/tree0.png');
+    const tree1 = st.ref('tree/tree1.png');
+    const tree2 = st.ref('tree/tree2.png');
+    const tree3 = st.ref('tree/tree3.png');
+    const tree4 = st.ref('tree/tree4.png');
+    const tree5 = st.ref('tree/tree5.png');
+    
+
 
     // Creates references to firebase objects to get the user collection and profile picture. 
     const userCounterRef = db.collection('userCounter');
@@ -51,19 +60,18 @@ export default function Home(props) {
 
     // Initiates all data on the home page. Called in useEffect.
     const setHomeScreenData = async () => {
-        // Takes the current user ID to check if the user exists in the collection.
-        // If the user exists, the days used, date and streak are saved to check if it is a new day,
-        // Where the days used counter and daily streak counter are updated respectfully.
-        // If the user does not exist in the collection, then a document is created for them using
-        // default data from the state.
+  
         userCounterRef.doc(userID).get().then((doc) => {
             if (doc.exists) {
                 const storedDate = doc.data().currentDay;
                 const storedStreak = doc.data().dailyStreak;
+                const daysUsed = doc.data().numDaysUsed;
+
+                setTree(daysUsed);
 
 
                 if (currentDay === storedDate) {
-                    //setDaysUsed(storedDaysUsed);
+                    setDays(daysUsed);
                     setDailyStreak(storedStreak);
                     setLoading(false);
                 } else {
@@ -77,11 +85,11 @@ export default function Home(props) {
                             .set({
                                 authorID: userID,
                                 currentDay: currentDay,
-                                //daysUsedApplication: (storedDaysUsed + 1),
+                                numDaysUsed: (daysUsed + 1),
                                 dailyStreak: (storedStreak + 1),
                             })
                             .then(() => {
-                                //setDaysUsed(storedDaysUsed + 1);
+                                setDays(daysUsed + 1);
                                 setDailyStreak(storedStreak + 1);
                                 setLoading(false);
                             });
@@ -91,11 +99,11 @@ export default function Home(props) {
                             .set({
                                 authorID: userID,
                                 currentDay: currentDay,
-                                //daysUsedApplication: (storedDaysUsed + 1),
+                                numDaysUsed: (daysUsed + 1),
                                 dailyStreak: 0,
                             })
                             .then(() => {
-                                //setDaysUsed(storedDaysUsed + 1);
+                                setDays(daysUsed + 1);
                                 setDailyStreak(0);
                                 setLoading(false);
                             });
@@ -105,7 +113,7 @@ export default function Home(props) {
                 const data = {
                     authorID: userID,
                     currentDay: currentDay,
-                    daysUsedApplication: daysUsed,
+                    numDaysUsed: days,
                     dailyStreak: dailyStreak,
                 };
                 userCounterRef
@@ -114,7 +122,7 @@ export default function Home(props) {
                     .catch((error) => {
                         alert(error.message);
                     });
-                //setTreeDisplay(0);
+                setTree(0);
                 setLoading(false);
             }
         });
@@ -132,6 +140,66 @@ export default function Home(props) {
             }).catch(() => {
                 setProfilePicUrl('https://upload.wikimedia.org/wikipedia/commons/a/aa/Sin_cara.png');
             });
+    };
+
+    const setTree = (days) => {
+    
+        try {
+          if (days >= 60) {
+            tree5.getDownloadURL()
+            .then((downloadURL) => {
+                setGrowTree(downloadURL);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+            } else if (days >= 30) {
+                tree4.getDownloadURL()
+                .then((downloadURL) => {
+                    setGrowTree(downloadURL);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            } else if (days >= 15) {
+                tree3.getDownloadURL()
+                .then((downloadURL) => {
+                    setGrowTree(downloadURL);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            } else if (days >= 6) {
+                tree2.getDownloadURL()
+                .then((downloadURL) => {
+                    setGrowTree(downloadURL);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            } else if (days >= 1) {
+                tree1.getDownloadURL()
+                .then((downloadURL) => {
+                    setGrowTree(downloadURL);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            } else if (days == 0) {
+                tree0.getDownloadURL()
+                .then((downloadURL) => {
+                    setGrowTree(downloadURL);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            }
+        
+               
+        }
+        catch (error) {
+            console.error(error);
+        }
     };
   
     // Parsed into the settings page so when the close settings button is pressed the user is returned to home.
@@ -321,6 +389,8 @@ export default function Home(props) {
                         </View>
 
                         <View style={homeStyles.treeFrame}>
+                            <Text style={styles.treeHeader}>Watch your tree grow as you grow</Text>
+                        <Image source={{ uri: growTree }} style={homeStyles.tree} />
                             <Button style={homeStyles.detailsBTN}
                                 onPress={showDailyUseDetails}
                                 title="Find Out More"
@@ -367,6 +437,11 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         alignSelf: 'flex-start',
        
+    },
+    treeHeader: {
+        fontSize: 17,
+        fontStyle: 'italic',
+        
     },
 
     questions: {

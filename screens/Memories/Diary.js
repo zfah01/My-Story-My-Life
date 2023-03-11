@@ -82,7 +82,7 @@ export default function Diary(props) {
 
     return (
         // Sets the background image to half opacity.
-            <SafeAreaView style={styles.diary}>
+            <SafeAreaView>
             <SearchBar
                 round={true}
                 lightTheme={true}

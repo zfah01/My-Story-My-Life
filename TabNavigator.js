@@ -10,6 +10,7 @@ import Home from './screens/Home/Home';
 import AddNewEntry from './screens/Memories/AddNewEntry';
 import Diary from './screens/Memories/Diary';
 import Timeline from './screens/Timeline/Timeline';
+import Contacts from './screens/Contacts/Contacts';
 
 
 // Variable that is used to create all of the tabs required for the navigation bar.
@@ -73,8 +74,8 @@ export default function BottomTabNavigator(props) {
                     headerShown: false,
                     tabBarLabel: '',
                     tabBarIcon: ({ color, size }) => (
-                        <View style={styles.centerNavBTN}>
-                        <MaterialCommunityIcons name='plus-circle' color={color} size={50} />
+                        <View style={styles.addButton}>
+                        <MaterialCommunityIcons name='plus-circle' color={"#34A56F"} size={63} />
                         </View>)
                 }} >
                 {props => <AddNewEntry {...props} extraData={userData} />}
@@ -92,18 +93,28 @@ export default function BottomTabNavigator(props) {
                 {props => <Timeline {...props} extraData={userData} />}
             </Tab.Screen>
 
+            <Tab.Screen
+                name='Contacts'
+                options={{
+                    headerShown: false,
+                    tabBarLabel: 'Contacts',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name='email' color={color} size={size} />)
+                }} >
+                {props => <Contacts {...props} extraData={userData} />}
+            </Tab.Screen>
+
         </Tab.Navigator>
     );
 }
 
 const styles = StyleSheet.create({
-    centerNavBTN: {
+    addButton: {
         position: 'absolute',
         bottom: 5,
         height: 58,
         width: 58,
         borderRadius: 58,
-        backgroundColor: '#00e676',
         justifyContent: 'center',
         alignItems: 'center',
     },
