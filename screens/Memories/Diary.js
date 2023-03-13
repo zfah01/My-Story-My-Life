@@ -79,6 +79,8 @@ export default function Diary(props) {
         );
     }
 
+    
+
 
     return (
         // Sets the background image to half opacity.

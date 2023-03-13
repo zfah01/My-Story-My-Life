@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Modal, Button, Image, TextInput, StyleSheet, Text, TouchableOpacity, ScrollView, View, } from 'react-native';
+import { Alert, Modal, Button, Image, TextInput, StyleSheet, Text, TouchableOpacity, ScrollView, View, SafeAreaView } from 'react-native';
 import Loading from '../../utils/Loading';
 
 // Imports the documents styling.
@@ -38,6 +38,13 @@ export default function Home(props) {
     const [skills, setSkills] = useState('');
     const [tenseModal, setTenseModal] = useState(false);
     const [aboutModal, setAboutModal] = useState(false);
+    const [activitiesModal, setActivitiesModal] = useState(false);
+    const [act1Modal, setAct1Modal] = useState(false);
+    const [act2Modal, setAct2Modal] = useState(false);
+    const [act3Modal, setAct3Modal] = useState(false);
+    const [act4Modal, setAct4Modal] = useState(false);
+    const [act5Modal, setAct5Modal] = useState(false);
+  
 
     const[days, setDays] = useState(0);
     const[growTree, setGrowTree]  = useState(null);
@@ -220,6 +227,7 @@ export default function Home(props) {
         // Renders the page if settings pressed is false, else renders the settings page.
     } else if (settingsPressed == false) {
         return (
+            <SafeAreaView style={styles.homeDiv}>
                 <ScrollView>
                     <View style={homeStyles.mainContainer}>
                         <View style={homeStyles.heading} >
@@ -315,7 +323,7 @@ export default function Home(props) {
                         <TouchableOpacity
                                 style={styles.touchableMod}
                                 onPress={() => setTenseModal(true)}>
-                                    <Text style={styles.modHeader}>Life Journey {'\n'} and Aspirations</Text>
+                                    <Text style={styles.modHeader}>Life Journey and Goals</Text>
                          </TouchableOpacity>
 
                         <Modal
@@ -387,17 +395,270 @@ export default function Home(props) {
                         </View>
                         </Modal>
                         </View>
+                        <TouchableOpacity
+                                style={styles.touchableM}
+                                onPress={() => setActivitiesModal(true)}>
+                                    <Text style={styles.modHHeader}>Activities</Text>
+                         </TouchableOpacity>
+
+                        <Modal
+                        animationType='fade'
+                        visible={activitiesModal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setActivitiesModal(!activitiesModal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setActivitiesModal(!activitiesModal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modHead}>Activities:</Text>
+                            <Text style={styles.actHeader}>Carry out these activities to help you come up with your life stories</Text>
+                            <TouchableOpacity
+                                style={styles.touchableActs}
+                                onPress={() => setAct1Modal(true)}>
+                                    <Text style={styles.actHead}>Shields</Text>
+                         </TouchableOpacity>
+
+                         <Modal
+                        animationType='fade'
+                        visible={act1Modal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setAct1Modal(!act1Modal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setAct1Modal(!act1Modal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modActHead}>Shields</Text>
+                            <View>
+                                 <Text style={styles.AimHeader}>Aim</Text>
+                                 <Text style={styles.aimDesc}>To evaluate your ability to communicate and acknowledge your emotions towards individuals or situations in your life</Text>
+                                 <Text style={styles.materialsHeader}>Materials</Text>
+                                 <Text style={styles.materialsDesc}>Paper, pens and/or Coat of Arms template</Text>
+                                 <Text style={styles.activityHeader}>Activity</Text>
+                                 <Text style={styles.activityDesc}>Either draw a coat of arms or use a template and split it into 4 sections “Happy, Sad, Meh and Angry”. In each section draw or write something which represents each feeling. Once you are done, use each section to create a new story in your digital passport. Take photos of your drawings and/or include your descriptions of each feeling.  </Text>
+                     
+                                    
+
+                            </View>
+                                
+                        </View>
+                        </View>
+                        </Modal>
+
+                         <TouchableOpacity
+                                style={styles.touchableActs}
+                                onPress={() => setAct2Modal(true)}>
+                                    <Text style={styles.actHead}>How I Make Myself {'\n'} Feel Better</Text>
+                         </TouchableOpacity>
+
+                         <Modal
+                        animationType='fade'
+                        visible={act2Modal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setAct2Modal(!act2Modal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setAct2Modal(!act2Modal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modActHead}>How I Make Myself Feel Better</Text>
+                            <View>
+                                 <Text style={styles.AimHeader}>Aim</Text>
+                                 <Text style={styles.aimDesc}>To help you discover that you have coping skills which you can use in difficult situations</Text>
+                                 <Text style={styles.materialsHeader}>Materials</Text>
+                                 <Text style={styles.materialsDesc}>Paper, pens. Optional: magazine or clip-art/Google images.</Text>
+                                 <Text style={styles.activityHeader}>Activity</Text>
+                                 <Text style={styles.activityDesc}>Create a list of what you do to make yourself feel better when things are going bad. You might start by thinking about what might happen that makes you feel bad, and how you would solve it. When you discover something that soothes you, record it in some way by writing it down or drawing what you do. Depending on the list you have, you might want to go on and explore other things that you could do in future difficult situations. </Text>
+                     
+                                    
+
+                            </View>
+                                
+                        </View>
+                        </View>
+                        </Modal>
+
+                         <TouchableOpacity
+                                style={styles.touchableActs}
+                                onPress={() => setAct3Modal(true)}>
+                                    <Text style={styles.actHead}>Life Graph/Map</Text>
+                         </TouchableOpacity>
+
+                         <Modal
+                        animationType='fade'
+                        visible={act3Modal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setAct3Modal(!act3Modal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setAct3Modal(!act3Modal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modActHead}>Life Graph/Map</Text>
+                            <View>
+                                 <Text style={styles.AimHeader}>Aim</Text>
+                                 <Text style={styles.aimDesc}>To explore your successes and accomplishments in life as well as any difficulties you have experienced along the way. </Text>
+                                 <Text style={styles.materialsHeader}>Materials</Text>
+                                 <Text style={styles.materialsDesc}>Large piece of drawing paper and pens. Optional: photos, magazines, craft materials and clip-art images</Text>
+                                 <Text style={styles.activityHeader}>Activity</Text>
+                                 <Text style={styles.activityDesc}>Design an image that represents your life story, reflecting your own experiences – both highs and lows – and different life stages. You can write dates, names and places or use pictures, photographs or symbols to illustrate your story.
+The image can be as creative or simple as you choose, once you have completed creating your map/graph talk about your experiences in greater detail by creating stories in your digital passport. Take photos of your memorable possessions, narrate your stories via audio or video and enter how you feel. 
+</Text>
+                     
+                                    
+
+                            </View>
+                                
+                        </View>
+                        </View>
+                        </Modal>
+
+                         <TouchableOpacity
+                                style={styles.touchableActs}
+                                onPress={() => setAct4Modal(true)}>
+                                    <Text style={styles.actHead}>Moving Calendar</Text>
+                         </TouchableOpacity>
+
+                         <Modal
+                        animationType='fade'
+                        visible={act4Modal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setAct4Modal(!act4Modal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setAct4Modal(!act4Modal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modActHead}>Moving Calendar</Text>
+                            <View>
+                                 <Text style={styles.AimHeader}>Aim</Text>
+                                 <Text style={styles.aimDesc}>To make a visual representation of your movement since birth to the present time.</Text>
+                                 <Text style={styles.materialsHeader}>Materials</Text>
+                                 <Text style={styles.materialsDesc}>Large sheet of paper, pens. Optional: templates of houses/cars/whatever you find interesting.</Text>
+                                 <Text style={styles.activityHeader}>Activity</Text>
+                                 <Text style={styles.activityDesc}>Create a movement chart by drawing squares with an arrow going from one to the next. In each square describe the different places where you have stayed, include who you lived with and the dates you stayed there, and why you had to move. Don’t worry if you aren’t sure about anything, describe as much as you know. Try starting off by describing where you first stayed and end with where you stay now.  </Text>
+                     
+                                    
+
+                            </View>
+                                
+                        </View>
+                        </View>
+                        </Modal>
+
+                         <TouchableOpacity
+                                style={styles.touchableActs}
+                                onPress={() => setAct5Modal(true)}>
+                                    <Text style={styles.actHead}>Moving On</Text>
+                         </TouchableOpacity>
+
+                         <Modal
+                        animationType='fade'
+                        visible={act5Modal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#000'}
+                        onRequestClose={()=> setAct5Modal(!act5Modal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalView}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setAct5Modal(!act5Modal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                            <Text style={styles.modActHead}>Moving On</Text>
+                            <View>
+                                 <Text style={styles.AimHeader}>Aim</Text>
+                                 <Text style={styles.aimDesc}>To learn about what items or people are most important to you in order to feel safe and secure in the future.</Text>
+                                 <Text style={styles.materialsHeader}>Materials</Text>
+                                 <Text style={styles.materialsDesc}>A box that you can open and close, objects, photographs etc. </Text>
+                                 <Text style={styles.activityHeader}>Activity</Text>
+                                 <Text style={styles.activityDesc}>Gather your prized possessions and store them safely in a box. You may decorate the box if you like. Consider the people who you would want to be a part of your future. Upload photos of those special possessions/people to the digital passport, discuss in greater detail as to why you want these possessions/ people to be a part of your future i.e. why are they special to you? </Text>
+                     
+                                    
+
+                            </View>
+                                
+                        </View>
+                        </View>
+                        </Modal>
+
+                        
+   
+                        </View>
+                        </View>
+                        </Modal>
 
                         <View style={homeStyles.treeFrame}>
                             <Text style={styles.treeHeader}>Watch your tree grow as you grow</Text>
                         <Image source={{ uri: growTree }} style={homeStyles.tree} />
-                            <Button style={homeStyles.detailsBTN}
-                                onPress={showDailyUseDetails}
-                                title="Find Out More"
-                                accessibilityLabel='Find out more about how many used days affects the application' />
                         </View>
                     </View>
                 </ScrollView>
+                </SafeAreaView>
         );
     } else {
         return (
@@ -406,25 +667,16 @@ export default function Home(props) {
     }
 }
 
-// Function that creates an alert to explain why the application should be used daily.
-const showDailyUseDetails = () => {
-    Alert.alert(
-        // The alert title
-        'Why use this app daily?',
-        // The alert message
-        'By using the application daily, you increase your days used counter! This has a direct link to the growth of the tree, which grows whilst you grow. ' +
-        'Watch the tree grow overtime and see how far you have come on your own journey.',
-        // brackets are required or android will giv an error message.
-        [
-            {
-                text: 'OK', onPress: () => { }
-            }
-        ]);
-};
+
 
 const styles = StyleSheet.create({
     tenseHeader: {
         textAlign: 'left', 
+        
+       
+    },
+    homeDiv: {
+        marginTop: 50,
         
        
     },
@@ -441,6 +693,13 @@ const styles = StyleSheet.create({
     treeHeader: {
         fontSize: 17,
         fontStyle: 'italic',
+        
+    },
+    actHeader: {
+        fontSize: 17,
+        fontStyle: 'italic',
+        textAlign: 'center',
+        paddingBottom: 5,
         
     },
 
@@ -472,9 +731,6 @@ const styles = StyleSheet.create({
       },
   
 
-    selfEnd: {
-
-    },
 
     modHeader: {
         fontSize: 20,
@@ -482,7 +738,25 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontStyle: 'italic' 
     }, 
+
+    actHead: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginTop: 15, 
+    }, 
+    modHHeader: {
+        fontSize: 20,
+        margin: 30,
+        textAlign: 'center',
+        fontStyle: 'italic' 
+    }, 
     modHead: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    }, 
+
+    modActHead: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
@@ -496,8 +770,8 @@ const styles = StyleSheet.create({
     touchableMod: {
         backgroundColor: '#00e676',
         width: 170,
-        height: 150,
-        margin: 20,
+        height: 130,
+        margin: 10,
         marginTop: 30,
         borderRadius: 9,
         shadowColor: 'rgba(0,0,0, .4)', // IOS
@@ -506,6 +780,35 @@ const styles = StyleSheet.create({
         shadowRadius: 1, //IOS
 
         elevation: 2, // Android
+    }, 
+
+    touchableActs: {
+        backgroundColor: '#00e676',
+        width: 180,
+        height: 60,
+        margin: 8,
+        borderRadius: 9,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+
+        elevation: 2, // Android
+    }, 
+    touchableM: {
+        backgroundColor: '#00e676',
+        width: 170,
+        height: 100,
+        margin: 10,
+        alignSelf: 'center',
+        
+        borderRadius: 9,
+        shadowColor: 'rgba(0,0,0, .4)', 
+        shadowOffset: { height: 1, width: 1 }, 
+        shadowOpacity: 1, 
+        shadowRadius: 1, 
+
+        elevation: 2, 
     },
     modals: {
         flexDirection: 'row',
@@ -515,11 +818,44 @@ const styles = StyleSheet.create({
     pic: {
         position: 'absolute',
         margin: 60,
-        marginLeft: 45,
-        width: 80,
-        height: 80,
+        marginLeft: 54,
+        width: 60,
+        height: 60,
         borderRadius: 40,
 
+    },
+    AimHeader :{
+        textAlign: 'left',
+        textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        paddingBottom: 5,
+        marginTop: 20,
+    },
+    aimDesc : {
+        fontStyle: 'italic',
+        fontSize: 15,
+    },
+    materialsHeader: {
+        textAlign: 'left',
+        textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        paddingBottom: 5,
+        paddingTop: 20,
+    },
+    materialsDesc : {
+        fontStyle: 'italic',
+        fontSize: 15,
+    },
+    activityHeader: {
+        textAlign: 'left',
+        textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        paddingBottom: 5,
+        paddingTop: 20,
+    },
+    activityDesc: {
+        fontStyle: 'italic',
+        fontSize: 15,
     },
 
 });

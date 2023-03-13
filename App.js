@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // Importing all of the different components for each different page.
 import Welcome from './screens/Login/Welcome';
 import CreateAccount from './screens/Login/CreateAccount';
+import OnboardingScreen from './screens/Login/OnboardingScreen';
 
 //Imports auth and firestore from firebase.
 //import auth from '@react-native-firebase/auth';
@@ -24,6 +25,8 @@ export default function App() {
 
     // Used to learn firebase authentication and keep a persistent user.
     const [user, setUser] = useState(null);
+    const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+    let routeName = "Onboarding";
 
     // Checks to see if user is already logged in and if true, saves the users data to the state for use in rest of the application.
     // This then sets loading to false to display the page that should be returned.
@@ -46,7 +49,7 @@ export default function App() {
             }
         });
     }, []);
-    // END REFERENCE
+    
 
     // Creates a log out function to log the user out of their account and return them to the welcome page.
     const logout = () => {
@@ -61,6 +64,25 @@ export default function App() {
         });
     };
 
+    useEffect(() => {
+		AsyncStorage.getItem("alreadyLaunched").then((value) => {
+			if (value == null) {
+				AsyncStorage.setItem("alreadyLaunched", "true");
+				setIsFirstLaunch(true);
+			} else {
+				setIsFirstLaunch(false);
+			}
+		});
+	}, []);
+
+	if (isFirstLaunch === null) {
+		return null;
+	} else if (isFirstLaunch === true) {
+		routeName = "Onboarding";
+	} else {
+		routeName = "Welcome";
+	}
+
     // If there is a user, take the user to the application else got to the welcome page.
     return (
         <NavigationContainer>
@@ -71,6 +93,7 @@ export default function App() {
                     </Stack.Screen>
                 ) : (
                     <>
+                        <Stack.Screen name='Onboarding' component={OnboardingScreen} />
                         <Stack.Screen name='Welcome' component={Welcome} />
                         <Stack.Screen name='CreateAccount' component={CreateAccount} />
                     </>

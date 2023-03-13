@@ -43,6 +43,7 @@ export default function BottomTabNavigator(props) {
             <Tab.Screen
                 name='Home'
                 options={{
+                    headerShown: false,
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color, size }) => (
                         {/* Adds custom styling for center button to be bigger and circular. */ },

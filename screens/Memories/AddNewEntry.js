@@ -8,10 +8,11 @@ import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { Audio, Video } from "expo-av";
+import { useNavigation } from '@react-navigation/native';
 import "react-native-get-random-values";
 
 
-export default function AddNewEntry(props, {navigation}) {
+export default function AddNewEntry(props) {
 
     // Initializing the state so that when a user selects a mood, it is outlined to show they have selected it.
     const [angry, setAngry] = useState(false);
@@ -49,7 +50,7 @@ export default function AddNewEntry(props, {navigation}) {
     setChange(!change);
   };
 
-    
+  const navigation = useNavigation();
 
     const journalsRef = db.collection('journalList');
     // Gets the users ID from props passed in from App.js.
@@ -321,8 +322,6 @@ export default function AddNewEntry(props, {navigation}) {
                 postImages: images,
                 postVideos: videos,
                 voice: voiceInfo || null,
-                //postVid: vidUrl ,
-                //postAudio: audioUrl,
                 journalText: journalEntry,
                 moodCalendarDate: usefulDate,
                 dateOfEntry: displayDate,
@@ -340,7 +339,6 @@ export default function AddNewEntry(props, {navigation}) {
                     setImages([]);
                     setVideos([]);
                     setVoiceInfo(null);
-                    //setRecordings([]);
                     setRecording(null);
                     setSad(false);
                     setMeh(false);
@@ -348,7 +346,7 @@ export default function AddNewEntry(props, {navigation}) {
            
 
                     alert('Your memory has successfully been added to diary!');
-                    //navigation.navigate('Diary');
+                    navigation.navigate('Diary');
                     
 
                 })
@@ -356,7 +354,7 @@ export default function AddNewEntry(props, {navigation}) {
                     alert('Error: ' + error);
                 });
         }
-        //END REFERENCE
+        
     };
 
 

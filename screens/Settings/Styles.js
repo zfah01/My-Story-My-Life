@@ -5,6 +5,7 @@ const height = Dimensions.get('window').height;
 
 export const settingStyles = StyleSheet.create({
     contentContainer: {
+        marginTop: 80,
         margin: 20,
         padding: 10,
         backgroundColor: '#FFFFFF',

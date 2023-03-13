@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Image, Linking, Text, TouchableOpacity, ScrollView, View } from 'react-native';
+import { Alert, Image, Linking, Text, TouchableOpacity, ScrollView, View, SafeAreaView } from 'react-native';
 //import * as firebase from "firebase";
 //import "firebase/storage";
 // Imports the documents styling.
@@ -122,7 +122,7 @@ export default function Settings(props) {
 
     return (
 
-            <View style={settingStyles.contentContainer}>
+            <SafeAreaView style={settingStyles.contentContainer}>
                 <TouchableOpacity style={settingStyles.returnHomeButton} onPress={returnHome} >
                     <Text style={[settingStyles.buttonText, { color: '#448aff' }]}> {'>'} Return Home</Text>
                 </TouchableOpacity>
@@ -161,6 +161,6 @@ export default function Settings(props) {
                         <Text style={settingStyles.footerText}> My Story, My Life</Text>
                     </View>
                 </ScrollView>
-            </View>
+            </SafeAreaView>
     );
 }
