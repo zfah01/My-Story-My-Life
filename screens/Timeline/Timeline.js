@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, TouchableOpacity, ScrollView, Text, View, Image, StyleSheet } from 'react-native';
+import { ImageBackground, TouchableOpacity, ScrollView, Text, View, Image, StyleSheet , Button} from 'react-native';
 import { Calendar } from 'react-native-calendars';
-import { Video } from 'expo-av';
+import { Audio, Video } from 'expo-av';
 import { journalStyles } from './Styles';
-import { db } from '../../firebase/firebase';
+import { db, st } from '../../firebase/firebase';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Timeline(props) {
     
@@ -21,10 +23,13 @@ export default function Timeline(props) {
     const allTitles = [];
     const allImages = [];
     const allVideos = [];
+    const recording = [];
+
     const [journalEntry, setJournalEntry] = useState('');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
     const [videos, setVideos] = useState([]);
+    const [voice, setVoice] = useState(null);
 
  
     const [entryPressed, setEntryPressed] = useState(false);
@@ -39,6 +44,10 @@ export default function Timeline(props) {
                     const newData = [];
                     querySnapshot.forEach(doc => {
                         const userData = doc.data();
+                        const reference = ref(st, `/${userData.voice}`);
+                        getDownloadURL(reference).then((x) => {
+                          setVoice(x);
+                        });
                         userData.id = doc.id;
                         newData.push(userData);
                     });
@@ -49,11 +58,38 @@ export default function Timeline(props) {
                 });
     };
     
+    useEffect(() => {
+        const func = async () => {
+          journalRef
+          .where('authorID', '==', userID)
+          .where('createdAt', '==', entryID)
+          .onSnapshot(
+              querySnapshot => {
+                  querySnapshot.forEach((doc) => {
+                      const journal = doc.data();
+                      const reference = ref(st, `/${journal.voice}`);
+                      getDownloadURL(reference).then((x) => {
+                        setVoice(x);
+                      });
+                  });
+                  func();
+              },
+              error => {
+                  console.error(error);
+              }
+          );
+  
+        }
+  
+    }, []);
 
     // Gets all data from firebase where the signed in user ID matches the authorID and pushes the data to the allData array.
     useEffect(() => {
         getJournals();
     }, []);
+
+   
+
 
     // For loop that adds the dates, moods and obsessions from allData to their own arrays.
     for (let i = 0; i < allData.length; i++) {
@@ -63,6 +99,8 @@ export default function Timeline(props) {
         allImages.push(allData[i].postImages);
         allTitles.push(allData[i].titleText);
         allVideos.push(allData[i].postVideos);
+        recording.push(allData[i].voice);
+  
     }
 
 
@@ -74,6 +112,7 @@ export default function Timeline(props) {
     let chosentitleText = '';
     let chosenImages = [];
     let chosenVideos = [];
+    let inputAudio = null;
 
     // For each day in allDates array, cycle through the day, select the mood colour and add the current day to the calendar.
     allDates.forEach((day) => {
@@ -106,6 +145,12 @@ export default function Timeline(props) {
                 chosenVideos = allVideos[i];
             }
         }
+        for (let i = 0; i < recording.length; i++) {
+            if (day === allDates[i]) {
+                inputAudio = recording[i];
+            }
+        }
+        
 
 
         allDatesObject[day] = {
@@ -114,9 +159,26 @@ export default function Timeline(props) {
             textT: chosentitleText === '' ? false : chosentitleText == null ? false : true,
             imageT:  chosenImages === [] ? false : true,
             videoT:  chosenVideos === [] ? false : true,
+            audioT:  inputAudio === null ? false : true,
             selectedColor: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Meh' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : selectedMood === 'Angry' ? '#f90505' : '#000000',
         };
     });
+
+    async function playSound() {
+        try {
+          await new Audio.Sound.createAsync({ uri: voice }, { shouldPlay: true });
+        } catch (error) {
+          console.log("voice replaying error", error);
+        }
+      }
+
+      async function pauseSound() {
+        try {
+          await playSound.pauseAsync();
+        } catch (error) {
+          console.log("voice replaying error", error);
+        }
+      }
   
 
         const displayMemory = (day) => {
@@ -142,6 +204,15 @@ export default function Timeline(props) {
                         }
                 
                     }
+                    for (let i = 0; i < recording.length; i++) {
+                        if (day.dateString === allDates[i]) {
+                            inputAudio = recording[i]
+                         
+                        }
+                
+                    }
+                
+                    
                     if (selectedJournalText === '' || selectedJournalText == null) {
                         setJournalEntry('');
                         break;
@@ -157,12 +228,17 @@ export default function Timeline(props) {
                         setVideos([]);
                         break;
 
+                    }else if(inputAudio === null){
+                        setVoice(null);
+                        break;
+
                     }
                     else {
                         setJournalEntry(selectedJournalText);
                         setTitle(chosentitleText);
                         setImages(chosenImages);
                         setVideos(chosenVideos);
+                        setVoice(inputAudio);
                         break;
                     }
                 }
@@ -207,6 +283,28 @@ export default function Timeline(props) {
 
                     </View>
                     </ScrollView>
+
+                    {voice && (
+                                  <View style={styles.headerBox}>
+                                  
+                                    <Button
+                                      style={styles.voiceButton}
+                                      onPress={playSound}
+                                      title= "PLAY"
+                                    >
+                                      <Ionicons name="play" size={15} color="#999DC3" />
+                                    </Button>
+                                   
+                                    <Button 
+                                      style={styles.voiceButton}
+                                      title= "PAUSE"
+                                      onPress={pauseSound}
+                                    >
+                                      <Ionicons name="pause" size={15} color="#999DC3" />
+                                    </Button>
+                                    
+                                  </View>
+                                )}
 
                         
                       </View>
