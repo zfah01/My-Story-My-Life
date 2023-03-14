@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Modal, Button, Image, TextInput, StyleSheet, Text, TouchableOpacity, ScrollView, View, SafeAreaView } from 'react-native';
+import { Alert, Modal, Button, Image, TextInput, StyleSheet, Text, TouchableOpacity, ScrollView, View, SafeAreaView, Keyboard } from 'react-native';
 import Loading from '../../utils/Loading';
 
 // Imports the documents styling.
@@ -44,7 +44,7 @@ export default function Home(props) {
     const [act3Modal, setAct3Modal] = useState(false);
     const [act4Modal, setAct4Modal] = useState(false);
     const [act5Modal, setAct5Modal] = useState(false);
-  
+    
 
     const[days, setDays] = useState(0);
     const[growTree, setGrowTree]  = useState(null);
@@ -59,6 +59,8 @@ export default function Home(props) {
 
     // Creates references to firebase objects to get the user collection and profile picture. 
     const userCounterRef = db.collection('userCounter');
+    const userInfoRef = db.collection('userInfo');
+    const lifeJourneyRef = db.collection('lifeJourney');
     const profilePicRef = st.ref('users/' + user.uid + '/profilePicture/' + user.photoURL);
 
     // Gets the current day on the device.
@@ -85,7 +87,7 @@ export default function Home(props) {
                     const userStoredDate = new Date(storedDate).setUTCHours(0, 0, 0, 0);
                     // Used to get the previous date.
                     const previousDateFromCurrent = new Date(new Date().setDate(new Date().getDate() - 1)).setUTCHours(0, 0, 0, 0);
-                    // END REFERENCE
+                    
                     if (previousDateFromCurrent === userStoredDate) {
                         userCounterRef
                             .doc(userID)
@@ -122,6 +124,7 @@ export default function Home(props) {
                     currentDay: currentDay,
                     numDaysUsed: days,
                     dailyStreak: dailyStreak,
+
                 };
                 userCounterRef
                     .doc(userID)
@@ -135,6 +138,95 @@ export default function Home(props) {
         });
 
     };
+
+    const onSaveAboutMe = async() => {
+        
+        if ((dob && dob.length) || (skills && skills.length) > 0) {
+            const data = {
+               authorID: userID,
+               dateOfBirth: dob,
+               skills: skills,
+            };
+            userInfoRef
+                .add(data)
+                .then(() => {
+                    setAboutModal(!aboutModal) 
+                    Keyboard.dismiss();
+                    
+  
+
+                })
+                .catch((error) => {
+                    alert('Error: ' + error);
+                });
+        }
+        
+    };
+
+    const onSaveGoals = async() => {
+        
+        if ((past && past.length) || (present && present.length) || (future && future.length) > 0) {
+            const data = {
+               authorID: userID,
+               pastInfo: past,
+               presentInfo: present,
+               futureInfo: future,
+            };
+            lifeJourneyRef
+                .add(data)
+                .then(() => {
+                    setTenseModal(!tenseModal) 
+                    Keyboard.dismiss();
+                    
+  
+
+                })
+                .catch((error) => {
+                    alert('Error: ' + error);
+                });
+        }
+        
+    };
+
+    useEffect(() => {
+        userInfoRef
+            .where('authorID', '==', userID)
+            .onSnapshot(
+                querySnapshot => {
+                    querySnapshot.forEach((doc) => {
+                        const userInfo = doc.data();
+                        setDob(userInfo.dateOfBirth);
+                        setSkills(userInfo.skills);
+                        
+                        
+                    });
+                },
+                error => {
+                    console.error(error);
+                }
+            );
+    }, []);
+
+    useEffect(() => {
+        lifeJourneyRef
+            .where('authorID', '==', userID)
+            .onSnapshot(
+                querySnapshot => {
+                    querySnapshot.forEach((doc) => {
+                        const lifeJourney = doc.data();
+                        setPast(lifeJourney.pastInfo);
+                        setPresent(lifeJourney.presentInfo);
+                        setFuture(lifeJourney.futureInfo);
+                        
+                    });
+                },
+                error => {
+                    console.error(error);
+                }
+            );
+    }, []);
+
+    
 
 
     // Sets the users profile picture, called in useEffect.
@@ -224,7 +316,7 @@ export default function Home(props) {
         return (
             <Loading loading={loading} />
         );
-        // Renders the page if settings pressed is false, else renders the settings page.
+        
     } else if (settingsPressed == false) {
         return (
             <SafeAreaView style={styles.homeDiv}>
@@ -314,7 +406,8 @@ export default function Home(props) {
                                 title='Save'
                                 //containerStyle={{width:'30%',borderRadius:30}}
                                 style={styles.modButton}
-                                onPress={() => setAboutModal(!aboutModal)}
+                                onPress={onSaveAboutMe}
+                                
                                 />
                         </View>
                         </View>
@@ -389,7 +482,7 @@ export default function Home(props) {
                                 title='Save'
                                 //containerStyle={{width:'30%',borderRadius:30}}
                                 style={styles.modButton}
-                                onPress={() => setTenseModal(!tenseModal)}
+                                onPress={onSaveGoals}
                                 />
                         </View>
                         </View>
@@ -683,6 +776,7 @@ const styles = StyleSheet.create({
     contentContainer: {
         flexWrap: 'wrap',
         height: 80,
+        width: 270,
         margin: 20,
         padding: 10,
         backgroundColor: '#FFFFFF',

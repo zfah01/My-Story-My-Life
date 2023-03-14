@@ -136,19 +136,19 @@ export default function ViewSingleEntry(props) {
 
             <View style={entryStyles.moodModules}>
                 <View style={selectedMood === 'Happy' ? entryStyles.moodModSelected : entryStyles.moodModUnselected} >
-                <Image source={require('../../assets/1F600_color.png')} style={entryStyles.moodFaces} />
+                <Image source={require('../../assets/emojiHappy.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Happy</Text>
                 </View>
                 <View style={selectedMood === 'Sad' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <Image source={require('../../assets/1F625_color.png')} style={entryStyles.moodFaces} />
+                <Image source={require('../../assets/sadEmoji2.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Sad</Text>
                 </View>
                 <View style={selectedMood === 'Meh' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <Image source={require('../../assets/1F610_color.png')} style={entryStyles.moodFaces} />
+                <Image source={require('../../assets/emojiMeh.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Meh</Text>
                 </View>
                 <View style={selectedMood === 'Angry' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <Image source={require('../../assets/1F620_color.png')} style={entryStyles.moodFaces} />
+                <Image source={require('../../assets/emojiAngry.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Angry </Text>
                 </View>
             </View>

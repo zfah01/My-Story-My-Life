@@ -415,24 +415,24 @@ export default function AddNewEntry(props) {
           <View style={entryStyles.moodModules}>
                   
                     <TouchableOpacity style={happy ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isHappy}>
-                    <Image source={require('../../assets/1F600_color.png')} style={entryStyles.moodFaces} />
+                    <Image source={require('../../assets/emojiHappy.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Happy</Text>
 
                     </TouchableOpacity>
                     
 
                     <TouchableOpacity style={sad ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isSad}>
-                    <Image source={require('../../assets/1F625_color.png')} style={entryStyles.moodFaces} />
+                    <Image source={require('../../assets/sadEmoji2.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Sad</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={meh ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isMeh}>
-                    <Image source={require('../../assets/1F610_color.png')} style={entryStyles.moodFaces} />
+                    <Image source={require('../../assets/emojiMeh.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Meh</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity style={angry ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isAngry} >
-                     <Image source={require('../../assets/1F620_color.png')} style={entryStyles.moodFaces} />
+                     <Image source={require('../../assets/emojiAngry.png')} style={entryStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Angry</Text>
                     </TouchableOpacity>
 

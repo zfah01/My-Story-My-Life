@@ -72,9 +72,10 @@ export const journalStyles = StyleSheet.create({
         flexDirection: 'row',
         paddingRight: 10,
     },
-    obsessionText: {
+    titleText: {
         fontSize: 16, 
         paddingTop: 5,
+        width: 180,
         color: '#000000',
     },
     popupMainContainer: {

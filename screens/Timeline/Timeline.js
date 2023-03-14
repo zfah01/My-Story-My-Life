@@ -1,38 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, TouchableOpacity, ScrollView, Text, View, Image } from 'react-native';
+import { ImageBackground, TouchableOpacity, ScrollView, Text, View, Image, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars';
-
-// Imports the documents styling.
+import { Video } from 'expo-av';
 import { journalStyles } from './Styles';
-
-// Imports firestore from firebase to save user entries to the firstore database.
-//import firestore from '@react-native-firebase/firestore';
 import { db } from '../../firebase/firebase';
 
 export default function Timeline(props) {
-    // Gets all of the data currently stored in firebase for the speicifc user for use on the calnedar.
+    
     const [allData, setAllData] = useState([]);
-    // Creates a reference to the journals and hrList collections in firestore to read data.
+   
     const journalRef = db.collection('journalList');
-    // Gets the users ID from props passed in from App.js.
+    
     const userID = props.extraData.id;
 
-    // Generates a list of all the dates from allData.
+   
     const allDates = [];
-    // Generates a list of all the moods from allData.
     const allMoods = [];
-    // Generates a list of all the obsessions from allData.
+    
     const allJournals = [];
     const allTitles = [];
     const allImages = [];
+    const allVideos = [];
     const [journalEntry, setJournalEntry] = useState('');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
+    const [videos, setVideos] = useState([]);
 
-    // Changes the render based on if a user has interacted with the calendar.
+ 
     const [entryPressed, setEntryPressed] = useState(false);
 
-    // Gets and stores both journal and heart rate data.
+    
     const getJournals = async () => {
         journalRef
             .where('authorID', '==', userID)
@@ -65,6 +62,7 @@ export default function Timeline(props) {
         allJournals.push(allData[i].journalText);
         allImages.push(allData[i].postImages);
         allTitles.push(allData[i].titleText);
+        allVideos.push(allData[i].postVideos);
     }
 
 
@@ -75,6 +73,7 @@ export default function Timeline(props) {
     let selectedJournalText = '';
     let chosentitleText = '';
     let chosenImages = [];
+    let chosenVideos = [];
 
     // For each day in allDates array, cycle through the day, select the mood colour and add the current day to the calendar.
     allDates.forEach((day) => {
@@ -84,8 +83,7 @@ export default function Timeline(props) {
                 selectedMood = allMoods[i];
             }
         }
-        // Checks if the day is the same as the date and then adds the obsession for the date to the calendar.
-        // Adds a mark to the calendar.
+      
         for (let i = 0; i < allTitles.length; i++) {
             if (day === allDates[i]) {
                 chosentitleText = allTitles[i];
@@ -103,11 +101,19 @@ export default function Timeline(props) {
             }
         }
 
+        for (let i = 0; i < allVideos.length; i++) {
+            if (day === allDates[i]) {
+                chosenVideos = allVideos[i];
+            }
+        }
+
+
         allDatesObject[day] = {
             selected: true,
             marked: selectedJournalText === '' ? false : selectedJournalText == null ? false : true,
             textT: chosentitleText === '' ? false : chosentitleText == null ? false : true,
-            imageT: chosenImages === [] ? false : chosenImages == [] ? false : true,
+            imageT:  chosenImages === [] ? false : true,
+            videoT:  chosenVideos === [] ? false : true,
             selectedColor: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Meh' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : selectedMood === 'Angry' ? '#f90505' : '#000000',
         };
     });
@@ -129,6 +135,12 @@ export default function Timeline(props) {
                          
                         }
                 
+                    }for (let i = 0; i < allVideos.length; i++) {
+                        if (day.dateString === allDates[i]) {
+                            chosenVideos = allVideos[i]
+                         
+                        }
+                
                     }
                     if (selectedJournalText === '' || selectedJournalText == null) {
                         setJournalEntry('');
@@ -137,8 +149,12 @@ export default function Timeline(props) {
                         setTitle('');
                         break;
 
-                    }else if(chosenImages === []){
+                    } else if(chosenImages === []){
                         setImages([]);
+                        break;
+
+                    }else if(chosenVideos === []){
+                        setVideos([]);
                         break;
 
                     }
@@ -146,6 +162,7 @@ export default function Timeline(props) {
                         setJournalEntry(selectedJournalText);
                         setTitle(chosentitleText);
                         setImages(chosenImages);
+                        setVideos(chosenVideos);
                         break;
                     }
                 }
@@ -157,18 +174,43 @@ export default function Timeline(props) {
         <View>
             {entryPressed ? (
                 <View style={journalStyles.popupMainContainer}>
-                    <View style={[journalStyles.contentContainer, { padding: 100 }]}>
+                    <View style={[journalStyles.contentContainer, { margin: 5, marginTop: 50, width: 400, height: 600 }]}>
                     <Text style={journalStyles.popupTitle}>Title: </Text>
-                        <Text style={journalStyles.obsessionText}>{title} </Text>
+                        <Text style={journalStyles.titleText}>{title} </Text>
                         <Text style={journalStyles.popupTitle}>Your Story: </Text>
                         <Text style={journalStyles.obsessionText}>{journalEntry} </Text>
-                        {images.map((item) => (
-                        <Image
+
+                        <View style={styles.container}>
+                    <ScrollView horizontal={true}>
+                    <View style={{flexDirection: "row", marginTop:30}}>
+                   
+                    {images.map((item) => (
+                      <Image
                         key={item}
+                        style={styles.image}
                         source={{uri: item}}
                       
                       />
                     ))}
+
+                    {videos.map((item) => (
+                      <Video
+                        key={item}
+                        style={styles.video}
+                        source={{uri: item}}
+                        useNativeControls
+                        resizeMode="contain"
+                        isLooping
+                      
+                      />
+                    ))}
+
+                    </View>
+                    </ScrollView>
+
+                        
+                      </View>
+                   
 
                         <TouchableOpacity onPress={() => setEntryPressed(false)} >
                             <Text style={journalStyles.buttonText}> {'>'} Back to Calendar </Text>
@@ -185,37 +227,158 @@ export default function Timeline(props) {
                             minDate={'2015-01-01'}
                             enableSwipeMonths={true}
                             markedDates={allDatesObject}
-                            // When a specific day is pressed it dispays the obsession if it exists.
+                            
                             onDayPress={(day) => displayMemory(day)}
                         />
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <View style={journalStyles.keyContainer} >
-                                <Text testID='keyID' style={journalStyles.keyTitle}>Mood Key:</Text>
-                                <View style={journalStyles.keyContainer2}>
-                                    <View style={[journalStyles.keyIndivContainer, { marginRight: 10 }]}>
-                                        <Text style={journalStyles.contentText}>Happy:</Text>
-                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#108206' }]} />
-                                    </View>
-                                    <View style={[journalStyles.keyIndivContainer, { marginRight: 20 }]}>
-                                        <Text style={journalStyles.contentText}>Meh:</Text>
-                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#e38e07' }]} />
-                                    </View>
-                                </View>
-                                <View style={journalStyles.keyContainer2}>
-                                    <View style={journalStyles.keyIndivContainer}>
-                                        <Text style={journalStyles.contentText}> Sad: </Text>
-                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#112dec', marginLeft: 8 }]} />
-                                    </View>
-                                    <View style={[journalStyles.keyIndivContainer, { paddingLeft: 10, paddingRight: 20 }]}>
-                                        <Text style={journalStyles.contentText}>Angry:</Text>
-                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#f90505' }]} />
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
                     </ScrollView>
                 </View>
             )}
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+      marginTop: 30,
+    },
+    headerBox: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginVertical: 10,
+      alignItems: "baseline",
+    },
+    header: {
+      fontSize: 25,
+      fontFamily: "Jaldi_700Bold",
+      paddingTop: "2%",
+    },
+  
+    button: {
+      backgroundColor: "#999DC3",
+      borderColor: "white",
+      borderWidth: 1,
+      borderRadius: 5,
+    },
+    buttonText: {
+      fontFamily: "Jaldi_400Regular",
+      fontSize: 18,
+    },
+
+    returnButtonContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      paddingTop: 10
+  },
+  returnButton: {
+      padding: 15,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'orange',
+      borderRadius: 15,
+      width: 150,
+  },
+  returnText: {
+      textAlign: 'center',
+      fontWeight: 'bold',
+      fontSize: 18,
+      color: '#000000',
+  },
+
+    date: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: '#000000',
+      textAlign: 'center',
+  
+      
+    },
+    memoryButton: {
+      backgroundColor: "rgba(255, 255, 255, 0.77)",
+      marginBottom: 6,
+      borderColor: "white",
+      borderWidth: 1,
+      borderRadius: 5,
+      shadowColor: "#171717",
+      shadowOffset: { width: -2, height: 4 },
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+    },
+    deleteButton: {
+      backgroundColor: "rgb(182, 182, 182)",
+      width: "20%",
+    },
+    voiceButton: {
+      marginVertical: "2%",
+      marginHorizontal: "1%",
+    },
+    video: {
+      width: 330, height: 240,
+      borderRadius: 9,
+      marginLeft: 10,
+
+    },
+
+    image: {
+      width: 330, height: 240,
+      borderRadius: 9,
+      marginLeft: 20,
+      
+
+    },
+    subHeaderTitle: {
+      fontSize: 16,
+      textAlign: 'center',
+      fontStyle: 'italic',
+      fontWeight: 'bold',
+      color: '#000000',
+  },
+
+  storyHeader: {
+    fontSize: 16,
+    textAlign: 'left',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: '#000000',
+    paddingTop: 20
+  },
+    emojiLabels: {
+      textAlign: 'center',
+      marginTop: 5,
+    },
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      
+  },
+    title: {
+      textAlign: 'center',
+      fontSize: 30,
+      paddingBottom: 10,
+    },
+
+    story: {
+      paddingBottom: 12,
+      paddingTop: 10,
+      fontSize: 16
+    },
+    moodHeader: {
+    fontSize: 16,
+    textAlign: 'left',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: '#000000',
+    paddingTop: 20
+    },
+    
+    contentContainerScroll: {
+      margin: 20,
+      padding: 10,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 25,
+      maxHeight: '80%',
+  },
+
+  });
