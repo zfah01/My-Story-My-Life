@@ -8,6 +8,9 @@ export const  homeStyles = StyleSheet.create({
     mainContainer: {
         flexDirection: 'column',
         justifyContent: 'center',
+        backgroundColor: '#CFF2FF',
+        paddingTop:Platform.OS === 'ios'? null: 10,
+    
     },
     background: {
         width: '100%',

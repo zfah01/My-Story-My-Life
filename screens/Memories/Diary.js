@@ -84,7 +84,7 @@ export default function Diary(props) {
 
     return (
         // Sets the background image to half opacity.
-            <SafeAreaView>
+            <SafeAreaView style={styles.diaryView}>
             <SearchBar
                 round={true}
                 lightTheme={true}
@@ -132,7 +132,8 @@ export default function Diary(props) {
 }
 
 const styles = StyleSheet.create({
-    diary: {
+    diaryView: {
+        backgroundColor: '#CFF2FF'
       
 
     },

@@ -4,6 +4,7 @@ const entryStyles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         justifyContent: 'center',
+        backgroundColor: '#CFF2FF',
     },
     contentContainer: {
         margin: 20,

@@ -247,10 +247,11 @@ export default function Timeline(props) {
         };
 
     return (
-        <View>
+        <View style={styles.lookView}>
             {entryPressed ? (
                 <View style={journalStyles.popupMainContainer}>
                     <View style={[journalStyles.contentContainer, { margin: 5, marginTop: 50, width: 400, height: 600 }]}>
+                      <ScrollView>
                     <Text style={journalStyles.popupTitle}>Title: </Text>
                         <Text style={journalStyles.titleText}>{title} </Text>
                         <Text style={journalStyles.popupTitle}>Your Story: </Text>
@@ -287,21 +288,14 @@ export default function Timeline(props) {
                     {voice && (
                                   <View style={styles.headerBox}>
                                   
-                                    <Button
+                                    <TouchableOpacity
                                       style={styles.voiceButton}
                                       onPress={playSound}
-                                      title= "PLAY"
                                     >
-                                      <Ionicons name="play" size={15} color="#999DC3" />
-                                    </Button>
-                                   
-                                    <Button 
-                                      style={styles.voiceButton}
-                                      title= "PAUSE"
-                                      onPress={pauseSound}
-                                    >
-                                      <Ionicons name="pause" size={15} color="#999DC3" />
-                                    </Button>
+                                     
+                                      <Text style={styles.playText}><Ionicons name="play" size={15} style={styles.playButton}color="#999DC3" />PLAY RECORDING</Text>
+                                    </TouchableOpacity>
+                          
                                     
                                   </View>
                                 )}
@@ -313,9 +307,11 @@ export default function Timeline(props) {
                         <TouchableOpacity onPress={() => setEntryPressed(false)} >
                             <Text style={journalStyles.buttonText}> {'>'} Back to Calendar </Text>
                         </TouchableOpacity>
+                        </ScrollView>
                     </View>
                 </View>
             ) : (
+             
                 <View style={journalStyles.contentContainer}>
                     <ScrollView>
                         <Text style={journalStyles.title}> View your memories on a specific day:  </Text>
@@ -330,6 +326,7 @@ export default function Timeline(props) {
                         />
                     </ScrollView>
                 </View>
+                
             )}
         </View>
     );
@@ -338,13 +335,32 @@ export default function Timeline(props) {
 const styles = StyleSheet.create({
     container: {
       marginTop: 30,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    }, 
+    lookView: {
+      backgroundColor: '#CFF2FF',
+      flex: 1
+      
     },
+    playText: {
+      color: 'white',
+      textAlign: 'center',
+      alignSelf: 'center',
+      margin: 8,
+      marginLeft: 20,
+    },
+
     headerBox: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-between",
       marginVertical: 10,
-      alignItems: "baseline",
+      height: 40,
+      width: 180,
+      backgroundColor: '#2e2eff',
+      borderRadius: 10,
+      
     },
     header: {
       fontSize: 25,
@@ -445,12 +461,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       marginTop: 5,
     },
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      
-  },
+
     title: {
       textAlign: 'center',
       fontSize: 30,

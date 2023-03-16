@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { Text, View, ImageBackground, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, ImageBackground, ScrollView, TextInput, Image, Alert, TouchableOpacity } from 'react-native';
 import Loading from '../../utils/Loading';
+import * as LocalAuthentication from 'expo-local-authentication';
 
 // Imports the documents styling.
 import { loginStyles } from './Styles';
 
-// Imports authentication and firestore from firebase
-//import auth from '@react-native-firebase/auth';
-//import firestore from '@react-native-firebase/firestore';
+
 import { auth, db } from '../../firebase/firebase';
 
 // Checks if email is in a valid format.
@@ -21,6 +20,24 @@ export default function Welcome({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+
+
+        const getEnrollment = async () => {
+            const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+            if (isEnrolled) {
+                const { success } = await LocalAuthentication.authenticateAsync({ promptMessage: 'Authenticate'});
+                if (success) {
+                    navigation.navigate('HomeScreen');
+                } else {
+                    Alert.alert('Uh Oh! Access Denied. Please try again.')
+                    navigation.navigate('Welcome');
+                    
+                }
+                
+            }
+        };
+
+
 
     const onLoginPress = () => {
         setLoading(true);
@@ -48,7 +65,8 @@ export default function Welcome({ navigation }) {
                             return;
                         }
                         setLoading(false);
-                        navigation.navigate('HomeScreen');
+                        getEnrollment();
+                        //navigation.navigate('Home');
                     })
                     .catch(error => {
                         setLoading(false);
@@ -60,6 +78,8 @@ export default function Welcome({ navigation }) {
                 alert(error);
             });
     };
+
+  
 
 
     if (loading) {

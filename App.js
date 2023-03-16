@@ -88,11 +88,14 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {user ? (
+        <>
                     <Stack.Screen name='HomeScreen' >
                         {props => <TabNavigator {...props} extraData={user} logout={logout} />}
                     </Stack.Screen>
+            <Stack.Screen name='Welcome' component={Welcome} />
+            </>
                 ) : (
-                    <>
+                    <> 
                         <Stack.Screen name='Onboarding' component={OnboardingScreen} />
                         <Stack.Screen name='Welcome' component={Welcome} />
                         <Stack.Screen name='CreateAccount' component={CreateAccount} />

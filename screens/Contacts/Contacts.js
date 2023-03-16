@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, SafeAreaView, Button, TouchableOpacity, ScrollView, StyleSheet, Text, TextInput, View, Image, Alert, Linking } from 'react-native';
+import { ImageBackground, SafeAreaView, Button, TouchableOpacity, Platform, ScrollView, StyleSheet, Text, TextInput, View, Image, Alert, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 
 // Imports the documents styling.
@@ -140,10 +140,11 @@ export default function Contacts(props) {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    margin: 20,
-    padding: 10,
+    margin: 35,
+    padding: Platform.OS === 'ios'? 10: 5,
     backgroundColor: '#FFFFFF',
     borderRadius: 25,
+    marginBottom: Platform.OS === 'ios'? null: 15,
 },
 
   topSent: {
@@ -184,7 +185,10 @@ const styles = StyleSheet.create({
 
   },
   topView: {
-    marginTop: 80
+    paddingTop: Platform.OS === 'ios'? 80: 7,
+    backgroundColor: '#CFF2FF',
+    flex: 1, 
+    
   }
 
 });

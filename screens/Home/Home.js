@@ -319,9 +319,9 @@ export default function Home(props) {
         
     } else if (settingsPressed == false) {
         return (
-            <SafeAreaView style={styles.homeDiv}>
+            <SafeAreaView style={homeStyles.mainContainer}>
                 <ScrollView>
-                    <View style={homeStyles.mainContainer}>
+                    <View>
                         <View style={homeStyles.heading} >
                             <Text testID='userGreeting' style={homeStyles.title}>Hello, {username}! </Text>
                             <TouchableOpacity onPress={() => setSettingsPressed(true)} >
@@ -768,11 +768,6 @@ const styles = StyleSheet.create({
         
        
     },
-    homeDiv: {
-        marginTop: 50,
-        
-       
-    },
     contentContainer: {
         flexWrap: 'wrap',
         height: 80,
@@ -812,7 +807,7 @@ const styles = StyleSheet.create({
       },
       modalView:{
         width: '88%',
-        height: 550,
+        height: Platform.OS == "ios" ? '65%' : '88%',
         backgroundColor: '#FFF', 
         margin:28,
         shadowColor:'#3E4985',
@@ -827,7 +822,7 @@ const styles = StyleSheet.create({
 
 
     modHeader: {
-        fontSize: 20,
+        fontSize: Platform.OS == "ios" ? 20 : 18,
         margin: 30,
         textAlign: 'center',
         fontStyle: 'italic' 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TextInput, Image, TouchableOpacity, ScrollView, Button } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, TouchableOpacity, ScrollView, Button, Platform } from 'react-native';
 
 // Imports the documents styling.
 import { entryStyles } from './Styles';
@@ -111,7 +111,7 @@ export default function ViewSingleEntry(props) {
 
       async function pauseSound() {
         try {
-          await playSound.pauseAsync();
+          await playSound.stopAsync();
         } catch (error) {
           console.log("voice replaying error", error);
         }
@@ -120,7 +120,7 @@ export default function ViewSingleEntry(props) {
 
     return (
       <>
-      <SafeAreaView>
+      <SafeAreaView> 
     <Text style={styles.date}>Date of Entry: {displayDate} </Text>
     </SafeAreaView>
 
@@ -196,21 +196,14 @@ export default function ViewSingleEntry(props) {
                       {voice && (
                                   <View style={styles.headerBox}>
                                   
-                                    <Button
+                                    <TouchableOpacity
                                       style={styles.voiceButton}
                                       onPress={playSound}
-                                      title= "PLAY"
                                     >
-                                      <Ionicons name="play" size={15} color="#999DC3" />
-                                    </Button>
-                                   
-                                    <Button 
-                                      style={styles.voiceButton}
-                                      title= "PAUSE"
-                                      onPress={pauseSound}
-                                    >
-                                      <Ionicons name="pause" size={15} color="#999DC3" />
-                                    </Button>
+                                     
+                                      <Text style={styles.playText}><Ionicons name="play" size={15} style={styles.playButton}color="#999DC3" />PLAY RECORDING</Text>
+                                    </TouchableOpacity>
+                          
                                     
                                   </View>
                                 )}
@@ -239,12 +232,26 @@ const styles = StyleSheet.create({
     container: {
       width: "90%",
     },
+    playButton : {
+      padding: 10
+    },
+    playText: {
+      color: 'white',
+      textAlign: 'center',
+      alignSelf: 'center',
+      margin: 8,
+      marginLeft: 20,
+    },
+
     headerBox: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-between",
       marginVertical: 10,
-      alignItems: "baseline",
+      height: 40,
+      width: 180,
+      backgroundColor: '#2e2eff',
+      borderRadius: 10,
+      
     },
     header: {
       fontSize: 25,
@@ -288,6 +295,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
       fontWeight: 'bold',
       color: '#000000',
+      marginTop: Platform.OS== "android" ? 40 : null,
       textAlign: 'center',
   
       
