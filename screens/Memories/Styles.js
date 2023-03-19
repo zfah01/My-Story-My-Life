@@ -4,7 +4,7 @@ const entryStyles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#CFF2FF',
+        backgroundColor: '#AFEEEE',
     },
     contentContainer: {
         margin: 20,
@@ -37,8 +37,8 @@ const entryStyles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 5,
         textAlign: 'center',
-        borderWidth: 4,
-        borderColor: 'yellow',
+        borderWidth: 2,
+        borderColor: '#00e676',
         borderRadius: 9,
         paddingLeft: 10,
     },
@@ -125,7 +125,7 @@ const listStyles = StyleSheet.create({
     contentContainer: {
         margin: 20,
         padding: 10,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F5F5F5',
         borderRadius: 25,
         height: height / 1.45,
     },

@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
   topView: {
     paddingTop: Platform.OS === 'ios'? 80: 7,
-    backgroundColor: '#CFF2FF',
+    backgroundColor: '#AFEEEE',
     flex: 1, 
     
   }

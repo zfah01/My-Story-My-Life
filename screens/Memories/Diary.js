@@ -26,24 +26,24 @@ export default function Diary(props) {
     const [selectedID, setSelectedID] = useState(null);
 
     // Makes a reference to load the journal list collection from firestore.
-    const journalsRef = db.collection('journalList');
+    const memoriesRef = db.collection('memories');
     // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
 
     // Selects all journal entries where the user ID matches the authorID and sorts the list by newest date first.
     useEffect(() => {
-        journalsRef
+        memoriesRef
             .where('authorID', '==', userID)
             .orderBy('createdAt', 'desc')
             .onSnapshot(
                 querySnapshot => {
-                    const newJournals = [];
+                    const newMemories = [];
                     querySnapshot.forEach((doc) => {
-                        const journal = doc.data();
-                        journal.id = doc.id;
-                        newJournals.push(journal);
+                        const memory = doc.data();
+                        memory.id = doc.id;
+                        newMemories.push(memory);
                     });
-                    setAllEntries(newJournals);
+                    setAllEntries(newMemories);
                 },
                 error => {
                     alert(error);
@@ -56,7 +56,7 @@ export default function Diary(props) {
         setSearchText(searchText);
         const filteredEntries = allEntries.filter(function (item) {
             // use title, mood, date to view entry 
-            return item.dateOfEntry.includes(searchText) || item.journalText.toLowerCase().includes(searchText.toLowerCase())||item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
+            return item.titleText.toLowerCase().includes(searchText.toLowerCase()) || item.dateOfEntry.includes(searchText) || item.storyText.toLowerCase().includes(searchText.toLowerCase())||item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
         });
         setFilteredEntries(filteredEntries);
     };
@@ -88,7 +88,7 @@ export default function Diary(props) {
             <SearchBar
                 round={true}
                 lightTheme={true}
-                placeholder='Search'
+                placeholder='Search by Title, Mood, Date or Story'
                 autoCapitalize='none'
                 onChangeText={search}
                 value={searchText}
@@ -101,7 +101,7 @@ export default function Diary(props) {
                     renderItem={({ item }) => <TouchableOpacity style={listStyles.listView} onPress={() => setSelectedID(item.createdAt)}>
                     <Text style={listStyles.entryDesc}>{item.dateOfEntry}</Text>
                     <Text style={listStyles.entryDate}>{item.titleText}</Text>
-                    <Text style={listStyles.entryDesc} numberOfLines={2} >{item.journalText}</Text>
+                    <Text style={listStyles.entryDesc} numberOfLines={2} >{item.storyText}</Text>
                     <ScrollView horizontal={true}>
                     <View style={{flexDirection: "row"}}>
                     {item.postImages &&
@@ -133,7 +133,8 @@ export default function Diary(props) {
 
 const styles = StyleSheet.create({
     diaryView: {
-        backgroundColor: '#CFF2FF'
+        backgroundColor: '#AFEEEE',
+        flex: 1,
       
 
     },

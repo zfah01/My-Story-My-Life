@@ -18,11 +18,12 @@ export default function ViewSingleEntry(props) {
 
     // Initializing the state to save firestore fields to their corresponding variables for display.
     const [selectedMood, setSelectedMood] = useState('');
-    const [journalEntry, setJournalEntry] = useState('');
+    const [storyEntry, setStoryEntry] = useState('');
     const [displayDate, setDisplayDate] = useState('');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
     const [videos, setVideos] = useState([]);
+    const [eventDate, setEventDate]= useState('');
 
     const [isClicked, setIsClicked] = useState(false);
     const memory = props.memory || "";
@@ -38,26 +39,27 @@ export default function ViewSingleEntry(props) {
 
 
     // Creates a reference to the journal list collection in firestore to save data.
-    const journalsRef = db.collection('journalList');
+    const memoriesRef = db.collection('memories');
 
     // Selects the journal entry where the user ID matches the authorID and createdAt timestamp matches the current entry ID
     // and saves each field to its respectable variable to be displayed to the user when they select an entry to display.
     useEffect(() => {
-        journalsRef
+        memoriesRef
             .where('authorID', '==', userID)
             .where('createdAt', '==', entryID)
             .onSnapshot(
                 querySnapshot => {
                     querySnapshot.forEach((doc) => {
-                        const journal = doc.data();
-                        setSelectedMood(journal.moodSelected);
-                        setJournalEntry(journal.journalText);
-                        setDisplayDate(journal.dateOfEntry);
-                        setTitle(journal.titleText);
-                        setImages(journal.postImages);
-                        setVideos(journal.postVideos);
+                        const memory = doc.data();
+                        setSelectedMood(memory.moodSelected);
+                        setStoryEntry(memory.storyText);
+                        setDisplayDate(memory.dateOfEntry);
+                        setTitle(memory.titleText);
+                        setImages(memory.postImages);
+                        setVideos(memory.postVideos);
+                        setEventDate(memory.eventDate);
                         //setVoice(journal.voice);
-                        const reference = ref(st, `/${journal.voice}`);
+                        const reference = ref(st, `/${memory.voice}`);
                         getDownloadURL(reference).then((x) => {
                           setVoice(x);
                         });
@@ -72,14 +74,14 @@ export default function ViewSingleEntry(props) {
 
     useEffect(() => {
       const func = async () => {
-        journalsRef
+        memoriesRef
         .where('authorID', '==', userID)
         .where('createdAt', '==', entryID)
         .onSnapshot(
             querySnapshot => {
                 querySnapshot.forEach((doc) => {
-                    const journal = doc.data();
-                    const reference = ref(st, `/${journal.voice}`);
+                    const memory = doc.data();
+                    const reference = ref(st, `/${memory.voice}`);
                     getDownloadURL(reference).then((x) => {
                       setVoice(x);
                     });
@@ -96,7 +98,6 @@ export default function ViewSingleEntry(props) {
   }, []);
 
 
- 
 
 
 
@@ -132,6 +133,9 @@ export default function ViewSingleEntry(props) {
                 <Text style={styles.title}>
                     {title}
                     </Text> 
+              <Text style={styles.moodHeader}>Date of Event: <Text style={styles.eventDate}> {eventDate}</Text></Text>
+              
+         
             <Text style={styles.moodHeader}>How you were feeling: </Text>
 
             <View style={entryStyles.moodModules}>
@@ -159,7 +163,7 @@ export default function ViewSingleEntry(props) {
             <View>
                 <Text style={styles.storyHeader}>Your Story: </Text>
                 <Text style={styles.story}>
-                    {journalEntry}
+                    {storyEntry}
                 </Text>
                 </View>
 
@@ -234,6 +238,9 @@ const styles = StyleSheet.create({
     },
     playButton : {
       padding: 10
+    },
+    eventDate: {
+      fontWeight: 'normal',
     },
     playText: {
       color: 'white',

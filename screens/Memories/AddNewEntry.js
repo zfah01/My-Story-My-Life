@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View,  StyleSheet, TextInput, TouchableOpacity, ScrollView, Image, Button, Keyboard } from 'react-native';
+import { Text, View,  StyleSheet, TextInput, TouchableOpacity, ScrollView, Image, Button, Alert, Platform, Keyboard } from 'react-native';
 import * as ImagePicker from "expo-image-picker";
 //import {launchCameraAsync, useCameraPermissions, PermissionStatus, launchImageLibraryAsync} from 'expo-image-picker'
 import { entryStyles } from './Styles';
-import { st, db, timestamp, auth } from '../../firebase/firebase';
+import { st, db, timestamp, auth, stamp } from '../../firebase/firebase';
 import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { Audio, Video } from "expo-av";
 import { useNavigation } from '@react-navigation/native';
 import "react-native-get-random-values";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 export default function AddNewEntry(props) {
@@ -21,11 +22,18 @@ export default function AddNewEntry(props) {
     const [happy, setHappy] = useState(false);
 
     const [title, setTitle] = useState('');
-    const [journalEntry, setJournalEntry] = useState('');
+    const [storyEntry, setStoryEntry] = useState('');
     
     const [usefulDate, setUsefulDate] = useState(null);
     const [displayDate, setDisplayDate] = useState(null);
     const [entryMood, setEntryMood] = useState('');
+
+    const [eventDate, setEventDate] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+    const [display,setDisplay] = useState("default");
+
+    
 
       //photo
       const [images, setImages] = useState([]);
@@ -52,7 +60,7 @@ export default function AddNewEntry(props) {
 
   const navigation = useNavigation();
 
-    const journalsRef = db.collection('journalList');
+    const memoriesRef = db.collection('memories');
     // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
     const user = auth.currentUser;
@@ -62,15 +70,36 @@ export default function AddNewEntry(props) {
         const date = new Date();
         const displayOptions = { day: 'numeric', month: 'long', year: 'numeric' };
 
+
         // Displays the date on the component in a nice format.
         const displayDateOfEntry = date.toLocaleDateString('en-US', displayOptions);
         setDisplayDate(displayDateOfEntry);
 
         // Takes the date in ISO format to be saved to the firestore databse and be displayed on the mood calendar.
-        const usefulDateOfEntry = date.toISOString().split('T')[0];
-        setUsefulDate(usefulDateOfEntry);
+        //const usefulDateOfEntry = date.toISOString().split('T')[0];
+        //setUsefulDate(usefulDateOfEntry);
 
     }, []);
+
+    const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate || eventDate;
+      setShow(Platform.OS === 'ios');
+      setEventDate(currentDate);
+
+      const usefulDateOfEntry = currentDate.toISOString().split('T')[0];
+      setUsefulDate(usefulDateOfEntry);
+    };
+  
+    const showMode = (currentMode) => {
+      setShow(true);
+      setMode(currentMode);
+    };
+  
+    const showDatepicker = () => {
+      setDisplay('default');
+      showMode('date');
+    };
+
 
     const takePhotoFromCamera = async () => {
       const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -270,7 +299,6 @@ export default function AddNewEntry(props) {
   }
 
 
-
     const audioUpload = async () => {
       if (recording) {
         const voiceName = uuidv4();
@@ -312,28 +340,59 @@ export default function AddNewEntry(props) {
   }
 
 
-    const onSubmitButtonPress = async() => {
 
-        if (journalEntry && journalEntry.length > 0) {
+  const validateInput = () => {
+
+    const emptyvals = []
+    if(title == '') {
+      emptyvals.push('a title')
+    }
+    if(meh == false && happy == false  && sad == false  && angry == false) {
+      emptyvals.push('a mood')
+    }
+     if(storyEntry == '') {
+      emptyvals.push('a description of your story')
+    }
+    
+     if(emptyvals.length == 0) {
+      onSubmitButtonPress();
+    }
+    else {
+      Alert.alert("Please enter " + emptyvals.join(", "))
+    }
+
+  }
+  const month = eventDate.toLocaleString('default', { month: 'long' });
+  const day = eventDate.toLocaleString('default', { day: 'numeric' });
+  const year = eventDate.toLocaleString('default', { year: 'numeric' });
+  //const stringEventDate =  eventDate.getDate() + "/" + (eventDate.getMonth()+ 10) + "/" + eventDate.getFullYear();
+  const stringEventDate =  month + " " + day + ", " + year;
+  //const eventTime = stamp.fromDate(eventDate);
+
+    const onSubmitButtonPress = async() => {
+      
+        if (validateInput) {
             const data = {
                 authorID: userID,
                 titleText: title,
+                eventDate: stringEventDate,
                 moodSelected: entryMood,
                 postImages: images,
                 postVideos: videos,
                 voice: voiceInfo || null,
-                journalText: journalEntry,
-                moodCalendarDate: usefulDate,
+                storyText: storyEntry,
+                timelineDate: usefulDate,
                 dateOfEntry: displayDate,
                 createdAt: timestamp
             };
-            journalsRef
+            memoriesRef
                 .add(data)
                 .then(() => {
                     Keyboard.dismiss();
 
                     setTitle('');
-                    setJournalEntry('');
+                    setShow(false);
+                    setStoryEntry('');
                     setEntryMood('');
                     setAngry(false);
                     setImages([]);
@@ -411,6 +470,23 @@ export default function AddNewEntry(props) {
                         onChangeText={(text) => setTitle(text)}
                         value={title}
                     />
+
+            <View style={styles.dateContainer}>
+            <Text style={styles.subHeader}>Event Date: {stringEventDate}</Text>
+            <TouchableOpacity style={styles.pickerBtn} onPress={showDatepicker}>
+          <Text style={styles.pickerBtnTxt}>Set Date</Text>
+        </TouchableOpacity>
+       {show && (
+          <DateTimePicker
+          value={eventDate}
+          mode={mode}
+          minimumDate={new Date(1950,1,1)}
+          maximumDate={new Date()}
+          display = {display}
+          onChange={onChange}
+        />
+      )}
+        </View>
           <Text style={entryStyles.subHeader}>How are you feeling?</Text>
           <View style={entryStyles.moodModules}>
                   
@@ -446,8 +522,8 @@ export default function AddNewEntry(props) {
                         placeholder='Write your story here! '
                         numberOfLines={10}
                         multiline={true}
-                        onChangeText={(text) => setJournalEntry(text)}
-                        value={journalEntry}
+                        onChangeText={(text) => setStoryEntry(text)}
+                        value={storyEntry}
                         testID='journalInput'
                     />
 
@@ -508,7 +584,7 @@ export default function AddNewEntry(props) {
                     
                         
                     <View style={entryStyles.submitButtonContainer}>
-                        <TouchableOpacity style={entryStyles.submitButton} onPress={onSubmitButtonPress} accessibilityLabel='Submit Button' testID='submitBTN' >
+                        <TouchableOpacity style={entryStyles.submitButton} onPress={validateInput} accessibilityLabel='Submit Button' testID='submitBTN' >
                             <Text style={entryStyles.submitText}>Submit</Text>
                         </TouchableOpacity>
                     </View>
@@ -542,8 +618,33 @@ const styles=StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
       },
+      dateContainer: {
+        flex : 0,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
+       },
+       label: {
+        margin: 10,
+        color: 'black',
+        fontSize: 14,
+        fontFamily:'Century Gothic'
+      },
       datePickerStyle: {
         width: 230,
+      },
+      pickerBtn: {
+        borderColor: "#2e64e5",
+        borderWidth: 2,
+        borderRadius: 3,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        marginHorizontal: 5,
+        width:100,
+      },
+      pickerBtnTxt: {
+        color: "#2e64e5",
+        alignItems: "center",
       },
       text: {
         textAlign: "left",
@@ -554,6 +655,19 @@ const styles=StyleSheet.create({
         backgroundColor: "rgba(255, 255, 255, 0.77)",
     
       },
+      elevationLow: {
+        ...Platform.select({
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.8,
+            shadowRadius: 2,    
+        },
+        android: {
+            elevation: 5,
+        },
+        }),
+    },
       subtitle: {
         alignItems: "center",
         fontSize: 16,

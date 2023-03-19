@@ -11,7 +11,7 @@ export default function Timeline(props) {
     
     const [allData, setAllData] = useState([]);
    
-    const journalRef = db.collection('journalList');
+    const memoriesRef = db.collection('memories');
     
     const userID = props.extraData.id;
 
@@ -19,13 +19,13 @@ export default function Timeline(props) {
     const allDates = [];
     const allMoods = [];
     
-    const allJournals = [];
+    const allStories = [];
     const allTitles = [];
     const allImages = [];
     const allVideos = [];
     const recording = [];
 
-    const [journalEntry, setJournalEntry] = useState('');
+    const [storyEntry, setStoryEntry] = useState('');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
     const [videos, setVideos] = useState([]);
@@ -35,8 +35,8 @@ export default function Timeline(props) {
     const [entryPressed, setEntryPressed] = useState(false);
 
     
-    const getJournals = async () => {
-        journalRef
+    const getMemories = async () => {
+        memoriesRef
             .where('authorID', '==', userID)
             .orderBy('createdAt', 'desc')
             .onSnapshot(
@@ -60,14 +60,14 @@ export default function Timeline(props) {
     
     useEffect(() => {
         const func = async () => {
-          journalRef
+          memoriesRef
           .where('authorID', '==', userID)
           .where('createdAt', '==', entryID)
           .onSnapshot(
               querySnapshot => {
                   querySnapshot.forEach((doc) => {
-                      const journal = doc.data();
-                      const reference = ref(st, `/${journal.voice}`);
+                      const memory = doc.data();
+                      const reference = ref(st, `/${memory.voice}`);
                       getDownloadURL(reference).then((x) => {
                         setVoice(x);
                       });
@@ -85,7 +85,7 @@ export default function Timeline(props) {
 
     // Gets all data from firebase where the signed in user ID matches the authorID and pushes the data to the allData array.
     useEffect(() => {
-        getJournals();
+        getMemories();
     }, []);
 
    
@@ -93,9 +93,9 @@ export default function Timeline(props) {
 
     // For loop that adds the dates, moods and obsessions from allData to their own arrays.
     for (let i = 0; i < allData.length; i++) {
-        allDates.push(allData[i].moodCalendarDate);
+        allDates.push(allData[i].timelineDate);
         allMoods.push(allData[i].moodSelected);
-        allJournals.push(allData[i].journalText);
+        allStories.push(allData[i].storyText);
         allImages.push(allData[i].postImages);
         allTitles.push(allData[i].titleText);
         allVideos.push(allData[i].postVideos);
@@ -108,7 +108,7 @@ export default function Timeline(props) {
     let allDatesObject = {};
     // Variables that are used to display data to the user.
     let selectedMood = '';
-    let selectedJournalText = '';
+    let selectedStoryText = '';
     let chosentitleText = '';
     let chosenImages = [];
     let chosenVideos = [];
@@ -128,9 +128,9 @@ export default function Timeline(props) {
                 chosentitleText = allTitles[i];
             }
         }
-        for (let i = 0; i < allJournals.length; i++) {
+        for (let i = 0; i < allStories.length; i++) {
             if (day === allDates[i]) {
-                selectedJournalText = allJournals[i];
+                selectedStoryText = allStories[i];
             }
         }
 
@@ -155,7 +155,7 @@ export default function Timeline(props) {
 
         allDatesObject[day] = {
             selected: true,
-            marked: selectedJournalText === '' ? false : selectedJournalText == null ? false : true,
+            marked: selectedStoryText === '' ? false : selectedStoryText == null ? false : true,
             textT: chosentitleText === '' ? false : chosentitleText == null ? false : true,
             imageT:  chosenImages === [] ? false : true,
             videoT:  chosenVideos === [] ? false : true,
@@ -182,69 +182,68 @@ export default function Timeline(props) {
   
 
         const displayMemory = (day) => {
-            for (let i = 0; i < allTitles.length; i++) {
-                if (day.dateString === allDates[i]) {
-                    chosentitleText = allTitles[i];
-                    for (let i = 0; i < allJournals.length; i++) {
-                        if (day.dateString === allDates[i]) {
-                            selectedJournalText = allJournals[i]
-                         
-                        }
-                
-                    }  for (let i = 0; i < allImages.length; i++) {
-                        if (day.dateString === allDates[i]) {
-                            chosenImages = allImages[i]
-                         
-                        }
-                
-                    }for (let i = 0; i < allVideos.length; i++) {
-                        if (day.dateString === allDates[i]) {
-                            chosenVideos = allVideos[i]
-                         
-                        }
-                
+          for (let i = 0; i < allTitles.length; i++) {
+            if (day.dateString === allDates[i]) {
+                chosentitleText= allTitles[i];
+                for (let i = 0; i < allStories.length; i++) {
+                    if (day.dateString === allDates[i]) {
+                        selectedStoryText = allStories[i];
                     }
-                    for (let i = 0; i < recording.length; i++) {
-                        if (day.dateString === allDates[i]) {
-                            inputAudio = recording[i]
-                         
-                        }
-                
-                    }
-                
-                    
-                    if (selectedJournalText === '' || selectedJournalText == null) {
-                        setJournalEntry('');
+                    if (selectedStoryText === '' || selectedStoryText == null) {
+                        setStoryEntry('');
                         break;
-                    } else if(chosentitleText === '' || chosentitleText == null){
-                        setTitle('');
-                        break;
-
-                    } else if(chosenImages === []){
-                        setImages([]);
-                        break;
-
-                    }else if(chosenVideos === []){
-                        setVideos([]);
-                        break;
-
-                    }else if(inputAudio === null){
-                        setVoice(null);
-                        break;
-
-                    }
-                    else {
-                        setJournalEntry(selectedJournalText);
-                        setTitle(chosentitleText);
-                        setImages(chosenImages);
-                        setVideos(chosenVideos);
-                        setVoice(inputAudio);
+                    } else {
+                        setStoryEntry(selectedStoryText);
                         break;
                     }
                 }
+                for (let i = 0; i < allImages.length; i++) {
+                  if (day.dateString === allDates[i]) {
+                      chosenImages = allImages[i];
+                  }
+                  if (chosenImages === []) {
+                      setImages([]);
+                      break;
+                  } else {
+                      setImages(chosenImages);
+                      break;
+                  }
+              }
+              for (let i = 0; i < allVideos.length; i++) {
+                if (day.dateString === allDates[i]) {
+                    chosenVideos = allVideos[i];
+                }
+                if (chosenVideos === []) {
+                    setVideos([]);
+                    break;
+                } else {
+                    setVideos(chosenVideos);
+                    break;
+                }
             }
-            setEntryPressed(true);
-        };
+            for (let i = 0; i < recording.length; i++) {
+              if (day.dateString === allDates[i]) {
+                  inputAudio = recording[i];
+              }
+              if (inputAudio === null) {
+                  setVoice(null);
+                  break;
+              } else {
+                  setVoice(inputAudio);
+                  break;
+              }
+          }
+                if (chosentitleText === '' || chosentitleText == null) {
+                    setTitle('');
+                    break;
+                } else {
+                    setTitle(chosentitleText);
+                    break;
+                }
+            }
+        }
+        setEntryPressed(true);
+    };
 
     return (
         <View style={styles.lookView}>
@@ -255,7 +254,7 @@ export default function Timeline(props) {
                     <Text style={journalStyles.popupTitle}>Title: </Text>
                         <Text style={journalStyles.titleText}>{title} </Text>
                         <Text style={journalStyles.popupTitle}>Your Story: </Text>
-                        <Text style={journalStyles.obsessionText}>{journalEntry} </Text>
+                        <Text style={journalStyles.obsessionText}>{storyEntry} </Text>
 
                         <View style={styles.container}>
                     <ScrollView horizontal={true}>
@@ -340,7 +339,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
     }, 
     lookView: {
-      backgroundColor: '#CFF2FF',
+      backgroundColor: '#AFEEEE',
       flex: 1
       
     },
