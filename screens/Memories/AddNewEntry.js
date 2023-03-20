@@ -362,12 +362,15 @@ export default function AddNewEntry(props) {
     }
 
   }
-  const month = eventDate.toLocaleString('default', { month: 'long' });
-  const day = eventDate.toLocaleString('default', { day: 'numeric' });
-  const year = eventDate.toLocaleString('default', { year: 'numeric' });
-  //const stringEventDate =  eventDate.getDate() + "/" + (eventDate.getMonth()+ 10) + "/" + eventDate.getFullYear();
-  const stringEventDate =  month + " " + day + ", " + year;
-  //const eventTime = stamp.fromDate(eventDate);
+
+ 
+  const displayEventDate = { day: 'numeric', month: 'long', year: 'numeric' };
+  // Displays the date on the component in a nice format.
+  const stringEventDate = eventDate.toLocaleDateString('en-US', displayEventDate);
+  const eventTime = stamp.fromDate(eventDate);
+
+  //Get Current Month
+    let month = new Date().getMonth() + 1;
 
     const onSubmitButtonPress = async() => {
       
@@ -383,6 +386,8 @@ export default function AddNewEntry(props) {
                 storyText: storyEntry,
                 timelineDate: usefulDate,
                 dateOfEntry: displayDate,
+                eventDateAt: eventTime,
+                monthLog: month,
                 createdAt: timestamp
             };
             memoriesRef

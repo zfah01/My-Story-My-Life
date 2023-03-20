@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, TouchableOpacity, ScrollView, Text, View, Image, StyleSheet , Button} from 'react-native';
+import { ImageBackground, TouchableOpacity, ScrollView, Text, View, Image, StyleSheet , SafeAreaView} from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { Audio, Video } from 'expo-av';
 import { journalStyles } from './Styles';
 import { db, st } from '../../firebase/firebase';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { Ionicons } from '@expo/vector-icons';
+import Insights from '../Insights/Insights';
 
 export default function Timeline(props) {
     
@@ -30,15 +31,16 @@ export default function Timeline(props) {
     const [images, setImages] = useState([]);
     const [videos, setVideos] = useState([]);
     const [voice, setVoice] = useState(null);
+   
 
- 
+    const [insightsPressed, setInsightsPressed] = useState(false);
     const [entryPressed, setEntryPressed] = useState(false);
 
     
     const getMemories = async () => {
         memoriesRef
             .where('authorID', '==', userID)
-            .orderBy('createdAt', 'desc')
+            .orderBy('eventDateAt', 'asc')
             .onSnapshot(
                 querySnapshot => {
                     const newData = [];
@@ -62,7 +64,7 @@ export default function Timeline(props) {
         const func = async () => {
           memoriesRef
           .where('authorID', '==', userID)
-          .where('createdAt', '==', entryID)
+          .where('eventDateAt', '==', entryID)
           .onSnapshot(
               querySnapshot => {
                   querySnapshot.forEach((doc) => {
@@ -88,6 +90,10 @@ export default function Timeline(props) {
         getMemories();
     }, []);
 
+
+    const closeInsights = () => {
+      setInsightsPressed(false);
+  };
    
 
 
@@ -179,6 +185,8 @@ export default function Timeline(props) {
           console.log("voice replaying error", error);
         }
       }
+
+
   
 
         const displayMemory = (day) => {
@@ -244,9 +252,9 @@ export default function Timeline(props) {
         }
         setEntryPressed(true);
     };
-
+    if (insightsPressed == false) {
     return (
-        <View style={styles.lookView}>
+        <SafeAreaView style={styles.lookView}>
             {entryPressed ? (
                 <View style={journalStyles.popupMainContainer}>
                     <View style={[journalStyles.contentContainer, { margin: 5, marginTop: 50, width: 400, height: 600 }]}>
@@ -310,25 +318,70 @@ export default function Timeline(props) {
                     </View>
                 </View>
             ) : (
-             
-                <View style={journalStyles.contentContainer}>
-                    <ScrollView>
-                        <Text style={journalStyles.title}> View your memories on a specific day:  </Text>
-
-                        <Calendar
-                            current={Date.current}
-                            minDate={'2015-01-01'}
-                            enableSwipeMonths={true}
-                            markedDates={allDatesObject}
-                            
-                            onDayPress={(day) => displayMemory(day)}
-                        />
-                    </ScrollView>
+              <><View style={journalStyles.contentContainer}>
+                      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={journalStyles.keyContainer} >
+                                <Text testID='keyID' style={journalStyles.keyTitle}>Mood Key:</Text>
+                                <View style={journalStyles.keyContainer2}>
+                                    <View style={[journalStyles.keyIndivContainer, { marginRight: 10 }]}>
+                                        <Text style={journalStyles.contentText}>Happy:</Text>
+                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#108206' }]} />
+                                    </View>
+                                    <View style={[journalStyles.keyIndivContainer, { marginRight: 20 }]}>
+                                        <Text style={journalStyles.contentText}>Meh:</Text>
+                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#e38e07' }]} />
+                                    </View>
+                                    <View style={journalStyles.keyIndivContainer}>
+                                        <Text style={journalStyles.contentText}> Sad: </Text>
+                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#112dec', marginLeft: 8 }]} />
+                                    </View>
+                                    <View style={[journalStyles.keyIndivContainer, { paddingLeft: 10, paddingRight: 20 }]}>
+                                        <Text style={journalStyles.contentText}>Angry:</Text>
+                                        <Text style={[journalStyles.keyBackground, { backgroundColor: '#f90505' }]} />
+                                    </View>
+                                </View>
+                            </View>
+                            <Text style={journalStyles.contentText}>If a date has been marked then a life story has been set. Press on the date to display it!</Text>
+                        </View>
                 </View>
+                <View style={journalStyles.contentContainer}>
+
+              <ScrollView>
+                <Text style={journalStyles.title}> Keep Track of Your Moods:  </Text>
+
+                <Calendar
+                  current={Date.current}
+                  minDate={'1950-01-01'}
+                  enableSwipeMonths={true}
+                  markedDates={allDatesObject}
+
+                  onDayPress={(day) => displayMemory(day)} />
+
+               
+              </ScrollView>
+
+
+
+            </View>
+            
+            <TouchableOpacity style={journalStyles.contentContainer} onPress={() => setInsightsPressed(true)}>
+                  <Text style={journalStyles.keyTitle}> Analyse your mood of the month according to your events</Text>
+                </TouchableOpacity>
+            
+            </>
+                
+                
+
+                
                 
             )}
-        </View>
+        </SafeAreaView>
     );
+}else {
+  return (
+      <Insights {...props}  extraData={userID} closeInsights={closeInsights} />
+  );
+}
 }
 
 const styles = StyleSheet.create({

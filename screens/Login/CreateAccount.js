@@ -87,11 +87,7 @@ export default function CreateAccount({ navigation }) {
     };
 
 
-    if (loading) {
-        return (
-            <Loading loading={loading} />
-        );
-    } else {
+   
         return (
                 <>
                 <View style={loginStyles.header}>
@@ -156,5 +152,5 @@ export default function CreateAccount({ navigation }) {
                 </ScrollView>
                 </>
         );
-    }
+    
 }

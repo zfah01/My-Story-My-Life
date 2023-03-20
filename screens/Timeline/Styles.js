@@ -33,9 +33,9 @@ export const journalStyles = StyleSheet.create({
         fontStyle: 'italic',
     },
     keyBackground: {
-        borderRadius: 7,
-        width: 30,
-        height: 30,
+        borderRadius: 21,
+        width: 20,
+        height: 20,
     },
     keyIndivContainer: {
         flexDirection: 'row',
@@ -43,12 +43,10 @@ export const journalStyles = StyleSheet.create({
     },
     keyContainer: {
         marginTop: 15,
-        borderWidth: 1,
         borderRadius: 5,
-        borderColor: '#000000',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 200,
+        width: 380,
 
     },
     keyContainer2: {

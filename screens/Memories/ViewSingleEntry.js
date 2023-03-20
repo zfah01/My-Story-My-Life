@@ -46,7 +46,7 @@ export default function ViewSingleEntry(props) {
     useEffect(() => {
         memoriesRef
             .where('authorID', '==', userID)
-            .where('createdAt', '==', entryID)
+            .where('eventDateAt', '==', entryID)
             .onSnapshot(
                 querySnapshot => {
                     querySnapshot.forEach((doc) => {
@@ -76,7 +76,7 @@ export default function ViewSingleEntry(props) {
       const func = async () => {
         memoriesRef
         .where('authorID', '==', userID)
-        .where('createdAt', '==', entryID)
+        .where('eventDateAt', '==', entryID)
         .onSnapshot(
             querySnapshot => {
                 querySnapshot.forEach((doc) => {
@@ -122,7 +122,7 @@ export default function ViewSingleEntry(props) {
     return (
       <>
       <SafeAreaView> 
-    <Text style={styles.date}>Date of Entry: {displayDate} </Text>
+    <Text style={styles.date}>Date of Event: {eventDate} </Text>
     </SafeAreaView>
 
         <View style={styles.contentContainerScroll}>
@@ -133,7 +133,6 @@ export default function ViewSingleEntry(props) {
                 <Text style={styles.title}>
                     {title}
                     </Text> 
-              <Text style={styles.moodHeader}>Date of Event: <Text style={styles.eventDate}> {eventDate}</Text></Text>
               
          
             <Text style={styles.moodHeader}>How you were feeling: </Text>
@@ -177,6 +176,7 @@ export default function ViewSingleEntry(props) {
                         key={item}
                         style={styles.image}
                         source={{uri: item}}
+                        
                       
                       />
                     ))}

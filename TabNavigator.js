@@ -87,6 +87,7 @@ export default function BottomTabNavigator(props) {
             <Tab.Screen
                 name='Timeline'
                 options={{
+                    headerShown: false,
                     tabBarLabel: 'Timeline',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name='calendar-multiselect' color={color} size={size} />)

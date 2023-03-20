@@ -13,6 +13,7 @@ import { db }from '../../firebase/firebase';
 import ViewSingleEntry from './ViewSingleEntry';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Video } from 'expo-av';
 
 export default function Diary(props) {
 
@@ -34,7 +35,7 @@ export default function Diary(props) {
     useEffect(() => {
         memoriesRef
             .where('authorID', '==', userID)
-            .orderBy('createdAt', 'desc')
+            .orderBy('eventDateAt', 'asc')
             .onSnapshot(
                 querySnapshot => {
                     const newMemories = [];
@@ -56,7 +57,7 @@ export default function Diary(props) {
         setSearchText(searchText);
         const filteredEntries = allEntries.filter(function (item) {
             // use title, mood, date to view entry 
-            return item.titleText.toLowerCase().includes(searchText.toLowerCase()) || item.dateOfEntry.includes(searchText) || item.storyText.toLowerCase().includes(searchText.toLowerCase())||item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
+            return item.titleText.toLowerCase().includes(searchText.toLowerCase()) || item.eventDate.includes(searchText) || item.storyText.toLowerCase().includes(searchText.toLowerCase())||item.moodSelected.toLowerCase().includes(searchText.toLowerCase());
         });
         setFilteredEntries(filteredEntries);
     };
@@ -98,8 +99,8 @@ export default function Diary(props) {
                     data={filteredEntries && filteredEntries.length > 0 ? filteredEntries : allEntries}
                     keyExtractor={(item) => item.id}
 
-                    renderItem={({ item }) => <TouchableOpacity style={listStyles.listView} onPress={() => setSelectedID(item.createdAt)}>
-                    <Text style={listStyles.entryDesc}>{item.dateOfEntry}</Text>
+                    renderItem={({ item }) => <TouchableOpacity style={listStyles.listView} onPress={() => setSelectedID(item.eventDateAt)}>
+                    <Text style={listStyles.entryDesc}>{item.eventDate}</Text>
                     <Text style={listStyles.entryDate}>{item.titleText}</Text>
                     <Text style={listStyles.entryDesc} numberOfLines={2} >{item.storyText}</Text>
                     <ScrollView horizontal={true}>
@@ -120,6 +121,28 @@ export default function Diary(props) {
                         />
                         )
                     }
+
+                    {item.postVideos &&
+                        item.postVideos.map(video => 
+                        <Video
+                        key={video}
+                        source={{uri: video}}
+                        useNativeControls
+                        resizeMode="contain"
+                        isLooping
+                        style={{ 
+                            width: 300, 
+                            marginLeft: 35,
+                            height: 180,
+                            borderRadius: 9,
+                            alignSelf:'center',
+                            marginTop:10
+                            }}
+                      
+                      />
+                        )
+                    }
+
                     </View>
                     </ScrollView>
                     {/* Uses arrayed styles to set default styling and to set the colour of the text based on the mood. */}
