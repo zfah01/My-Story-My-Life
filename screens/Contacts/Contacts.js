@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ImageBackground, SafeAreaView, Button, TouchableOpacity, Platform, ScrollView, StyleSheet, Text, TextInput, View, Image, Alert, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
+import Help from '../Help/Help';
 
 // Imports the documents styling.
 
@@ -16,10 +17,16 @@ export default function Contacts(props) {
     const [body, setBody] = useState(undefined);
     const [email, setEmail] = useState(undefined);
 
+    const [helpPressed, setHelpPressed] = useState(false);
+
     const contactsRef = db.collection('Contacts');
     // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
     const user = auth.currentUser;
+
+    const closeHelp = () => {
+      setHelpPressed(false);
+  };
 
     useEffect(() =>{
         async function checkAvailability(){
@@ -83,7 +90,7 @@ export default function Contacts(props) {
         return <Text key={index}>{recipient}</Text>;
       })
     }
-
+    if (helpPressed == false) {
     return(
         <SafeAreaView style={styles.topView}>
             <Text style={styles.topSent}>Stay in touch with your Carer, Family or Friends</Text>
@@ -105,36 +112,19 @@ export default function Contacts(props) {
              {isAvailable ? <Button title='Send Mail' onPress={sendMail}/> : <Text>Email not available</Text>}
         </View>
 
-        <View style={styles.contentContainer}>
-          <Text style={styles.titleH}>Helpful Resources</Text>
-          <Text style={styles.bottomSent}>Press on the resource to find out how you could get help</Text>
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.whocaresscotland.org/')}> 
-          <Text style={styles.links}>Who Cares? Scotland</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.staf.scot/')}> 
-          <Text style={styles.links}>Staf</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.samaritans.org/?nation=scotland')}> 
-          <Text style={styles.links}>The Samaritans</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Linking.openURL('https://breathingspace.scot/')}> 
-          <Text style={styles.links}>Breathing Space</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.health-in-mind.org.uk/')}> 
-          <Text style={styles.links}>Health in Mind</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.mind.org.uk/')}> 
-          <Text style={styles.links}>MIND</Text>
-          </TouchableOpacity>
-         
-        </View>
+        <TouchableOpacity style={styles.GoProBox} onPress={() => setHelpPressed(true)}>
+            <ImageBackground source={require('../../assets/faqs-customer-service-icon-concept.jpg')} resizeMode='cover' style={styles.goProBgImage}>
+            <View style={styles.overlayView}/>
+            <Text style={styles.goProText}> Help and Advice</Text>
+            </ImageBackground>
+            </TouchableOpacity>
         </SafeAreaView>
     );
+  }else {
+    return (
+        <Help {...props}  extraData={userID} closeHelp={closeHelp} />
+    );
+  }
    
 }
 
@@ -146,6 +136,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: Platform.OS === 'ios'? null: 15,
 },
+
 
   topSent: {
     fontSize : 20,
@@ -172,6 +163,7 @@ const styles = StyleSheet.create({
     padding: 10,
 
   },
+ 
   titleH: {
     textAlign: 'center',
     fontWeight: 'bold',
@@ -189,6 +181,40 @@ const styles = StyleSheet.create({
     backgroundColor: '#AFEEEE',
     flex: 1, 
     
-  }
+  },
+  GoProBox: {
+    width: '85%',
+    height: 200,
+    margin: 35,
+    backgroundColor: '#00cc00',
+    borderRadius: 25,
+    alignSelf: 'center',
+    overflow: 'hidden'
+
+},
+goProBgImage: {
+    width: '100%', height: '100%',
+
+
+},
+
+goProText: {
+    textAlign: 'center',
+    fontSize: 20,
+    marginTop: 140,
+    fontWeight: 'bold',
+    padding: 10,
+    color: 'white'
+
+},
+
+overlayView: {
+    height: "100%",
+    width: "100%",
+    position: 'absolute',
+    backgroundColor: 'rgba(0, 204, 0, 0.5)',
+
+}
+
 
 });

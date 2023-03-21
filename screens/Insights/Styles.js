@@ -13,6 +13,13 @@ export const styles = StyleSheet.create({
         paddingTop: 15
     },
 
+    buttonText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        paddingBottom: 10, 
+        marginLeft: 15,
+    },
+
     container1: {
         //borderWidth:2,
         backgroundColor: "#779CAB",
@@ -25,6 +32,7 @@ export const styles = StyleSheet.create({
         paddingTop: 5,
 
     },
+    
 
     container2: {
         //borderWidth:2,

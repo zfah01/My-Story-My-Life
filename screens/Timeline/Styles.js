@@ -41,6 +41,25 @@ export const journalStyles = StyleSheet.create({
         flexDirection: 'row',
         height: 40,
     },
+
+    touchableMod: {
+        backgroundColor: '#00e676',
+        margin: 20,
+        padding: 10,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        height: 80,
+        //backgroundColor: '#FFFFFF',
+        borderRadius: 25,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+
+        elevation: 2, // Android
+    }, 
     keyContainer: {
         marginTop: 15,
         borderRadius: 5,

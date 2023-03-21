@@ -364,8 +364,8 @@ export default function Timeline(props) {
 
             </View>
             
-            <TouchableOpacity style={journalStyles.contentContainer} onPress={() => setInsightsPressed(true)}>
-                  <Text style={journalStyles.keyTitle}> Analyse your mood of the month according to your events</Text>
+            <TouchableOpacity style={journalStyles.touchableMod} onPress={() => setInsightsPressed(true)}>
+                  <Text style={journalStyles.keyTitle}> Monthly Mood Insights</Text>
                 </TouchableOpacity>
             
             </>

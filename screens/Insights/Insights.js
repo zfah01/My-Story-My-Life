@@ -92,9 +92,9 @@ export default function Insights(props){
 
                     :
 
-                    <View style={{ width: Dimensions.get('screen').width, backgroundColor: "#FBAF00", borderRadius: 40, marginTop: 20, paddingTop: 20 }}>
+                    <View style={{ width: Dimensions.get('screen').width, backgroundColor: '#00e676', borderRadius: 40, marginTop: 20, paddingTop: 20 }}>
                         <TouchableOpacity  onPress={returnCalendar} >
-                    <Text> {'>'} Return Timeline</Text>
+                    <Text style={[styles.buttonText, { color: '#448aff' }]}> {'>'} Back to Calendar</Text>
                 </TouchableOpacity>
                         <Text style={styles.SHtitle}>Mood Tracker</Text>
 
