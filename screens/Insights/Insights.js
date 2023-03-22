@@ -9,12 +9,10 @@ import { colors } from "../../utils/colors";
 
 export default function Insights(props){
 
-    const [selectedMood, setSelectedMood] = useState('');
-
+    //Get the current userID of the user 
     const userID = props.extraData;
-    // Parses the onBack method to return the user to the entries list when the back button is pressed.
-    //  Parses the entryID of the selected journal to ensure the correct image is displayed.
-    const entryID = props.currentEntryID;
+
+    //Prop to get back to calendar page 
     const returnCalendar = props.closeInsights;
 
 

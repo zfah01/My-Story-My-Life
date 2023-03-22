@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 import { SearchBar } from '@rneui/themed';
-
-// Imports the documents styling.
 import { listStyles } from './Styles';
-
-// Imports firestore from firebase to save user entries to the firstore database.
-//import firestore from '@react-native-firebase/firestore';
 import { db }from '../../firebase/firebase';
-
-// Imports the View Single Entry component so when an entry is pressed the user is able to view the entry.
 import ViewSingleEntry from './ViewSingleEntry';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -17,21 +10,16 @@ import { Video } from 'expo-av';
 
 export default function Diary(props) {
 
-    // All entries that are stored for a user.
+    //Initialise States 
     const [allEntries, setAllEntries] = useState([]);
-    // The updated array that is displayed when a user does a search.
     const [filteredEntries, setFilteredEntries] = useState([]);
-    // Will store the user-provided search term to filter through the journal lists and return results that contain the search term.
     const [searchText, setSearchText] = useState('');
-    // Remembers the selected ID to load more data about the entry.
     const [selectedID, setSelectedID] = useState(null);
 
-    // Makes a reference to load the journal list collection from firestore.
     const memoriesRef = db.collection('memories');
-    // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
 
-    // Selects all journal entries where the user ID matches the authorID and sorts the list by newest date first.
+    //If the authorId matches the userID life events are displayed 
     useEffect(() => {
         memoriesRef
             .where('authorID', '==', userID)
@@ -52,7 +40,7 @@ export default function Diary(props) {
             );
     }, []);
 
-    
+    //Allows user to search by title, event date, mood or story text 
     const search = (searchText) => {
         setSearchText(searchText);
         const filteredEntries = allEntries.filter(function (item) {
@@ -65,12 +53,12 @@ export default function Diary(props) {
 
    
 
-    // Sets the selectedID back to null when returning from the ViewSingleEntry page.
+    //Selected id set to back null once user returns from viewing a life event 
     const unsetCurrentEntry = () => {
         setSelectedID(null);
     };
 
-    // Checks if the selectedID has been set and if so, displays the ViewSingleEntry page to view a users entry.
+    //Displays the ViewSingleEntry page if selected ID has been best 
     if (selectedID) {
         return (
             <View>
@@ -84,7 +72,6 @@ export default function Diary(props) {
 
 
     return (
-        // Sets the background image to half opacity.
             <SafeAreaView style={styles.diaryView}>
             <SearchBar
                 round={true}
@@ -145,7 +132,6 @@ export default function Diary(props) {
 
                     </View>
                     </ScrollView>
-                    {/* Uses arrayed styles to set default styling and to set the colour of the text based on the mood. */}
                     <Text style={[listStyles.entryMood, { color: item.moodSelected === 'Happy' ? '#108206' : item.moodSelected === 'Meh' ? '#e38e07' : item.moodSelected === 'Sad' ? '#112dec' : '#f90505' }]}>Your mood: {item.moodSelected} </Text>
                 </TouchableOpacity>
                 } />

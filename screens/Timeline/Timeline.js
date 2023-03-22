@@ -9,23 +9,26 @@ import { Ionicons } from '@expo/vector-icons';
 import Insights from '../Insights/Insights';
 
 export default function Timeline(props) {
-    
+
+    //Initiate state to set all data
     const [allData, setAllData] = useState([]);
    
+    //Reference to memories collection in firebase 
     const memoriesRef = db.collection('memories');
     
+    //Prop for userID
     const userID = props.extraData.id;
 
-   
+   //Create arrays for each component in life stories 
     const allDates = [];
     const allMoods = [];
-    
     const allStories = [];
     const allTitles = [];
     const allImages = [];
     const allVideos = [];
     const recording = [];
 
+    //Initiate states to display each component of a life story 
     const [storyEntry, setStoryEntry] = useState('');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
@@ -36,7 +39,7 @@ export default function Timeline(props) {
     const [insightsPressed, setInsightsPressed] = useState(false);
     const [entryPressed, setEntryPressed] = useState(false);
 
-    
+    //Get all memories for a user saved in firebase 
     const getMemories = async () => {
         memoriesRef
             .where('authorID', '==', userID)
@@ -85,7 +88,7 @@ export default function Timeline(props) {
   
     }, []);
 
-    // Gets all data from firebase where the signed in user ID matches the authorID and pushes the data to the allData array.
+  
     useEffect(() => {
         getMemories();
     }, []);
@@ -97,7 +100,7 @@ export default function Timeline(props) {
    
 
 
-    // For loop that adds the dates, moods and obsessions from allData to their own arrays.
+    // For loop to push dates, moods, stories, images, vieos and recordings to allData
     for (let i = 0; i < allData.length; i++) {
         allDates.push(allData[i].timelineDate);
         allMoods.push(allData[i].moodSelected);
@@ -110,9 +113,10 @@ export default function Timeline(props) {
     }
 
 
-    // Turns dates into objects that can be used with the calendar to be displayed.
+    //Create dates into objects to be used for Calendar 
     let allDatesObject = {};
-    // Variables that are used to display data to the user.
+
+    // Initialise variables to be used for displaying each life event to user
     let selectedMood = '';
     let selectedStoryText = '';
     let chosentitleText = '';
@@ -120,9 +124,8 @@ export default function Timeline(props) {
     let chosenVideos = [];
     let inputAudio = null;
 
-    // For each day in allDates array, cycle through the day, select the mood colour and add the current day to the calendar.
+    // Goes throught the allDates array and sets the colour mood and current day to calendar 
     allDates.forEach((day) => {
-        // Checks if the day is the same as the date and then adds the mood for the date to the calendar.
         for (let i = 0; i < allMoods.length; i++) {
             if (day === allDates[i]) {
                 selectedMood = allMoods[i];
@@ -170,6 +173,7 @@ export default function Timeline(props) {
         };
     });
 
+    //Play sound of voice recording
     async function playSound() {
         try {
           await new Audio.Sound.createAsync({ uri: voice }, { shouldPlay: true });
@@ -178,6 +182,7 @@ export default function Timeline(props) {
         }
       }
 
+    //Pause sound of voice recording
       async function pauseSound() {
         try {
           await playSound.pauseAsync();
@@ -185,9 +190,7 @@ export default function Timeline(props) {
           console.log("voice replaying error", error);
         }
       }
-
-
-  
+      //Display each memory with data saved on firbase 
 
         const displayMemory = (day) => {
           for (let i = 0; i < allTitles.length; i++) {

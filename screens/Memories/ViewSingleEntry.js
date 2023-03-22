@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TextInput, Image, TouchableOpacity, ScrollView, Button, Platform } from 'react-native';
-
-// Imports the documents styling.
 import { entryStyles } from './Styles';
-
-// Imports firestore from firebase to display the selected user entry.
-//import firestore from '@react-native-firebase/firestore';
 import { db, st}from '../../firebase/firebase';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
@@ -16,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ViewSingleEntry(props) {
 
-    // Initializing the state to save firestore fields to their corresponding variables for display.
+    // Initialise States
     const [selectedMood, setSelectedMood] = useState('');
     const [storyEntry, setStoryEntry] = useState('');
     const [displayDate, setDisplayDate] = useState('');
@@ -24,25 +19,19 @@ export default function ViewSingleEntry(props) {
     const [images, setImages] = useState([]);
     const [videos, setVideos] = useState([]);
     const [eventDate, setEventDate]= useState('');
-
-    const [isClicked, setIsClicked] = useState(false);
-    const memory = props.memory || "";
-    const [url, setUrl] = useState();
     const [voice, setVoice] = useState(null);
 
-    // Parses the userID from the entries list.
+  
     const userID = props.extraData;
-    // Parses the onBack method to return the user to the entries list when the back button is pressed.
     const onBack = props.onBack;
-    //  Parses the entryID of the selected journal to ensure the correct image is displayed.
     const entryID = props.currentEntryID;
 
 
-    // Creates a reference to the journal list collection in firestore to save data.
+    //Reference to memories collection in firebase 
     const memoriesRef = db.collection('memories');
 
-    // Selects the journal entry where the user ID matches the authorID and createdAt timestamp matches the current entry ID
-    // and saves each field to its respectable variable to be displayed to the user when they select an entry to display.
+    // Selects the life event where the user ID matches the authorID and eventDateAt  matches the current entry ID
+    // and sets each variable to a field to display in each life event 
     useEffect(() => {
         memoriesRef
             .where('authorID', '==', userID)
@@ -97,11 +86,7 @@ export default function ViewSingleEntry(props) {
 
   }, []);
 
-
-
-
-
-    
+    //Allows the user to play their voice recording set for current life story 
       async function playSound() {
         try {
           await new Audio.Sound.createAsync({ uri: voice }, { shouldPlay: true });
@@ -110,6 +95,7 @@ export default function ViewSingleEntry(props) {
         }
       }
 
+  //Allows the user to pause their voice recording set for current life story 
       async function pauseSound() {
         try {
           await playSound.stopAsync();

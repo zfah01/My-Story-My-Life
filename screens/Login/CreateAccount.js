@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, TextInput, ImageBackground, Image } from 'react-native';
 import Loading from '../../utils/Loading';
-
-// Imports the documents styling.
 import { loginStyles } from './Styles';
-
-// Imports auth and firestore from the firebase console.
-//import auth from '@react-native-firebase/auth';
-//import firestore from '@react-native-firebase/firestore';
 import { auth, db }from '../../firebase/firebase';
 
 
-// Checks if password contains one uppercase, lowercase, number, special character present.
+// Checks if an uppercase, lowercase, number, special character is contained in the password 
 export const checkPassword = (str) => {
     const strongPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     return strongPassword.test(str);
 };
 
- // Checks if email is valid format.
+ //Check if the email is in a correct format 
 export const checkEmail = (str) => {
     const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return validEmail.test(str);
@@ -54,7 +48,7 @@ export default function CreateAccount({ navigation }) {
             alert('Please check your passwords are entered correctly as they dont match.');
             return;
         }
-        // Calls the createUserWithEmailAndPassword API from Auth to create a new account in the Firebase Console.
+        // Use createUserWithEmailAndPassword API to create a new account
         auth
             .createUserWithEmailAndPassword(email, password)
             .then((response) => {
@@ -64,9 +58,10 @@ export default function CreateAccount({ navigation }) {
                     email,
                     fullName,
                 };
-                // If account creation is successful, the user data is stored to Firestore (database)
-                // to allow all data related to the account creation to be stored.
-                // If data is successfully stored to Firestore, then the user is returned to the homescreen. 
+                
+                // if user account is created successfully their data is stored to firebase
+                // and is directed to HomeScreen 
+
                 const usersRef = db.collection('users');
                 usersRef
                     .doc(uid)

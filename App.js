@@ -1,37 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// Importing all of the different components for each different page.
 import Welcome from './screens/Login/Welcome';
 import CreateAccount from './screens/Login/CreateAccount';
 import OnboardingScreen from './screens/Login/OnboardingScreen';
-
-//Imports auth and firestore from firebase.
-//import auth from '@react-native-firebase/auth';
-//import firestore from '@react-native-firebase/firestore';
-
 import {auth, db} from './firebase/firebase';
-
-// Importing Navigation Container to allow the navigation bar to function correctly.
 import { NavigationContainer } from '@react-navigation/native';
-// Imports the createStackNavigator from react navigation.
 import { createStackNavigator } from '@react-navigation/stack';
-// Imports the Tab Bar so that when a user logs in, they will be directed to the home page with the tab navigation.
 import TabNavigator from './TabNavigator';
 
-//Variable that is used to create a stack navigator to direct the user between the login screen and the rest of the application.
 const Stack = createStackNavigator();
 
 export default function App() {
 
-    // Used to learn firebase authentication and keep a persistent user.
+    //Initiate States
     const [user, setUser] = useState(null);
     const [isFirstLaunch, setIsFirstLaunch] = useState(null);
     let routeName = "Onboarding";
 
-    // Checks to see if user is already logged in and if true, saves the users data to the state for use in rest of the application.
-    // This then sets loading to false to display the page that should be returned.
-    // If there is an error at anypoint within finding the user, loading is set to false and the user is returned to the welcome screen,
-    // where they can reneter their login details.
+   //If user is logged in then their data is saved to the state to be used throughout the application 
     useEffect(() => {
         const usersRef = db.collection('users');
         auth.onAuthStateChanged(user => {
@@ -51,7 +37,7 @@ export default function App() {
     }, []);
     
 
-    // Creates a log out function to log the user out of their account and return them to the welcome page.
+    //Log out function to log user out of their account
     const logout = () => {
         auth.signOut().then(() => {
             setUser(null);
@@ -64,6 +50,7 @@ export default function App() {
         });
     };
 
+    //Checks to see if it is the first time that a user is launching the app
     useEffect(() => {
 		AsyncStorage.getItem("alreadyLaunched").then((value) => {
 			if (value == null) {
@@ -83,7 +70,7 @@ export default function App() {
 		routeName = "Welcome";
 	}
 
-    // If there is a user, take the user to the application else got to the welcome page.
+    //User is taken to the application if they exist else they are taken to Welcome Page 
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>

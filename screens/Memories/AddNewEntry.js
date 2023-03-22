@@ -15,7 +15,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function AddNewEntry(props) {
 
-    // Initializing the state so that when a user selects a mood, it is outlined to show they have selected it.
+    // Initiate states
     const [angry, setAngry] = useState(false);
     const [sad, setSad] = useState(false);
     const [meh, setMeh] = useState(false);
@@ -34,8 +34,6 @@ export default function AddNewEntry(props) {
     const [display,setDisplay] = useState("default");
 
     
-
-      //photo
       const [images, setImages] = useState([]);
       const [urls, setUrls] = useState([]);
       const [progress, setProgress] = useState(0);
@@ -47,7 +45,6 @@ export default function AddNewEntry(props) {
       const [transferred, setTransferred] = useState(0);
       const [status, requestPermission] = ImagePicker.useCameraPermissions();
 
-  //voice
   const [recording, setRecording] = useState(null);
   const [recordings, setRecordings] = useState([]);
   const [message, setMessage] = useState("");
@@ -61,46 +58,42 @@ export default function AddNewEntry(props) {
   const navigation = useNavigation();
 
     const memoriesRef = db.collection('memories');
-    // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
     const user = auth.currentUser;
 
+    //Get current date and display it in a nice format 
     useEffect(() => {
-        // Gets the current date and creates an object on how to display the date.
+
         const date = new Date();
         const displayOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-
-
-        // Displays the date on the component in a nice format.
         const displayDateOfEntry = date.toLocaleDateString('en-US', displayOptions);
         setDisplayDate(displayDateOfEntry);
 
-        // Takes the date in ISO format to be saved to the firestore databse and be displayed on the mood calendar.
-        //const usefulDateOfEntry = date.toISOString().split('T')[0];
-        //setUsefulDate(usefulDateOfEntry);
 
     }, []);
 
+    //Change current date to event date 
     const onChange = (event, selectedDate) => {
       const currentDate = selectedDate || eventDate;
       setShow(Platform.OS === 'ios');
       setEventDate(currentDate);
-
       const usefulDateOfEntry = currentDate.toISOString().split('T')[0];
       setUsefulDate(usefulDateOfEntry);
     };
-  
+
+    //Helper function to show date picker
     const showMode = (currentMode) => {
       setShow(true);
       setMode(currentMode);
     };
   
+    //Function to display date picker 
     const showDatepicker = () => {
       setDisplay('default');
       showMode('date');
     };
 
-
+    //Lets user to take a photo or video from their device 
     const takePhotoFromCamera = async () => {
       const { granted } = await ImagePicker.requestCameraPermissionsAsync();
       if (granted) {
@@ -120,14 +113,11 @@ export default function AddNewEntry(props) {
           } else if(result.assets[0].type === 'video'){
             setVideos([...videos, result?.assets[0].uri] );
           }
-          
-          //else if (result.assets[0].type === 'video') {
-           // setVideo( result?.assets[0].uri)
-        //}
         }
       }
     };
   
+    //Lets user choose photos or videos from their device 
     const choosePhotoFromLibrary = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -147,6 +137,7 @@ export default function AddNewEntry(props) {
       }
     };
 
+    //Function to upload images to storage in firebase 
     const uploadImage =  () => {
       const promises = [];
       images.map((image) => {
@@ -191,7 +182,7 @@ export default function AddNewEntry(props) {
     console.log("images: ", images);
     console.log("urls", urls)
 
-    //upload video(s) to firebase 
+    //Function to upload video to firebase storage
 
     const uploadVideo =  () => {
       const promises = [];
@@ -239,7 +230,7 @@ export default function AddNewEntry(props) {
 
 
 
-      //VOICE RECORDING
+  //Settings for IOS and Android voice recording
   const RECORDING_OPTIONS_PRESET_HIGH_QUALITY = {
     isMeteringEnabled: true,
     android: {
@@ -263,6 +254,7 @@ export default function AddNewEntry(props) {
     },
   };
 
+  //Allows user to create a voice recording 
   async function startRecording() {
     try {
       const permission = await Audio.requestPermissionsAsync();
@@ -284,6 +276,7 @@ export default function AddNewEntry(props) {
     }
   }
 
+  //Function to stop recording 
   async function stopRecording() {
     setRecording(undefined);
     await recording.stopAndUnloadAsync();
@@ -298,7 +291,7 @@ export default function AddNewEntry(props) {
     audioUpload();
   }
 
-
+  //Function to upload audio to firebase storage 
     const audioUpload = async () => {
       if (recording) {
         const voiceName = uuidv4();
@@ -311,7 +304,7 @@ export default function AddNewEntry(props) {
       }
   };
 
-
+  //Get duration of voice recording 
   function getDurationFormatted(millis) {
     const minutes = millis / 1000 / 60;
     const minutesDisplay = Math.floor(minutes);
@@ -320,6 +313,7 @@ export default function AddNewEntry(props) {
     return `${minutesDisplay}:${secondsDisplay}`;
   }
 
+  //Retrieve recording lines from voice recording
   function getRecordingLines() {
     return recordings.map((recordingLine, index) => {
       return (
@@ -340,7 +334,7 @@ export default function AddNewEntry(props) {
   }
 
 
-
+  //Validate user's input for creating life event 
   const validateInput = () => {
 
     const emptyvals = []
@@ -363,15 +357,15 @@ export default function AddNewEntry(props) {
 
   }
 
- 
+  //Variables to display event date in nice format 
   const displayEventDate = { day: 'numeric', month: 'long', year: 'numeric' };
-  // Displays the date on the component in a nice format.
   const stringEventDate = eventDate.toLocaleDateString('en-US', displayEventDate);
   const eventTime = stamp.fromDate(eventDate);
 
-  //Get Current Month
+    //Get Current Month for Mood Insights 
     let month = new Date().getMonth() + 1;
 
+    //Submit Button
     const onSubmitButtonPress = async() => {
       
         if (validateInput) {
@@ -421,7 +415,7 @@ export default function AddNewEntry(props) {
         
     };
 
-
+    //Sets entry mood to Angry
     const isAngry = () => {
         if (!angry) {
             setAngry(true);
@@ -431,6 +425,8 @@ export default function AddNewEntry(props) {
             setEntryMood('Angry');
         }
     };
+
+    //Sets entry mood to Sad
     const isSad = () => {
         if (!sad) {
             setAngry(false);
@@ -440,6 +436,8 @@ export default function AddNewEntry(props) {
             setEntryMood('Sad');
         }
     };
+
+    //Sets entry mood to Meh
     const isMeh = () => {
         if (!meh) {
             setAngry(false);
@@ -449,6 +447,8 @@ export default function AddNewEntry(props) {
             setEntryMood('Meh');
         }
     };
+
+    //Sets entry mood to Happy
     const isHappy = () => {
         if (!happy) {
             setAngry(false);
@@ -477,7 +477,7 @@ export default function AddNewEntry(props) {
                     />
 
             <View style={styles.dateContainer}>
-            <Text style={styles.subHeader}>Event Date: {stringEventDate}</Text>
+            <Text style={entryStyles.subHeader}>Event Date: {Platform.OS === 'android' ? stringEventDate : null}</Text>
             <TouchableOpacity style={styles.pickerBtn} onPress={showDatepicker}>
           <Text style={styles.pickerBtnTxt}>Set Date</Text>
         </TouchableOpacity>
@@ -646,6 +646,7 @@ const styles=StyleSheet.create({
         paddingHorizontal: 12,
         marginHorizontal: 5,
         width:100,
+        marginBottom:10
       },
       pickerBtnTxt: {
         color: "#2e64e5",

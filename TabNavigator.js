@@ -1,11 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, StyleSheet } from 'react-native';
-
-// The icon package for the tab bar.
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-// Importing all of the different components for each different page.
+// Import all Screens
 import Home from './screens/Home/Home';
 import AddNewEntry from './screens/Memories/AddNewEntry';
 import Diary from './screens/Memories/Diary';
@@ -13,21 +11,18 @@ import Timeline from './screens/Timeline/Timeline';
 import Contacts from './screens/Contacts/Contacts';
 
 
-// Variable that is used to create all of the tabs required for the navigation bar.
+// Set tab navigator 
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabNavigator(props) {
 
-    // Creates a variable of the current user data to parse through each component.
+    // Prop for user data 
     const userData = props.extraData;
-    // Parses the logout function for use within the settings page.
+
+    // Prop to allow user to use logout
     const logout = props.logout;
 
     return (
-        // The Navigation bar creation tag that sets the default tab to 'home', adds tint styling for when an
-        // option is selected and returns the user to the home tab if back is pressed from any tab other than home,
-        // where the application will close. 
-
 
         <Tab.Navigator
             initialRouteName='Home'
@@ -46,7 +41,6 @@ export default function BottomTabNavigator(props) {
                     headerShown: false,
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color, size }) => (
-                        {/* Adds custom styling for center button to be bigger and circular. */ },
                         
                             <MaterialCommunityIcons name='home' color={color} size={size} />
                         
@@ -62,7 +56,7 @@ export default function BottomTabNavigator(props) {
                     tabBarLabel: 'Diary',
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name='book' color={color} size={size} />) // Sets the icon to the default color and size.
+                        <MaterialCommunityIcons name='book' color={color} size={size} />) 
                 }} >
                 {/* Sets the component whilst parsing in the user data. */}
                 {props => <Diary {...props} extraData={userData} />}

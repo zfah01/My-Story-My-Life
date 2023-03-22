@@ -8,21 +8,22 @@ import { homeStyles } from './Styles';
 
 import Settings from '../Settings/Settings';
 
-// Imports firestore and storage from firebase to save the days used and retrieve image data relating to the bonsai tree.
 
 import  { auth, db, st } from '../../firebase/firebase';
 import { Ionicons } from '@expo/vector-icons';
 
 
 export default function Home(props) {
-    // Parsing logout function for Settings from App.js
+
+    // Get logout function for Settings
     const logout = props.logout;
-    // Gets all information regarding the current user.
+
+    //Retrieve information of user 
     const username = props.extraData.fullName;
     const userID = props.extraData.id;
     const user = auth.currentUser;
 
-    // Initialising the state so that if a new user logs in they are set to the default values.
+    //Initialise states 
    
     const [dailyStreak, setDailyStreak] = useState(0);
     const [dailyStreakText, setDailyStreakText] = useState('🔥: ');
@@ -48,6 +49,9 @@ export default function Home(props) {
 
     const[days, setDays] = useState(0);
     const[growTree, setGrowTree]  = useState(null);
+
+
+    //Retrieve life tree images from firebase storage 
     const tree0 = st.ref('tree/tree0.png');
     const tree1 = st.ref('tree/tree1.png');
     const tree2 = st.ref('tree/tree2.png');
@@ -57,17 +61,17 @@ export default function Home(props) {
     
 
 
-    // Creates references to firebase objects to get the user collection and profile picture. 
+    //References to firebase collections
     const userCounterRef = db.collection('userCounter');
     const userInfoRef = db.collection('userInfo');
     const lifeJourneyRef = db.collection('lifeJourney');
     const profilePicRef = st.ref('users/' + user.uid + '/profilePicture/' + user.photoURL);
 
-    // Gets the current day on the device.
+    //Get current day 
     const date = new Date();
     const currentDay = date.toISOString().split('T')[0];
 
-    // Initiates all data on the home page. Called in useEffect.
+    //Set all data for home page 
     const setHomeScreenData = async () => {
   
         userCounterRef.doc(userID).get().then((doc) => {
@@ -139,6 +143,8 @@ export default function Home(props) {
 
     };
 
+    //Add data about user to firebase 
+
     const onSaveAboutMe = async() => {
         
         if ((dob && dob.length) || (skills && skills.length) > 0) {
@@ -162,6 +168,8 @@ export default function Home(props) {
         }
         
     };
+
+    //Add data regarding user's life journey and goals 
 
     const onSaveGoals = async() => {
         
@@ -188,6 +196,8 @@ export default function Home(props) {
         
     };
 
+    //Get user's date of birth and skills from firebase 
+
     useEffect(() => {
         userInfoRef
             .where('authorID', '==', userID)
@@ -206,6 +216,8 @@ export default function Home(props) {
                 }
             );
     }, []);
+
+    //Get user's life journey date from firebase 
 
     useEffect(() => {
         lifeJourneyRef
@@ -229,7 +241,8 @@ export default function Home(props) {
     
 
 
-    // Sets the users profile picture, called in useEffect.
+    //Set user's profile picture
+
     const setProfilePic = async () => {
         // Sets the profile picture, if not available, sets to a default image.
         profilePicRef
@@ -241,6 +254,7 @@ export default function Home(props) {
             });
     };
 
+    // set user's tree depending on days used 
     const setTree = (days) => {
     
         try {
@@ -301,12 +315,13 @@ export default function Home(props) {
         }
     };
   
-    // Parsed into the settings page so when the close settings button is pressed the user is returned to home.
+    //Close settings to return to Home 
     const closeSettings = () => {
         setProfilePic();
         setSettingsPressed(false);
     };
-    // React hook that sets up the home page on component load.
+    
+    //Sets up home page when component loads 
     useEffect(() => {
         setHomeScreenData();
         setProfilePic();
@@ -480,7 +495,6 @@ export default function Home(props) {
                             </View>
                                 <Button
                                 title='Save'
-                                //containerStyle={{width:'30%',borderRadius:30}}
                                 style={styles.modButton}
                                 onPress={onSaveGoals}
                                 />

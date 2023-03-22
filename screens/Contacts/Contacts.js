@@ -112,10 +112,10 @@ export default function Contacts(props) {
              {isAvailable ? <Button title='Send Mail' onPress={sendMail}/> : <Text>Email not available</Text>}
         </View>
 
-        <TouchableOpacity style={styles.GoProBox} onPress={() => setHelpPressed(true)}>
+        <TouchableOpacity style={styles.box} onPress={() => setHelpPressed(true)}>
             <ImageBackground source={require('../../assets/faqs-customer-service-icon-concept.jpg')} resizeMode='cover' style={styles.goProBgImage}>
             <View style={styles.overlayView}/>
-            <Text style={styles.goProText}> Help and Advice</Text>
+            <Text style={styles.helpText}> Help and Advice</Text>
             </ImageBackground>
             </TouchableOpacity>
         </SafeAreaView>
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     
   },
-  GoProBox: {
+  box: {
     width: '85%',
     height: 200,
     margin: 35,
@@ -198,7 +198,7 @@ goProBgImage: {
 
 },
 
-goProText: {
+helpText: {
     textAlign: 'center',
     fontSize: 20,
     marginTop: 140,

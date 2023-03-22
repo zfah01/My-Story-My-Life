@@ -1,36 +1,30 @@
 import React, { useState } from 'react';
 import { Alert, Image, Linking, Text, TouchableOpacity, ScrollView, View, SafeAreaView } from 'react-native';
-//import * as firebase from "firebase";
-//import "firebase/storage";
-// Imports the documents styling.
 import { settingStyles } from './Styles';
-// Imports the react-native-image-picker to allow access to a devices camera and photo library.
-//import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-// Imports a progress indicator to show the progress of the image upload.
 import * as Progress from 'react-native-progress';
 import * as ImagePicker from 'expo-image-picker';
-
-// Imports auth, firestore and storage from firebase to store the users profile picture and settings.
 import {auth, st} from '../../firebase/firebase';
 
 
 export default function Settings(props) {
 
-    // Parsing the logout function from App.js
+    // Prop for logout funcion
     const logout = props.logout;
-    // Gets the current users details.
+    
+    //Get user details
     const user = auth.currentUser;
-    // Parsing the return home function from Home.js
+
+    // Prop to return back to Home
     const returnHome = props.closeSettings;
 
-    // Initialising the state to store the users profile picture.
+    // Initiate States 
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
 
 
 
-    // Sets how the image should be saved
+    //Allows user to take a photo for profile picture 
     const takePhotoFromCamera = async () => {
         const { granted } = await ImagePicker.requestCameraPermissionsAsync();
         if (granted) {
@@ -49,6 +43,7 @@ export default function Settings(props) {
         }
       };
     
+      //Allows user to choose a photo from their devices to set for profile picture 
       const choosePhotoFromLibrary = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -64,6 +59,7 @@ export default function Settings(props) {
         }
       };
   
+      //Upload Image to firebase storage 
       const uploadImage = async () => {
         const blob = await new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();

@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, ImageBackground, ScrollView, TextInput, Image, Alert, TouchableOpacity } from 'react-native';
 import Loading from '../../utils/Loading';
 import * as LocalAuthentication from 'expo-local-authentication';
-
-// Imports the documents styling.
 import { loginStyles } from './Styles';
 
 
 import { auth, db } from '../../firebase/firebase';
 
-// Checks if email is in a valid format.
+//Check if email is in a suitable format 
 export const checkEmail = (str) => {
     const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return validEmail.test(str);
@@ -17,10 +15,13 @@ export const checkEmail = (str) => {
 
 export default function Welcome({ navigation }) {
     
+    //Initiate states 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
+    //Add 2FA, prompts the user to enter with their Local Authentication (Biometrics, Passcode etc)
+    // if success directs user to HomeScreen else error message displayed
 
         const getEnrollment = async () => {
             const isEnrolled = await LocalAuthentication.isEnrolledAsync();
@@ -41,9 +42,7 @@ export default function Welcome({ navigation }) {
 
     const onLoginPress = () => {
         setLoading(true);
-        // Calls the signInWithEmailAndPassword API from Auth to take the email and password entered and check if the user exists.
-        // If successful, the user data is stored to the variable 'user' to be parsed through the application and the user
-        // is signed in and taken to the home page.
+        //Checks if email and password exists if it does it directs user to Home 
 
         if (!checkEmail(email)) {
             setLoading(false);
@@ -66,7 +65,6 @@ export default function Welcome({ navigation }) {
                         }
                         setLoading(false);
                         getEnrollment();
-                        //navigation.navigate('Home');
                     })
                     .catch(error => {
                         setLoading(false);
@@ -78,8 +76,6 @@ export default function Welcome({ navigation }) {
                 alert(error);
             });
     };
-
-  
 
 
     if (loading) {

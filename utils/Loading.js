@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageBackground } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-
+//Application Logo is displayed when application is loading 
 export default function Loading(props) {
     const loading = props.loading;
     return (
