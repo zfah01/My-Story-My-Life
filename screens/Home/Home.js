@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Modal, Button, Image, TextInput, StyleSheet, Text, TouchableOpacity, ScrollView, View, SafeAreaView, Keyboard } from 'react-native';
 import Loading from '../../utils/Loading';
-
-// Imports the documents styling.
-import { homeStyles } from './Styles';
-
-
+import { styles } from './Styles';
 import Settings from '../Settings/Settings';
-
-
 import  { auth, db, st } from '../../firebase/firebase';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -19,17 +13,17 @@ export default function Home(props) {
     const logout = props.logout;
 
     //Retrieve information of user 
-    const username = props.extraData.fullName;
+    const username = props.extraData.name;
     const userID = props.extraData.id;
     const user = auth.currentUser;
 
     //Initialise states 
    
-    const [dailyStreak, setDailyStreak] = useState(0);
-    const [dailyStreakText, setDailyStreakText] = useState('🔥: ');
-    const [profilePicUrl, setProfilePicUrl] = useState(null);
+    const [numStreakDaily, setNumStreakDaily] = useState(0);
+    const [streakStats, setStreakStats] = useState('🔥: ');
+    const [urlProfilePic, setUrlProfilePic] = useState(null);
    
-    const [settingsPressed, setSettingsPressed] = useState(false);
+    const [settings, setSettings] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const [past, setPast] = useState('');
@@ -62,8 +56,8 @@ export default function Home(props) {
 
 
     //References to firebase collections
-    const userCounterRef = db.collection('userCounter');
-    const userInfoRef = db.collection('userInfo');
+    const userStatsRef = db.collection('userStats');
+    const userDataRef = db.collection('userData');
     const lifeJourneyRef = db.collection('lifeJourney');
     const profilePicRef = st.ref('users/' + user.uid + '/profilePicture/' + user.photoURL);
 
@@ -72,65 +66,65 @@ export default function Home(props) {
     const currentDay = date.toISOString().split('T')[0];
 
     //Set all data for home page 
-    const setHomeScreenData = async () => {
+    const setHome = async () => {
   
-        userCounterRef.doc(userID).get().then((doc) => {
+        userStatsRef.doc(userID).get().then((doc) => {
             if (doc.exists) {
-                const storedDate = doc.data().currentDay;
-                const storedStreak = doc.data().dailyStreak;
+                const dateStored = doc.data().currentDay;
+                const streak = doc.data().numStreakDaily;
                 const daysUsed = doc.data().numDaysUsed;
 
                 setTree(daysUsed);
 
 
-                if (currentDay === storedDate) {
+                if (currentDay === dateStored) {
                     setDays(daysUsed);
-                    setDailyStreak(storedStreak);
+                    setNumStreakDaily(streak);
                     setLoading(false);
                 } else {
-                    const userStoredDate = new Date(storedDate).setUTCHours(0, 0, 0, 0);
+                    const storedUserDate = new Date(dateStored).setUTCHours(0, 0, 0, 0);
                     // Used to get the previous date.
-                    const previousDateFromCurrent = new Date(new Date().setDate(new Date().getDate() - 1)).setUTCHours(0, 0, 0, 0);
+                    const dateBeforeCurrent = new Date(new Date().setDate(new Date().getDate() - 1)).setUTCHours(0, 0, 0, 0);
                     
-                    if (previousDateFromCurrent === userStoredDate) {
-                        userCounterRef
+                    if (dateBeforeCurrent === storedUserDate) {
+                        userStatsRef
                             .doc(userID)
                             .set({
-                                authorID: userID,
+                                idUser: userID,
                                 currentDay: currentDay,
                                 numDaysUsed: (daysUsed + 1),
-                                dailyStreak: (storedStreak + 1),
+                                numStreakDaily: (streak + 1),
                             })
                             .then(() => {
                                 setDays(daysUsed + 1);
-                                setDailyStreak(storedStreak + 1);
+                                setNumStreakDaily(streak + 1);
                                 setLoading(false);
                             });
                     } else {
-                        userCounterRef
+                        userStatsRef
                             .doc(userID)
                             .set({
-                                authorID: userID,
+                                idUser: userID,
                                 currentDay: currentDay,
                                 numDaysUsed: (daysUsed + 1),
-                                dailyStreak: 0,
+                                numStreakDaily: 0,
                             })
                             .then(() => {
                                 setDays(daysUsed + 1);
-                                setDailyStreak(0);
+                                setNumStreakDaily(0);
                                 setLoading(false);
                             });
                     }
                 }
             } else {
                 const data = {
-                    authorID: userID,
+                    idUser: userID,
                     currentDay: currentDay,
                     numDaysUsed: days,
-                    dailyStreak: dailyStreak,
+                    numStreakDaily: numStreakDaily,
 
                 };
-                userCounterRef
+                userStatsRef
                     .doc(userID)
                     .set(data)
                     .catch((error) => {
@@ -149,11 +143,11 @@ export default function Home(props) {
         
         if ((dob && dob.length) || (skills && skills.length) > 0) {
             const data = {
-               authorID: userID,
+               idUser: userID,
                dateOfBirth: dob,
                skills: skills,
             };
-            userInfoRef
+            userDataRef
                 .add(data)
                 .then(() => {
                     setAboutModal(!aboutModal) 
@@ -175,7 +169,7 @@ export default function Home(props) {
         
         if ((past && past.length) || (present && present.length) || (future && future.length) > 0) {
             const data = {
-               authorID: userID,
+               idUser: userID,
                pastInfo: past,
                presentInfo: present,
                futureInfo: future,
@@ -199,14 +193,14 @@ export default function Home(props) {
     //Get user's date of birth and skills from firebase 
 
     useEffect(() => {
-        userInfoRef
-            .where('authorID', '==', userID)
+        userDataRef
+            .where('idUser', '==', userID)
             .onSnapshot(
                 querySnapshot => {
                     querySnapshot.forEach((doc) => {
-                        const userInfo = doc.data();
-                        setDob(userInfo.dateOfBirth);
-                        setSkills(userInfo.skills);
+                        const userData = doc.data();
+                        setDob(userData.dateOfBirth);
+                        setSkills(userData.skills);
                         
                         
                     });
@@ -221,7 +215,7 @@ export default function Home(props) {
 
     useEffect(() => {
         lifeJourneyRef
-            .where('authorID', '==', userID)
+            .where('idUser', '==', userID)
             .onSnapshot(
                 querySnapshot => {
                     querySnapshot.forEach((doc) => {
@@ -244,13 +238,13 @@ export default function Home(props) {
     //Set user's profile picture
 
     const setProfilePic = async () => {
-        // Sets the profile picture, if not available, sets to a default image.
+        //Allows the user to set their profile picture
         profilePicRef
             .getDownloadURL()
             .then((downloadURL) => {
-                setProfilePicUrl(downloadURL);
+                setUrlProfilePic(downloadURL);
             }).catch(() => {
-                setProfilePicUrl('https://upload.wikimedia.org/wikipedia/commons/a/aa/Sin_cara.png');
+                setUrlProfilePic('https://upload.wikimedia.org/wikipedia/commons/a/aa/Sin_cara.png');
             });
     };
 
@@ -318,12 +312,12 @@ export default function Home(props) {
     //Close settings to return to Home 
     const closeSettings = () => {
         setProfilePic();
-        setSettingsPressed(false);
+        setSettings(false);
     };
     
     //Sets up home page when component loads 
     useEffect(() => {
-        setHomeScreenData();
+        setHome();
         setProfilePic();
     }, []);
 
@@ -332,23 +326,23 @@ export default function Home(props) {
             <Loading loading={loading} />
         );
         
-    } else if (settingsPressed == false) {
+    } else if (settings == false) {
         return (
-            <SafeAreaView style={homeStyles.mainContainer}>
+            <SafeAreaView style={styles.mainView}>
                 <ScrollView>
                     <View>
-                        <View style={homeStyles.heading} >
-                            <Text testID='userGreeting' style={homeStyles.title}>Hello, {username}! </Text>
-                            <TouchableOpacity onPress={() => setSettingsPressed(true)} >
-                                <Image style={homeStyles.profilePic} source={{ uri: profilePicUrl }} />
+                        <View style={styles.heading} >
+                            <Text style={styles.homeTitle}>Hello, {username}! </Text>
+                            <TouchableOpacity onPress={() => setSettings(true)} >
+                                <Image style={styles.profilePic} source={{ uri: urlProfilePic }} />
                             </TouchableOpacity>
                         </View>
                         <View>
-                            <TouchableOpacity style={homeStyles.dailyStreak} onPress={() => {
-                                setDailyStreakText('Daily Streak: ');
-                                setTimeout(() => { setDailyStreakText('🔥: '); }, 1000);
+                            <TouchableOpacity style={styles.streakDisplay} onPress={() => {
+                                setStreakStats('Daily Streak: ');
+                                setTimeout(() => { setStreakStats('🔥: '); }, 1000);
                             }}>
-                                <Text style={homeStyles.dailyStreakCounter} > {dailyStreakText} {dailyStreak}</Text>
+                                <Text style={styles.streakCount} > {streakStats} {numStreakDaily}</Text>
                             </TouchableOpacity>
                         </View>
                 <View style={styles.modals}>
@@ -356,7 +350,7 @@ export default function Home(props) {
                                 style={styles.touchableMod}
                                 onPress={() => setAboutModal(true)}>
                                     <Text style={styles.modHeader}>About Me</Text>
-                                    <Image style={styles.pic} source={{ uri: profilePicUrl }} />
+                                    <Image style={styles.pic} source={{ uri: urlProfilePic}} />
                          </TouchableOpacity>
 
                         <Modal
@@ -759,9 +753,9 @@ The image can be as creative or simple as you choose, once you have completed cr
                         </View>
                         </Modal>
 
-                        <View style={homeStyles.treeFrame}>
+                        <View style={styles.treeBody}>
                             <Text style={styles.treeHeader}>Watch your tree grow as you grow</Text>
-                        <Image source={{ uri: growTree }} style={homeStyles.tree} />
+                        <Image source={{ uri: growTree }} style={styles.tree} />
                         </View>
                     </View>
                 </ScrollView>
@@ -774,191 +768,3 @@ The image can be as creative or simple as you choose, once you have completed cr
     }
 }
 
-
-
-const styles = StyleSheet.create({
-    tenseHeader: {
-        textAlign: 'left', 
-        
-       
-    },
-    contentContainer: {
-        flexWrap: 'wrap',
-        height: 80,
-        width: 270,
-        margin: 20,
-        padding: 10,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 25,
-        alignSelf: 'flex-start',
-       
-    },
-    treeHeader: {
-        fontSize: 17,
-        fontStyle: 'italic',
-        
-    },
-    actHeader: {
-        fontSize: 17,
-        fontStyle: 'italic',
-        textAlign: 'center',
-        paddingBottom: 5,
-        
-    },
-
-    questions: {
-        margin: 10,
-        marginTop: 30,
-    },
-
-    centerView:{
-        flex:1,
-        justifyContent: 'center',
-        allignItems: 'center',
-        //marginTop:56,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        position: 'relative'
-      },
-      modalView:{
-        width: '88%',
-        height: Platform.OS == "ios" ? '65%' : '88%',
-        backgroundColor: '#FFF', 
-        margin:28,
-        shadowColor:'#3E4985',
-        shadowRadius:10,
-        shadowOffset:10,
-        borderRadius:10,
-        padding:20,
-        alignItems:'center',
-        shadowColor:'#000',
-      },
-  
-
-
-    modHeader: {
-        fontSize: Platform.OS == "ios" ? 20 : 18,
-        margin: 30,
-        textAlign: 'center',
-        fontStyle: 'italic' 
-    }, 
-
-    actHead: {
-        fontSize: 18,
-        textAlign: 'center',
-        marginTop: 15, 
-    }, 
-    modHHeader: {
-        fontSize: 20,
-        margin: 30,
-        textAlign: 'center',
-        fontStyle: 'italic' 
-    }, 
-    modHead: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    }, 
-
-    modActHead: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    }, 
-    modButton: {
-        backgroundColor: 'green', 
-        width:'30%',
-        borderRadius:30,
-        
-    },
-    touchableMod: {
-        backgroundColor: '#00e676',
-        width: 170,
-        height: 130,
-        margin: 10,
-        marginTop: 30,
-        borderRadius: 9,
-        shadowColor: 'rgba(0,0,0, .4)', // IOS
-        shadowOffset: { height: 1, width: 1 }, // IOS
-        shadowOpacity: 1, // IOS
-        shadowRadius: 1, //IOS
-
-        elevation: 2, // Android
-    }, 
-
-    touchableActs: {
-        backgroundColor: '#00e676',
-        width: 180,
-        height: 60,
-        margin: 8,
-        borderRadius: 9,
-        shadowColor: 'rgba(0,0,0, .4)', // IOS
-        shadowOffset: { height: 1, width: 1 }, // IOS
-        shadowOpacity: 1, // IOS
-        shadowRadius: 1, //IOS
-
-        elevation: 2, // Android
-    }, 
-    touchableM: {
-        backgroundColor: '#00e676',
-        width: 170,
-        height: 100,
-        margin: 10,
-        alignSelf: 'center',
-        
-        borderRadius: 9,
-        shadowColor: 'rgba(0,0,0, .4)', 
-        shadowOffset: { height: 1, width: 1 }, 
-        shadowOpacity: 1, 
-        shadowRadius: 1, 
-
-        elevation: 2, 
-    },
-    modals: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    pic: {
-        position: 'absolute',
-        margin: 60,
-        marginLeft: 54,
-        width: 60,
-        height: 60,
-        borderRadius: 40,
-
-    },
-    AimHeader :{
-        textAlign: 'left',
-        textDecorationLine: 'underline',
-        fontWeight: 'bold',
-        paddingBottom: 5,
-        marginTop: 20,
-    },
-    aimDesc : {
-        fontStyle: 'italic',
-        fontSize: 15,
-    },
-    materialsHeader: {
-        textAlign: 'left',
-        textDecorationLine: 'underline',
-        fontWeight: 'bold',
-        paddingBottom: 5,
-        paddingTop: 20,
-    },
-    materialsDesc : {
-        fontStyle: 'italic',
-        fontSize: 15,
-    },
-    activityHeader: {
-        textAlign: 'left',
-        textDecorationLine: 'underline',
-        fontWeight: 'bold',
-        paddingBottom: 5,
-        paddingTop: 20,
-    },
-    activityDesc: {
-        fontStyle: 'italic',
-        fontSize: 15,
-    },
-
-});

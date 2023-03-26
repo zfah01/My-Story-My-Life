@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
 
-export const loginStyles = StyleSheet.create({
-    header: {
+export const styles = StyleSheet.create({
+    intro: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 50,
+        paddingTop: Platform.OS === "ios" ? 70 :30,
     },
-    mainTitle: {
+    heading: {
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    contentContainer: {
+    mainView: {
         margin: 20,
         padding: 10,
         backgroundColor: '#FFFFFF',
@@ -36,7 +36,7 @@ export const loginStyles = StyleSheet.create({
         marginRight: 20,
         paddingLeft: 10,
     },
-    loginBTN: {
+    buttonLogin: {
         padding: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -56,15 +56,15 @@ export const loginStyles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
     },
-    createAnAccountText: {
+    accountText: {
         fontSize: 16,
     },
-    createAccountLink: {
+    createLink: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#6db8bf',
     }, 
-    contentText:{
+    passwordGuidelines:{
         textAlign: 'center',
         color: '#8f8f8f',
         fontSize: 14,

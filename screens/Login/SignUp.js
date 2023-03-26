@@ -1,42 +1,42 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, TextInput, ImageBackground, Image } from 'react-native';
 import Loading from '../../utils/Loading';
-import { loginStyles } from './Styles';
+import { styles } from './Styles';
 import { auth, db }from '../../firebase/firebase';
 
 
 // Checks if an uppercase, lowercase, number, special character is contained in the password 
-export const checkPassword = (str) => {
-    const strongPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    return strongPassword.test(str);
+export const passwordValid = (str) => {
+    const passwordStrong = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    return passwordStrong.test(str);
 };
 
  //Check if the email is in a correct format 
-export const checkEmail = (str) => {
+export const emailValid = (str) => {
     const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return validEmail.test(str);
 };
 
-export default function CreateAccount({ navigation }) {
+export default function SignUp({ navigation }) {
 
 
-    const [fullName, setFullName] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [passwordCheck, setPasswordCheck] = useState(false);
 
-    const onRegisterPress = () => {
+    const RegisterToApp = () => {
         setLoading(true);
         
-        if (!checkEmail(email)) {
+        if (!emailValid(email)) {
             setLoading(false);
             alert('Please ensure your email is valid.');
             return;
          }
 
-        if (!checkPassword(password)) {
+        if (!passwordValid(password)) {
             setLoading(false);
             setPasswordCheck(true);
             alert('Please ensure your password is 8 characters long and contains: \n One uppercase letter, a number and a special character (#?!@$%^&*-)');
@@ -48,7 +48,7 @@ export default function CreateAccount({ navigation }) {
             alert('Please check your passwords are entered correctly as they dont match.');
             return;
         }
-        // Use createUserWithEmailAndPassword API to create a new account
+        // Use createUserWithEmailAndPassword API to create a new  n
         auth
             .createUserWithEmailAndPassword(email, password)
             .then((response) => {
@@ -56,7 +56,7 @@ export default function CreateAccount({ navigation }) {
                 const data = {
                     id: uid,
                     email,
-                    fullName,
+                    name,
                 };
                 
                 // if user account is created successfully their data is stored to firebase
@@ -85,63 +85,62 @@ export default function CreateAccount({ navigation }) {
    
         return (
                 <>
-                <View style={loginStyles.header}>
-                <Text style={loginStyles.mainTitle}>Welcome to My Story, My Life</Text>
+                <View style={styles.intro}>
+                <Text style={styles.heading}>Welcome to My Story, My Life</Text>
                 <Text>Register for an account below:</Text>
             </View><ScrollView>
-                    <View style={loginStyles.contentContainer}>
-                        <Image style={loginStyles.logo} source={require('../../assets/logo.png')} />
+                    <View style={styles.mainView}>
+                        <Image style={styles.logo} source={require('../../assets/logo.png')} />
 
                         <TextInput
-                            style={loginStyles.textInput}
+                            style={styles.textInput}
                             placeholder='enter your full name...'
                             placeholderTextColor='#aaaaaa'
-                            onChangeText={(textName) => setFullName(textName)}
-                            value={fullName}
+                            onChangeText={(textName) => setName(textName)}
+                            value={name}
                             autoCapitalize='none'
-                            testID='fullNameInput' />
+                             />
 
                         <TextInput
-                            style={loginStyles.textInput}
+                            style={styles.textInput}
                             placeholder='enter your email address...'
                             placeholderTextColor='#aaaaaa'
                             onChangeText={(textEmail) => setEmail(textEmail)}
                             value={email}
                             autoCapitalize='none'
-                            testID='emailInput' />
+                             />
 
                         <TextInput
-                            style={loginStyles.textInput}
+                            style={styles.textInput}
                             secureTextEntry
                             placeholder='enter a password...'
                             placeholderTextColor='#aaaaaa'
                             onChangeText={(textPass) => setPassword(textPass)}
                             value={password}
                             autoCapitalize='none'
-                            testID='passwordInput' />
+                           />
 
                         <TextInput
-                            style={loginStyles.textInput}
+                            style={styles.textInput}
                             secureTextEntry
                             placeholder='confirm your password...'
                             placeholderTextColor='#aaaaaa'
                             onChangeText={(textPass) => setConfirmPassword(textPass)}
                             value={confirmPassword}
                             autoCapitalize='none'
-                            testID='confirmPasswordInput' />
+                             />
 
-                        <Text style={passwordCheck ? [loginStyles.contentText, { color: 'red' }] : loginStyles.contentText}>Password must be 8 or more characters and contain an upper case letter, numbers and a special character {'(#?!@$%^&*-)'}. </Text>
+                        <Text style={passwordCheck ? [styles.passwordGuidelines, { color: 'red' }] : styles.passwordGuidelines}>Password must be 8 or more characters and contain an upper case letter, numbers and a special character {'(#?!@$%^&*-)'}. </Text>
 
                         <TouchableOpacity
-                            style={loginStyles.loginBTN}
-                            onPress={() => onRegisterPress()}
-                            testID='createAccountButton'
+                            style={styles.buttonLogin}
+                            onPress={() => RegisterToApp()}
                             accessibilityLabel='Create Account Button'>
-                            <Text style={loginStyles.loginText}> Create Account </Text>
+                            <Text style={styles.loginText}> Create Account </Text>
                         </TouchableOpacity>
 
-                        <View style={loginStyles.footer}>
-                            <Text style={loginStyles.createAnAccountText}> Already have an account? <Text testID='welcomeLink' onPress={() => navigation.navigate('Welcome')} style={loginStyles.createAccountLink}> Log In</Text> </Text>
+                        <View style={styles.footer}>
+                            <Text style={styles.accountText}> Already have an account? <Text onPress={() => navigation.navigate('Welcome')} style={styles.createAccountLink}> Log In</Text> </Text>
                         </View>
                     </View>
                 </ScrollView>

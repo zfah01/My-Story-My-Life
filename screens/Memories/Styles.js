@@ -1,12 +1,13 @@
 import { StyleSheet, Dimensions, } from 'react-native';
 
-const entryStyles = StyleSheet.create({
+const storyStyles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor: '#AFEEEE',
+       paddingBottom: 25
     },
-    contentContainer: {
+    mainView: {
         margin: 20,
         padding: 10,
         backgroundColor: '#FFFFFF',
@@ -19,6 +20,8 @@ const entryStyles = StyleSheet.create({
     },
     date: {
         fontSize: 16,
+        marginTop: 20,
+        marginBottom: Platform.OS === "ios" ? null : -10,
         fontWeight: 'bold',
         color: '#000000',
         textAlign: 'center',
@@ -27,13 +30,31 @@ const entryStyles = StyleSheet.create({
         flexDirection: 'row',
         paddingBottom: 50,
     },
-    moodModUnselected: {
+    moodNotSelected: {
         marginTop: 10,
         marginLeft: 5,
         textAlign: 'center',
         paddingLeft: 10,
     },
-    moodModSelected: {
+    moodNotPicked: {
+      display: 'none',
+    },
+    moodPicked: {
+       
+      marginLeft: Platform.OS === "ios" ? 320 : 310
+      },
+    moodChosenFaces: {
+       height: 45,
+       width:40,
+       marginBottom: -9,
+    
+      
+      },
+    moodSelections: {
+        flexDirection: 'row',
+      
+    },
+    moodSelected: {
         marginTop: 10,
         marginLeft: 5,
         textAlign: 'center',
@@ -70,14 +91,14 @@ const entryStyles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#000000',
     },
-    submitButtonContainer: {
+    submitView: {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        paddingTop: 20,
+        paddingTop: Platform.OS === "ios" ? 20 : 5,
     },
     submitButton: {
-        padding: 15,
+        padding: Platform.OS === "ios" ? 15 : 10,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#00e676',
@@ -118,18 +139,18 @@ const entryStyles = StyleSheet.create({
 });
 
 
-// Function used to store height of device being used for responsive design on the homescreen.
+
 const height = Dimensions.get('window').height;
 
-const listStyles = StyleSheet.create({
-    contentContainer: {
+const timelineStyles = StyleSheet.create({
+    timelineContainer: {
         margin: 20,
         padding: 10,
         backgroundColor: '#F5F5F5',
         borderRadius: 25,
         height: height / 1.45,
     },
-    listView: {
+    timelineView: {
         borderBottomWidth: 1,
         borderRadius: 0.5,
         borderColor: 'rgba(215, 210, 210, 0.4)',
@@ -157,4 +178,4 @@ const listStyles = StyleSheet.create({
     }
 });
 
-export { listStyles, entryStyles };
+export { timelineStyles, storyStyles };

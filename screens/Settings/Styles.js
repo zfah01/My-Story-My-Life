@@ -3,8 +3,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 // Function used to store height of device being used for responsive design on the homescreen.
 const height = Dimensions.get('window').height;
 
-export const settingStyles = StyleSheet.create({
-    contentContainer: {
+export const styles = StyleSheet.create({
+    mainView: {
         marginTop: 80,
         margin: 20,
         padding: 10,
@@ -22,13 +22,13 @@ export const settingStyles = StyleSheet.create({
     progress: {
         alignSelf: 'center',
     },
-    subtitle: {
+    mainTitle: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#000000',
         paddingTop: 15,
     },
-    content: {
+    titleText: {
         fontSize: 14,
         color: '#000000',
         paddingBottom: 10,
@@ -54,7 +54,7 @@ export const settingStyles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
     },
-    returnHomeButton: {
+    backHome: {
         paddingTop: 10,
         paddingBottom: 10,
         alignSelf: 'flex-start',

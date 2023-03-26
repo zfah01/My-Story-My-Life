@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Welcome from './screens/Login/Welcome';
-import CreateAccount from './screens/Login/CreateAccount';
 import OnboardingScreen from './screens/Login/OnboardingScreen';
 import {auth, db} from './firebase/firebase';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TabNavigator from './TabNavigator';
+import SignUp from './screens/Login/SignUp';
 
 const Stack = createStackNavigator();
 
@@ -85,7 +85,7 @@ export default function App() {
                     <> 
                         <Stack.Screen name='Onboarding' component={OnboardingScreen} />
                         <Stack.Screen name='Welcome' component={Welcome} />
-                        <Stack.Screen name='CreateAccount' component={CreateAccount} />
+                        <Stack.Screen name='SignUp' component={SignUp} />
                     </>
                 )}
             </Stack.Navigator>

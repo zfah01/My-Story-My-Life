@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, ImageBackground, ScrollView, TextInput, Image, Alert, TouchableOpacity } from 'react-native';
 import Loading from '../../utils/Loading';
 import * as LocalAuthentication from 'expo-local-authentication';
-import { loginStyles } from './Styles';
+import { styles } from './Styles';
 
 
 import { auth, db } from '../../firebase/firebase';
 
 //Check if email is in a suitable format 
-export const checkEmail = (str) => {
+export const emailValid = (str) => {
     const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return validEmail.test(str);
 };
@@ -44,7 +44,7 @@ export default function Welcome({ navigation }) {
         setLoading(true);
         //Checks if email and password exists if it does it directs user to Home 
 
-        if (!checkEmail(email)) {
+        if (!emailValid(email)) {
             setLoading(false);
             alert('Please ensure your email is valid.');
             return;
@@ -85,15 +85,15 @@ export default function Welcome({ navigation }) {
     } else {
         return (
                 <>
-                <View style={loginStyles.header}>
-                <Text style={loginStyles.mainTitle}>Welcome to My Story, My Life</Text>
+                <View style={styles.intro}>
+                <Text style={styles.heading}>Welcome to My Story, My Life</Text>
                 <Text>Log into your account below:</Text>
             </View><ScrollView>
-                    <View style={loginStyles.contentContainer}>
-                        <Image style={loginStyles.logo} source={require('../../assets/logo.png')} />
+                    <View style={styles.mainView}>
+                        <Image style={styles.logo} source={require('../../assets/logo.png')} />
 
                         <TextInput
-                            style={loginStyles.textInput}
+                            style={styles.textInput}
                             placeholder='enter your email address...'
                             placeholderTextColor='#aaaaaa'
                             onChangeText={(textEmail) => setEmail(textEmail)}
@@ -102,7 +102,7 @@ export default function Welcome({ navigation }) {
                             testID='emailInput' />
 
                         <TextInput
-                            style={loginStyles.textInput}
+                            style={styles.textInput}
                             secureTextEntry
                             placeholder='enter your password...'
                             placeholderTextColor='#aaaaaa'
@@ -112,15 +112,15 @@ export default function Welcome({ navigation }) {
                             testID='passwordInput' />
 
                         <TouchableOpacity
-                            style={loginStyles.loginBTN}
+                            style={styles.buttonLogin}
                             onPress={() => onLoginPress()}
                             testID='loginButton'
                             accessibilityLabel='Log In button'>
-                            <Text style={loginStyles.loginText}> Log In </Text>
+                            <Text style={styles.loginText}> Log In </Text>
                         </TouchableOpacity>
 
-                        <View style={loginStyles.footer}>
-                            <Text style={loginStyles.createAnAccountText}>Don&apos;t have an account yet?<Text testID='createAccountLink' onPress={() => navigation.navigate('CreateAccount')} style={loginStyles.createAccountLink}> Sign up</Text> </Text>
+                        <View style={styles.footer}>
+                            <Text style={styles.accountText}>Don&apos;t have an account yet?<Text onPress={() => navigation.navigate('SignUp')} style={styles.createLink}> Sign up</Text> </Text>
                         </View>
                     </View>
                 </ScrollView>

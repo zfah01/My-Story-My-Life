@@ -116,7 +116,7 @@ export const styles = StyleSheet.create({
     },
 
 
-    SHtitle: {
+    trackerTitle: {
         fontSize: 24,
         alignSelf: "center",
         marginTop: 5,
@@ -132,7 +132,7 @@ export const styles = StyleSheet.create({
         fontWeight: "bold"
     },
 
-    SHtitle3: {
+    months: {
         fontSize: 24,
         alignSelf: "center",
         marginTop: 5,

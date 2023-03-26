@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TextInput, Image, TouchableOpacity, ScrollView, Button, Platform } from 'react-native';
-import { entryStyles } from './Styles';
+import { storyStyles } from './Styles';
 import { db, st}from '../../firebase/firebase';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
@@ -9,7 +9,7 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { Video, Audio } from 'expo-av';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function ViewSingleEntry(props) {
+export default function ViewLifeEvent(props) {
 
     // Initialise States
     const [selectedMood, setSelectedMood] = useState('');
@@ -30,11 +30,11 @@ export default function ViewSingleEntry(props) {
     //Reference to memories collection in firebase 
     const memoriesRef = db.collection('memories');
 
-    // Selects the life event where the user ID matches the authorID and eventDateAt  matches the current entry ID
+    // Selects the life event where the user ID matches the idUser and eventDateAt  matches the current entry ID
     // and sets each variable to a field to display in each life event 
     useEffect(() => {
         memoriesRef
-            .where('authorID', '==', userID)
+            .where('idUser', '==', userID)
             .where('eventDateAt', '==', entryID)
             .onSnapshot(
                 querySnapshot => {
@@ -47,7 +47,6 @@ export default function ViewSingleEntry(props) {
                         setImages(memory.postImages);
                         setVideos(memory.postVideos);
                         setEventDate(memory.eventDate);
-                        //setVoice(journal.voice);
                         const reference = ref(st, `/${memory.voice}`);
                         getDownloadURL(reference).then((x) => {
                           setVoice(x);
@@ -64,7 +63,7 @@ export default function ViewSingleEntry(props) {
     useEffect(() => {
       const func = async () => {
         memoriesRef
-        .where('authorID', '==', userID)
+        .where('idUser', '==', userID)
         .where('eventDateAt', '==', entryID)
         .onSnapshot(
             querySnapshot => {
@@ -114,6 +113,23 @@ export default function ViewSingleEntry(props) {
         <View style={styles.contentContainerScroll}>
           
         <ScrollView style={styles.scroll}>
+          
+        <View style={storyStyles.moodSelections}>
+                <View style={selectedMood === 'Happy' ? storyStyles.moodPicked : storyStyles.moodNotPicked} >
+                <Image source={require('../../assets/emojiHappy.png')} style={storyStyles.moodChosenFaces} />
+                       
+                </View>
+                <View style={selectedMood === 'Sad' ? storyStyles.moodPicked : storyStyles.moodNotPicked}>
+                <Image source={require('../../assets/sadEmoji2.png')} style={storyStyles.moodChosenFaces} />
+                        
+                </View>
+                <View style={selectedMood === 'Meh' ? storyStyles.moodPicked : storyStyles.moodNotPicked}>
+                <Image source={require('../../assets/emojiMeh.png')} style={storyStyles.moodChosenFaces} />
+                </View>
+                <View style={selectedMood === 'Angry' ? storyStyles.moodPicked : storyStyles.moodNotPicked}>
+                <Image source={require('../../assets/emojiAngry.png')} style={storyStyles.moodChosenFaces} />
+                </View>
+            </View>
         
         <Text style={styles.subHeaderTitle}>Title:</Text>
                 <Text style={styles.title}>
@@ -121,30 +137,11 @@ export default function ViewSingleEntry(props) {
                     </Text> 
               
          
-            <Text style={styles.moodHeader}>How you were feeling: </Text>
+        
 
-            <View style={entryStyles.moodModules}>
-                <View style={selectedMood === 'Happy' ? entryStyles.moodModSelected : entryStyles.moodModUnselected} >
-                <Image source={require('../../assets/emojiHappy.png')} style={entryStyles.moodFaces} />
-                        <Text style={styles.emojiLabels}>Happy</Text>
-                </View>
-                <View style={selectedMood === 'Sad' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <Image source={require('../../assets/sadEmoji2.png')} style={entryStyles.moodFaces} />
-                        <Text style={styles.emojiLabels}>Sad</Text>
-                </View>
-                <View style={selectedMood === 'Meh' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <Image source={require('../../assets/emojiMeh.png')} style={entryStyles.moodFaces} />
-                        <Text style={styles.emojiLabels}>Meh</Text>
-                </View>
-                <View style={selectedMood === 'Angry' ? entryStyles.moodModSelected : entryStyles.moodModUnselected}>
-                <Image source={require('../../assets/emojiAngry.png')} style={entryStyles.moodFaces} />
-                        <Text style={styles.emojiLabels}>Angry </Text>
-                </View>
-            </View>
+ 
 
-            <Text style={[{ textAlign: 'center' }, { color: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Meh' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : '#f90505' }]}>
-                You were feeling: {selectedMood}
-            </Text>
+  
             <View>
                 <Text style={styles.storyHeader}>Your Story: </Text>
                 <Text style={styles.story}>
@@ -208,7 +205,7 @@ export default function ViewSingleEntry(props) {
             
                 <View style={styles.returnButtonContainer}>
                     <TouchableOpacity style={styles.returnButton} onPress={onBack}>
-                        <Text style={styles.returnText}>Back to Diary</Text>
+                        <Text style={styles.returnText}>Back</Text>
                     </TouchableOpacity>
                 </View>
             
@@ -248,7 +245,6 @@ const styles = StyleSheet.create({
     },
     header: {
       fontSize: 25,
-      fontFamily: "Jaldi_700Bold",
       paddingTop: "2%",
     },
   
@@ -259,7 +255,6 @@ const styles = StyleSheet.create({
       borderRadius: 5,
     },
     buttonText: {
-      fontFamily: "Jaldi_400Regular",
       fontSize: 18,
     },
 
@@ -331,6 +326,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontStyle: 'italic',
       fontWeight: 'bold',
+      top: 33,
       color: '#000000',
   },
 
@@ -340,7 +336,8 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontWeight: 'bold',
     color: '#000000',
-    paddingTop: 20
+    paddingTop: 20,
+    marginTop: 20,
   },
     emojiLabels: {
       textAlign: 'center',
@@ -354,8 +351,10 @@ const styles = StyleSheet.create({
   },
     title: {
       textAlign: 'center',
-      fontSize: 30,
+      fontSize: 25,
+      top: 33,
       paddingBottom: 10,
+     
     },
 
     story: {
@@ -377,7 +376,7 @@ const styles = StyleSheet.create({
       padding: 10,
       backgroundColor: '#FFFFFF',
       borderRadius: 25,
-      maxHeight: '80%',
+      maxHeight: Platform.OS == "ios" ?'80%' : '85%',
   },
 
   });

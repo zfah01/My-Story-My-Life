@@ -1,13 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Import all Screens
 import Home from './screens/Home/Home';
-import AddNewEntry from './screens/Memories/AddNewEntry';
-import Diary from './screens/Memories/Diary';
-import Timeline from './screens/Timeline/Timeline';
+import AddLifeEvent from './screens/Memories/AddLifeEvent';
+import Timeline from './screens/Memories/Timeline';
+import MoodCalendar from './screens/MoodCalendar/MoodCalendar';
 import Contacts from './screens/Contacts/Contacts';
 
 
@@ -31,7 +31,7 @@ export default function BottomTabNavigator(props) {
                 'tabBarStyle': [
                     {
                         'display': 'flex',
-                        'tabBarActiveTintColor': '#448aff',
+                        
                     },
                     null]
             }} >
@@ -39,10 +39,13 @@ export default function BottomTabNavigator(props) {
                 name='Home'
                 options={{
                     headerShown: false,
-                    tabBarLabel: 'Home',
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarLabel: ({ focused }) => {
+                        let label;
+                        return label = focused ? <Text style={{fontSize: 10, color: "#34A56F"}}>Home</Text> : null
+                      },
+                    tabBarIcon: ({ focused }) => (
                         
-                            <MaterialCommunityIcons name='home' color={color} size={size} />
+                            <MaterialCommunityIcons name='home' color={focused ? "#34A56F" : "#808080"} size={25} />
                         
                     )
                 }} >
@@ -50,16 +53,19 @@ export default function BottomTabNavigator(props) {
             </Tab.Screen>
 
             <Tab.Screen
-                name='Diary' 
+                name='Timeline' 
                 style={styles.diary}
                 options={{
-                    tabBarLabel: 'Diary',
+                    tabBarLabel: ({ focused }) => {
+                        let label;
+                        return label = focused ? <Text style={{fontSize: 10, color: "#34A56F"}}>Timeline</Text> : null
+                      },
                     headerShown: false,
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name='book' color={color} size={size} />) 
+                    tabBarIcon: ({ focused }) => (
+                        <MaterialCommunityIcons name='timeline-outline' color={focused ? "#34A56F" : "#808080"}  size={25} />) 
                 }} >
                 {/* Sets the component whilst parsing in the user data. */}
-                {props => <Diary {...props} extraData={userData} />}
+                {props => <Timeline {...props} extraData={userData} />}
             </Tab.Screen>
 
             <Tab.Screen
@@ -68,34 +74,40 @@ export default function BottomTabNavigator(props) {
                 options={{
                     headerShown: false,
                     tabBarLabel: '',
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarIcon: ({ focused }) => (
                         <View style={styles.addButton}>
                         <MaterialCommunityIcons name='plus-circle' color={"#34A56F"} size={63} />
                         </View>)
                 }} >
-                {props => <AddNewEntry {...props} extraData={userData} />}
+                {props => <AddLifeEvent {...props} extraData={userData} />}
             </Tab.Screen>
 
           
 
             <Tab.Screen
-                name='Timeline'
+                name='MoodCalendar'
                 options={{
                     headerShown: false,
-                    tabBarLabel: 'Timeline',
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name='calendar-multiselect' color={color} size={size} />)
+                    tabBarLabel: ({ focused }) => {
+                        let label;
+                        return label = focused ? <Text style={{fontSize: 10, color: "#34A56F"}}>Calendar</Text> : null
+                      },
+                    tabBarIcon: ({ focused }) => (
+                        <MaterialCommunityIcons name='calendar-multiselect' color={focused ? "#34A56F" : "#808080"}  size={25} />)
                 }} >
-                {props => <Timeline {...props} extraData={userData} />}
+                {props => <MoodCalendar {...props} extraData={userData} />}
             </Tab.Screen>
 
             <Tab.Screen
                 name='Contacts'
                 options={{
                     headerShown: false,
-                    tabBarLabel: 'Contacts',
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name='email' color={color} size={size} />)
+                    tabBarLabel: ({ focused }) => {
+                        let label;
+                        return label = focused ? <Text style={{fontSize: 10, color: "#34A56F"}}>Contacts</Text> : null
+                      },
+                    tabBarIcon: ({ focused }) => (
+                        <MaterialCommunityIcons name='email' color={focused ? "#34A56F" : "#808080"}  size={25} />)
                 }} >
                 {props => <Contacts {...props} extraData={userData} />}
             </Tab.Screen>

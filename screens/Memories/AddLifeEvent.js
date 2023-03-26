@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View,  StyleSheet, TextInput, TouchableOpacity, ScrollView, Image, Button, Alert, Platform, Keyboard } from 'react-native';
 import * as ImagePicker from "expo-image-picker";
 //import {launchCameraAsync, useCameraPermissions, PermissionStatus, launchImageLibraryAsync} from 'expo-image-picker'
-import { entryStyles } from './Styles';
+import { storyStyles } from './Styles';
 import { st, db, timestamp, auth, stamp } from '../../firebase/firebase';
 import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
@@ -13,13 +13,14 @@ import "react-native-get-random-values";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
-export default function AddNewEntry(props) {
+export default function AddLifeEvent(props) {
 
     // Initiate states
-    const [angry, setAngry] = useState(false);
-    const [sad, setSad] = useState(false);
-    const [meh, setMeh] = useState(false);
-    const [happy, setHappy] = useState(false);
+ 
+    const [happyMood, setHappyMood] = useState(false);
+    const [angryMood, setAngryMood] = useState(false);
+    const [sadMood, setSadMood] = useState(false);
+    const [mehMood, setMehMood] = useState(false);
 
     const [title, setTitle] = useState('');
     const [storyEntry, setStoryEntry] = useState('');
@@ -179,8 +180,8 @@ export default function AddNewEntry(props) {
         .catch((err) => console.log(err));
     };
 
-    console.log("images: ", images);
-    console.log("urls", urls)
+    //console.log("images: ", images);
+    //console.log("urls", urls)
 
     //Function to upload video to firebase storage
 
@@ -225,8 +226,8 @@ export default function AddNewEntry(props) {
         .catch((err) => console.log(err));
     };
 
-    console.log("videos: ", videos);
-    console.log("urls", vidUrls)
+    //console.log("videos: ", videos);
+    //console.log("urls", vidUrls)
 
 
 
@@ -341,7 +342,7 @@ export default function AddNewEntry(props) {
     if(title == '') {
       emptyvals.push('a title')
     }
-    if(meh == false && happy == false  && sad == false  && angry == false) {
+    if(mehMood == false && happyMood == false  && sadMood == false  && angryMood == false) {
       emptyvals.push('a mood')
     }
      if(storyEntry == '') {
@@ -370,7 +371,7 @@ export default function AddNewEntry(props) {
       
         if (validateInput) {
             const data = {
-                authorID: userID,
+                idUser: userID,
                 titleText: title,
                 eventDate: stringEventDate,
                 moodSelected: entryMood,
@@ -393,18 +394,18 @@ export default function AddNewEntry(props) {
                     setShow(false);
                     setStoryEntry('');
                     setEntryMood('');
-                    setAngry(false);
+                    setAngryMood(false);
                     setImages([]);
                     setVideos([]);
                     setVoiceInfo(null);
                     setRecording(null);
-                    setSad(false);
-                    setMeh(false);
-                    setHappy(false);
+                    setSadMood(false);
+                    setMehMood(false);
+                    setHappyMood(false);
            
 
                     alert('Your memory has successfully been added to diary!');
-                    navigation.navigate('Diary');
+                    navigation.navigate('Timeline');
                     
 
                 })
@@ -417,58 +418,58 @@ export default function AddNewEntry(props) {
 
     //Sets entry mood to Angry
     const isAngry = () => {
-        if (!angry) {
-            setAngry(true);
-            setSad(false);
-            setMeh(false);
-            setHappy(false);
+        if (!angryMood) {
+            setAngryMood(true);
+            setSadMood(false);
+            setMehMood(false);
+            setHappyMood(false);
             setEntryMood('Angry');
         }
     };
 
     //Sets entry mood to Sad
     const isSad = () => {
-        if (!sad) {
-            setAngry(false);
-            setSad(true);
-            setMeh(false);
-            setHappy(false);
+        if (!sadMood) {
+            setAngryMood(false);
+            setSadMood(true);
+            setMehMood(false);
+            setHappyMood(false);
             setEntryMood('Sad');
         }
     };
 
     //Sets entry mood to Meh
     const isMeh = () => {
-        if (!meh) {
-            setAngry(false);
-            setSad(false);
-            setMeh(true);
-            setHappy(false);
+        if (!mehMood) {
+            setAngryMood(false);
+            setSadMood(false);
+            setMehMood(true);
+            setHappyMood(false);
             setEntryMood('Meh');
         }
     };
 
     //Sets entry mood to Happy
     const isHappy = () => {
-        if (!happy) {
-            setAngry(false);
-            setSad(false);
-            setMeh(false);
-            setHappy(true);
+        if (!happyMood) {
+            setAngryMood(false);
+            setSadMood(false);
+            setMehMood(false);
+            setHappyMood(true);
             setEntryMood('Happy');
         }
     };
 
     return (
-        <View style={entryStyles.mainContainer}>
-          <Text testID='dateID' style={entryStyles.date}>Today's Date: {displayDate}</Text>
-        <View style={entryStyles.contentContainer}>
+        <View style={storyStyles.mainContainer}>
+          <Text style={storyStyles.date}>Today's Date: {displayDate}</Text>
+        <View style={storyStyles.mainView}>
  
             <ScrollView>
            
                 
-                <Text style={entryStyles.subHeader}>Title</Text>
-                    <TextInput style={entryStyles.obsessionEntry}
+                <Text style={storyStyles.subHeader}>Title</Text>
+                    <TextInput style={storyStyles.obsessionEntry}
                         placeholder='Title'
                         numberOfLines={1}
                         multiline={true}
@@ -477,7 +478,7 @@ export default function AddNewEntry(props) {
                     />
 
             <View style={styles.dateContainer}>
-            <Text style={entryStyles.subHeader}>Event Date: {Platform.OS === 'android' ? stringEventDate : null}</Text>
+            <Text style={storyStyles.subHeader}>Event Date: {Platform.OS === 'android' ? stringEventDate : null}</Text>
             <TouchableOpacity style={styles.pickerBtn} onPress={showDatepicker}>
           <Text style={styles.pickerBtnTxt}>Set Date</Text>
         </TouchableOpacity>
@@ -492,28 +493,28 @@ export default function AddNewEntry(props) {
         />
       )}
         </View>
-          <Text style={entryStyles.subHeader}>How are you feeling?</Text>
-          <View style={entryStyles.moodModules}>
+          <Text style={storyStyles.subHeader}>How are you feeling?</Text>
+          <View style={storyStyles.moodModules}>
                   
-                    <TouchableOpacity style={happy ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isHappy}>
-                    <Image source={require('../../assets/emojiHappy.png')} style={entryStyles.moodFaces} />
+                    <TouchableOpacity style={happyMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isHappy}>
+                    <Image source={require('../../assets/emojiHappy.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Happy</Text>
 
                     </TouchableOpacity>
                     
 
-                    <TouchableOpacity style={sad ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isSad}>
-                    <Image source={require('../../assets/sadEmoji2.png')} style={entryStyles.moodFaces} />
+                    <TouchableOpacity style={sadMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isSad}>
+                    <Image source={require('../../assets/sadEmoji2.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Sad</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={meh ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isMeh}>
-                    <Image source={require('../../assets/emojiMeh.png')} style={entryStyles.moodFaces} />
+                    <TouchableOpacity style={mehMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isMeh}>
+                    <Image source={require('../../assets/emojiMeh.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Meh</Text>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity style={angry ? entryStyles.moodModSelected : entryStyles.moodModUnselected} onPress={isAngry} >
-                     <Image source={require('../../assets/emojiAngry.png')} style={entryStyles.moodFaces} />
+                    <TouchableOpacity style={angryMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isAngry} >
+                     <Image source={require('../../assets/emojiAngry.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Angry</Text>
                     </TouchableOpacity>
 
@@ -521,15 +522,14 @@ export default function AddNewEntry(props) {
                 </View>
 
             <View>
-                    <Text style={entryStyles.subHeader}>Your Story: </Text>
+                    <Text style={storyStyles.subHeader}>Your Story: </Text>
                     
-                    <TextInput style={entryStyles.journalEntry}
+                    <TextInput style={storyStyles.journalEntry}
                         placeholder='Write your story here! '
                         numberOfLines={10}
                         multiline={true}
                         onChangeText={(text) => setStoryEntry(text)}
                         value={storyEntry}
-                        testID='journalInput'
                     />
 
                 
@@ -588,9 +588,9 @@ export default function AddNewEntry(props) {
                     </View>
                     
                         
-                    <View style={entryStyles.submitButtonContainer}>
-                        <TouchableOpacity style={entryStyles.submitButton} onPress={validateInput} accessibilityLabel='Submit Button' testID='submitBTN' >
-                            <Text style={entryStyles.submitText}>Submit</Text>
+                    <View style={storyStyles.submitView}>
+                        <TouchableOpacity style={storyStyles.submitButton} onPress={validateInput} accessibilityLabel='Submit Button'  >
+                            <Text style={storyStyles.submitText}>Submit</Text>
                         </TouchableOpacity>
                     </View>
                     
@@ -656,7 +656,6 @@ const styles=StyleSheet.create({
         textAlign: "left",
         width: 230,
         fontSize: 16,
-        fontFamily: "Jaldi_400Regular",
         color: "#000",
         backgroundColor: "rgba(255, 255, 255, 0.77)",
     
@@ -677,7 +676,6 @@ const styles=StyleSheet.create({
       subtitle: {
         alignItems: "center",
         fontSize: 16,
-        fontFamily: "Jaldi_400Regular",
       },
       recordUploadContainer: {
         flexDirection: "row",

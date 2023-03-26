@@ -9,14 +9,8 @@ import { colors } from "../../utils/colors";
 
 export default function Insights(props){
 
-    //Get the current userID of the user 
     const userID = props.extraData;
-
-    //Prop to get back to calendar page 
     const returnCalendar = props.closeInsights;
-
-
-    // Creates a reference to the journal list collection in firestore to save data.
     const memoriesRef = db.collection('memories');
 
     let [isHappy, setIsHappy] = useState();
@@ -32,11 +26,11 @@ export default function Insights(props){
     let countMeh = 0;
     let countAngry = 0;
 
-    // Selects the journal entry where the user ID matches the authorID and createdAt timestamp matches the current entry ID
-    // and saves each field to its respectable variable to be displayed to the user when they select an entry to display.
+    // The life event is selected where the user ID matches the idUser and monthLog timestamp matches the current month
+    // Mood counter is incremented when user selects mood, used to show monthly insights
     useEffect(() => {
         memoriesRef
-        .where('authorID', '==', userID)
+        .where('idUser', '==', userID)
             .where('monthLog', '==', month)
             .onSnapshot(
                 querySnapshot => {
@@ -94,7 +88,7 @@ export default function Insights(props){
                         <TouchableOpacity  onPress={returnCalendar} >
                     <Text style={[styles.buttonText, { color: '#448aff' }]}> {'>'} Back to Calendar</Text>
                 </TouchableOpacity>
-                        <Text style={styles.SHtitle}>Mood Tracker</Text>
+                        <Text style={styles.trackerTitle}>Mood Tracker</Text>
 
                         <View style={{ borderRadius: 30, paddingBottom: 50, alignSelf: "center", alignItems: "center", alignContent: "center", backgroundColor: "#243E36", marginTop: 20 }}>
                             <Text style={{ marginTop: 35, fontSize: 16, color: colors.white, }}>As of:</Text>
@@ -104,7 +98,7 @@ export default function Insights(props){
                                     if (month == 1) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>January</Text>
+                                                <Text style={styles.months}>January</Text>
                                             </View>
                                         )
                                     }
@@ -112,7 +106,7 @@ export default function Insights(props){
                                     if (month == 2) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>February</Text>
+                                                <Text style={styles.months}>February</Text>
                                             </View>
                                         )
                                     }
@@ -120,7 +114,7 @@ export default function Insights(props){
                                     if (month == 3) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>March</Text>
+                                                <Text style={styles.months}>March</Text>
                                             </View>
                                         )
                                     }
@@ -128,7 +122,7 @@ export default function Insights(props){
                                     if (month == 4) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>April</Text>
+                                                <Text style={styles.months}>April</Text>
                                             </View>
                                         )
                                     }
@@ -136,7 +130,7 @@ export default function Insights(props){
                                     if (month == 5) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>May</Text>
+                                                <Text style={styles.months}>May</Text>
                                             </View>
                                         )
                                     }
@@ -144,7 +138,7 @@ export default function Insights(props){
                                     if (month == 6) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>June</Text>
+                                                <Text style={styles.months}>June</Text>
                                             </View>
                                         )
                                     }
@@ -152,7 +146,7 @@ export default function Insights(props){
                                     if (month == 7) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>July</Text>
+                                                <Text style={styles.months}>July</Text>
                                             </View>
                                         )
                                     }
@@ -160,7 +154,7 @@ export default function Insights(props){
                                     if (month == 8) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>August</Text>
+                                                <Text style={styles.months}>August</Text>
                                             </View>
                                         )
                                     }
@@ -168,7 +162,7 @@ export default function Insights(props){
                                     if (month == 9) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>September</Text>
+                                                <Text style={styles.months}>September</Text>
                                             </View>
                                         )
                                     }
@@ -176,7 +170,7 @@ export default function Insights(props){
                                     if (month == 10) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>Ocotber</Text>
+                                                <Text style={styles.months}>Ocotber</Text>
                                             </View>
                                         )
                                     }
@@ -184,7 +178,7 @@ export default function Insights(props){
                                     if (month == 11) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>November</Text>
+                                                <Text style={styles.months}>November</Text>
                                             </View>
                                         )
                                     }
@@ -192,7 +186,7 @@ export default function Insights(props){
                                     if (month == 12) {
                                         return (
                                             <View>
-                                                <Text style={styles.SHtitle3}>December</Text>
+                                                <Text style={styles.months}>December</Text>
                                             </View>
                                         )
                                     }
@@ -202,7 +196,7 @@ export default function Insights(props){
 
                             <LineChart
                                 data={{
-                                    labels: ["🥳", "🥱", "😰","😡"],
+                                    labels: ["😄", "😕", "😢","😡"],
                                     datasets: [
                                         {
                                             data: [
@@ -214,15 +208,15 @@ export default function Insights(props){
                                         }
                                     ],
                                 }}
-                                width={340} // from react-native
+                                width={340} 
                                 height={250}
-                                yAxisInterval={1} // optional, defaults to 1
+                                yAxisInterval={1} 
 
                                 chartConfig={{
                                     backgroundColor: colors.white,
                                     backgroundGradientFrom: colors.blue,
                                     backgroundGradientTo: colors.blue,
-                                    decimalPlaces: 1, // optional, defaults to 2dp
+                                    decimalPlaces: 1, 
                                     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                     propsForDots: {
@@ -261,9 +255,9 @@ export default function Insights(props){
 
 
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>We're glad to see you happy this month!</Text>
-                                                <Text style={styles.title}>You may want to continue the progress by:</Text>
-                                                <LinkPreview style={{ color: colors.blue }} text='https://www.lifehack.org/articles/money/30-absolutely-free-activities-that-can-make-you-happy-today.html' />
+                                                <Text style={styles.title}>You have recorded many happy events this month!</Text>
+                                                <Text style={styles.title}>Check this out to maintain your happiness:</Text>
+                                                <LinkPreview style={{ color: colors.blue }} text='https://www.healthshots.com/mind/happiness-hacks/become-a-happier-you-by-including-these-8-activities-in-your-daily-routine/' />
                                             </View>
 
                                         )
@@ -272,10 +266,10 @@ export default function Insights(props){
                                     if (Math.max(isHappy, isSad, isMeh, isAngry) == isSad) {
                                         return (
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You went through a lot of sadness this month. You should find something fun!</Text>
+                                                <Text style={styles.title}>You have logged in many sad events this month. Find something fun to do!</Text>
                                                 <Text style={styles.title}>OR</Text>
-                                                <Text style={styles.title}>You may use this test for further help:</Text>
-                                                <LinkPreview style={{ color: colors.blue }} text='https://www.ramlimusa.com/questionnaires/depression-anxiety-stress-scale-dass-21-bahasa-malaysia/' />
+                                                <Text style={styles.title}>Check this out:</Text>
+                                                <LinkPreview style={{ color: colors.blue }} text='https://www.nhs.uk/mental-health/self-help/tips-and-support/how-to-be-happier/#:~:text=Simple%20activities%20like%20watching%20sports,have%20a%20sense%20of%20achievement.' />
                                             </View>
                                         )
                                     }
@@ -283,9 +277,9 @@ export default function Insights(props){
                                     if (Math.max(isHappy, isSad, isMeh, isAngry) == isMeh) {
                                         return (
                                             <View style={{ bbackgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You went through a lot of boringness this month. You should find something fun!</Text>
+                                                <Text style={styles.title}>You went through a lot of boringness this month. Why not do something fun?</Text>
                                                 <Text style={styles.title}>OR</Text>
-                                                <Text style={styles.title}>For further help:</Text>
+                                                <Text style={styles.title}>Learn to be happier:</Text>
                                                 <LinkPreview style={{ color: colors.blue }} text='https://www.lifehack.org/articles/money/30-absolutely-free-activities-that-can-make-you-happy-today.html' />
                                             </View>
                                         )
@@ -294,10 +288,10 @@ export default function Insights(props){
                                     if (Math.max(isHappy, isSad, isMeh, isAngry) == isAngry) {
                                         return (
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You went through a lot this month. You should find something fun to overcome!</Text>
+                                                <Text style={styles.title}>You have recorded many events this month that make you angry. Learn to overcome your anger.</Text>
                                                 <Text style={styles.title}>OR</Text>
-                                                <Text style={styles.title}>For further help:</Text>
-                                                <LinkPreview style={{ color: colors.blue }} text='https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/anger-management/art-20045434' />
+                                                <Text style={styles.title}>Get some help:</Text>
+                                                <LinkPreview style={{ color: colors.blue }} text='https://www.mind.org.uk/information-support/types-of-mental-health-problems/anger/managing-outbursts/' />
                                             </View>
                                         )
                                     }

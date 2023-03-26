@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, Platform } from "react-native";
 import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
@@ -13,32 +13,32 @@ export const styles = StyleSheet.create({
       width: 130,
       height: 100,
       margin: 20,
-      marginTop:-30
+      marginTop: Platform.OS == "ios" ? -30 : -35,
     },
     images3: {
         width: 120,
-        height: 80,
+        height: Platform.OS == "ios" ? 80 : 70,
 
         margin: 30,
-        marginTop:-30
+        marginTop: Platform.OS == "ios" ? -30 : -28,
       },
       images4: {
         width: 120,
-        height: 90,
+        height: Platform.OS == "ios" ? 90 : 80,
         margin: 30,
-        marginTop:-40
+        marginTop:Platform.OS == "ios" ? -40 : -38,
       },
       images5: {
-        width: 100,
+        width: 85,
         height: 80,
-        margin: 40,
-        marginTop:-30
+        margin: 50,
+        marginTop:Platform.OS == "ios" ? -30 : -36,
       },
       images6: {
-        width: 100,
+        width: Platform.OS == "ios" ? 100 : 92,
         height: 78,
-        margin: 40,
-        marginTop:-27
+        margin: Platform.OS == "ios" ? 40 : 45,
+        marginTop:Platform.OS == "ios" ? -27 : -35,
       },
 
 
@@ -51,6 +51,7 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         paddingBottom: 10, 
         marginLeft: 15,
+       
     },
     tenseHeader: {
         textAlign: 'left', 
@@ -113,6 +114,7 @@ export const styles = StyleSheet.create({
     modHeader: {
         fontSize: 17,
         margin: 30,
+
         textAlign: 'center',
         fontStyle: 'italic' 
     }, 
@@ -161,6 +163,8 @@ export const styles = StyleSheet.create({
     rowContainer: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: -20
+        
 
     },
     touchableMod: {
@@ -194,7 +198,8 @@ export const styles = StyleSheet.create({
     rowTouchables: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 10,
+        marginTop:  Platform.OS === "android" ? 2 : 10,
+       
 
 
     },

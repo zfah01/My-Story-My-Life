@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Image, Linking, Text, TouchableOpacity, ScrollView, View, SafeAreaView } from 'react-native';
-import { settingStyles } from './Styles';
+import { styles } from './Styles';
 import * as Progress from 'react-native-progress';
 import * as ImagePicker from 'expo-image-picker';
 import {auth, st} from '../../firebase/firebase';
@@ -21,6 +21,23 @@ export default function Settings(props) {
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
+
+
+    //About Function 
+    const aboutApp = () => {
+      Alert.alert(
+          // The alert title
+          'How to use this app?',
+          // The alert message
+          'My Story, My Life is a platform that helps you to cherish your memories as well as helping you build an identity for yourself. '+
+          'Create life events and see how far you have come by watching your tree grow as you grow.',
+          // brackets are required or android will giv an error message.
+          [
+              {
+                  text: 'OK', onPress: () => { }
+              }
+          ]);
+    };
 
 
 
@@ -118,43 +135,49 @@ export default function Settings(props) {
 
     return (
 
-            <SafeAreaView style={settingStyles.contentContainer}>
-                <TouchableOpacity style={settingStyles.returnHomeButton} onPress={returnHome} >
-                    <Text style={[settingStyles.buttonText, { color: '#448aff' }]}> {'>'} Return Home</Text>
+            <SafeAreaView style={styles.mainView}>
+                <TouchableOpacity style={styles.backHome} onPress={returnHome} >
+                    <Text style={[styles.buttonText, { color: '#448aff' }]}> {'>'} Return Home</Text>
                 </TouchableOpacity>
                 <ScrollView>
-                    <Text style={settingStyles.subtitle}>Profile Picture:</Text>
-                    <Text style={settingStyles.content}>Select a picture from your library or take a picture:</Text>
-                    {/* Displays the profile picture if not null */}
+                    <Text style={styles.mainTitle}>Profile Picture:</Text>
+                    <Text style={styles.titleText}>Select a picture from your library or take a picture:</Text>
+               
                     {image !== null ? (
-                        <Image source={{ uri: image }} style={settingStyles.imageBox} />
+                        <Image source={{ uri: image }} style={styles.imageBox} />
                     ) : null}
-                    <TouchableOpacity style={settingStyles.pictureButton} onPress={takePhotoFromCamera} >
-                        <Text style={settingStyles.buttonText}>Take a picture</Text>
+                    <TouchableOpacity style={styles.pictureButton} onPress={takePhotoFromCamera} >
+                        <Text style={styles.buttonText}>Take a picture</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={settingStyles.pictureButton} onPress={choosePhotoFromLibrary} >
-                        <Text style={settingStyles.buttonText}>Select a profile picture</Text>
+                    <TouchableOpacity style={styles.pictureButton} onPress={choosePhotoFromLibrary} >
+                        <Text style={styles.buttonText}>Select a profile picture</Text>
                     </TouchableOpacity>
-                    {/* Changes the upload image button to a progress indicator upon image upload. */}
+          
                     {uploading ? (
-                        <View style={settingStyles.progress}>
+                        <View style={styles.progress}>
                             <Progress.Bar progress={transferred} width={300} />
                         </View>
                     ) : (
                         <View>
-                            <TouchableOpacity style={settingStyles.pictureButton} onPress={uploadImage} >
-                                <Text style={settingStyles.buttonText}>Upload Image</Text>
+                            <TouchableOpacity style={styles.pictureButton} onPress={uploadImage} >
+                                <Text style={styles.buttonText}>Upload Image</Text>
                             </TouchableOpacity>
                         </ View>
                     )}
-                    <Text style={settingStyles.subtitle}>Other Settings:</Text>
+                       <Text style={styles.mainTitle}>How to use this app?</Text>
+                       <Text style={styles.titleText}>Learn how to use this app:</Text>
 
-                    <TouchableOpacity style={settingStyles.logoutButton} onPress={logout} >
-                        <Text style={settingStyles.buttonText}>Logout</Text>
+                      <TouchableOpacity style={styles.pictureButton} onPress={aboutApp} >
+                          <Text style={styles.buttonText}>About</Text>
+                      </TouchableOpacity>
+                    <Text style={styles.mainTitle}>Other Settings:</Text>
+
+                    <TouchableOpacity style={styles.logoutButton} onPress={logout} >
+                        <Text style={styles.buttonText}>Logout</Text>
                     </TouchableOpacity>
 
-                    <View style={settingStyles.footer}>
-                        <Text style={settingStyles.footerText}> My Story, My Life</Text>
+                    <View style={styles.footer}>
+                        <Text style={styles.footerText}> My Story, My Life</Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>

@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { ImageBackground, SafeAreaView, Button, TouchableOpacity, Platform, ScrollView, StyleSheet, Text, TextInput, View, Image, Alert, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 import Help from '../Help/Help';
-
-// Imports the documents styling.
-
-// Imports firestore from firebase to save user entries to the firstore database.
-//import firestore from '@react-native-firebase/firestore';
 import { db, auth } from '../../firebase/firebase';
 import { Link } from '@react-navigation/native';
 
@@ -20,7 +15,6 @@ export default function Contacts(props) {
     const [helpPressed, setHelpPressed] = useState(false);
 
     const contactsRef = db.collection('Contacts');
-    // Gets the users ID from props passed in from App.js.
     const userID = props.extraData.id;
     const user = auth.currentUser;
 
