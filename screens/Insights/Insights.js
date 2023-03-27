@@ -15,7 +15,7 @@ export default function Insights(props){
 
     let [isHappy, setIsHappy] = useState();
     let [isSad, setIsSad] = useState();
-    let [isMeh, setIsMeh] = useState();
+    let [isConfused, setIsConfused] = useState();
     let [isAngry, setIsAngry] = useState();
     let [isLoading, setIsLoading] = useState(true);
 
@@ -23,7 +23,7 @@ export default function Insights(props){
     let month = new Date().getMonth() + 1;
     let countHappy = 0;
     let countSad = 0;
-    let countMeh = 0;
+    let countConfused = 0;
     let countAngry = 0;
 
     // The life event is selected where the user ID matches the idUser and monthLog timestamp matches the current month
@@ -42,8 +42,8 @@ export default function Insights(props){
                           countHappy++;
                       }
           
-                      if (memory.moodSelected === 'Meh') {
-                          countMeh++;
+                      if (memory.moodSelected === 'Confused') {
+                          countConfused++;
                       }
           
                       if (memory.moodSelected === 'Sad') {
@@ -57,7 +57,7 @@ export default function Insights(props){
                     });
                     setIsHappy(countHappy);
                     setIsSad(countSad);
-                    setIsMeh(countMeh);
+                    setIsConfused(countConfused);
                     setIsAngry(countAngry);
                     setIsLoading(false);
                 },
@@ -201,7 +201,7 @@ export default function Insights(props){
                                         {
                                             data: [
                                                 isHappy,
-                                                isMeh,
+                                                isConfused,
                                                 isSad,
                                                 isAngry
                                             ]
@@ -241,7 +241,7 @@ export default function Insights(props){
                         <View style={{ marginTop: 10, marginBottom: 5 }}>
                             {(() => {
 
-                                if (Math.max(isHappy, isSad, isMeh, isAngry) == 0) {
+                                if (Math.max(isHappy, isSad, isConfused, isAngry) == 0) {
                                     return (
                                         <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
                                             <Text style={styles.title}>Your mood tracker is empty.</Text>
@@ -250,7 +250,7 @@ export default function Insights(props){
                                     )
                                 }
                                 else {
-                                    if (Math.max(isHappy, isSad, isMeh, isAngry) == isHappy) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isHappy) {
                                         return (
 
 
@@ -263,7 +263,7 @@ export default function Insights(props){
                                         )
                                     }
 
-                                    if (Math.max(isHappy, isSad, isMeh, isAngry) == isSad) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isSad) {
                                         return (
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
                                                 <Text style={styles.title}>You have logged in many sad events this month. Find something fun to do!</Text>
@@ -274,10 +274,10 @@ export default function Insights(props){
                                         )
                                     }
 
-                                    if (Math.max(isHappy, isSad, isMeh, isAngry) == isMeh) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isConfused) {
                                         return (
-                                            <View style={{ bbackgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You went through a lot of boringness this month. Why not do something fun?</Text>
+                                            <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
+                                                <Text style={styles.title}>You went through a lot of uncertainty this month. Why not do something fun?</Text>
                                                 <Text style={styles.title}>OR</Text>
                                                 <Text style={styles.title}>Learn to be happier:</Text>
                                                 <LinkPreview style={{ color: colors.blue }} text='https://www.lifehack.org/articles/money/30-absolutely-free-activities-that-can-make-you-happy-today.html' />
@@ -285,7 +285,7 @@ export default function Insights(props){
                                         )
                                     }
 
-                                    if (Math.max(isHappy, isSad, isMeh, isAngry) == isAngry) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isAngry) {
                                         return (
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
                                                 <Text style={styles.title}>You have recorded many events this month that make you angry. Learn to overcome your anger.</Text>

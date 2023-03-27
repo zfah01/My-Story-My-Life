@@ -70,6 +70,7 @@ export const styles = StyleSheet.create({
     },
     keyContainer2: {
         flexDirection: 'row',
+        marginLeft: 20,
         alignItems: 'center',
         justifyContent: 'center',
     },

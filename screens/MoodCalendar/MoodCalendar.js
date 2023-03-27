@@ -169,7 +169,7 @@ export default function MoodCalendar(props) {
             imageT:  chosenImages === [] ? false : true,
             videoT:  chosenVideos === [] ? false : true,
             audioT:  inputAudio === null ? false : true,
-            selectedColor: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Meh' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : selectedMood === 'Angry' ? '#f90505' : '#000000',
+            selectedColor: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Confused' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : selectedMood === 'Angry' ? '#f90505' : '#000000',
         };
     });
 
@@ -333,7 +333,7 @@ export default function MoodCalendar(props) {
                                         <Text style={[styles.moodBackground, { backgroundColor: '#108206' }]} />
                                     </View>
                                     <View style={[styles.moodContainer, { marginRight: 20 }]}>
-                                        <Text style={styles.moodText}>Meh:</Text>
+                                        <Text style={styles.moodText}>Confused:</Text>
                                         <Text style={[styles.moodBackground, { backgroundColor: '#e38e07' }]} />
                                     </View>
                                     <View style={styles.moodContainer}>

@@ -20,14 +20,14 @@ export default function AddLifeEvent(props) {
     const [happyMood, setHappyMood] = useState(false);
     const [angryMood, setAngryMood] = useState(false);
     const [sadMood, setSadMood] = useState(false);
-    const [mehMood, setMehMood] = useState(false);
+    const [confusedMood, setConfusedMood] = useState(false);
 
     const [title, setTitle] = useState('');
     const [storyEntry, setStoryEntry] = useState('');
     
     const [usefulDate, setUsefulDate] = useState(null);
     const [displayDate, setDisplayDate] = useState(null);
-    const [entryMood, setEntryMood] = useState('');
+    const [moodChosen, setMoodChosen] = useState('');
 
     const [eventDate, setEventDate] = useState(new Date());
     const [mode, setMode] = useState('date');
@@ -342,7 +342,7 @@ export default function AddLifeEvent(props) {
     if(title == '') {
       emptyvals.push('a title')
     }
-    if(mehMood == false && happyMood == false  && sadMood == false  && angryMood == false) {
+    if(confusedMood == false && happyMood == false  && sadMood == false  && angryMood == false) {
       emptyvals.push('a mood')
     }
      if(storyEntry == '') {
@@ -374,7 +374,7 @@ export default function AddLifeEvent(props) {
                 idUser: userID,
                 titleText: title,
                 eventDate: stringEventDate,
-                moodSelected: entryMood,
+                moodSelected: moodChosen,
                 postImages: images,
                 postVideos: videos,
                 voice: voiceInfo || null,
@@ -393,14 +393,14 @@ export default function AddLifeEvent(props) {
                     setTitle('');
                     setShow(false);
                     setStoryEntry('');
-                    setEntryMood('');
+                    setMoodChosen('');
                     setAngryMood(false);
                     setImages([]);
                     setVideos([]);
                     setVoiceInfo(null);
                     setRecording(null);
                     setSadMood(false);
-                    setMehMood(false);
+                    setConfusedMood(false);
                     setHappyMood(false);
            
 
@@ -421,9 +421,9 @@ export default function AddLifeEvent(props) {
         if (!angryMood) {
             setAngryMood(true);
             setSadMood(false);
-            setMehMood(false);
+            setConfusedMood(false);
             setHappyMood(false);
-            setEntryMood('Angry');
+            setMoodChosen('Angry');
         }
     };
 
@@ -432,20 +432,20 @@ export default function AddLifeEvent(props) {
         if (!sadMood) {
             setAngryMood(false);
             setSadMood(true);
-            setMehMood(false);
+            setConfusedMood(false);
             setHappyMood(false);
-            setEntryMood('Sad');
+            setMoodChosen('Sad');
         }
     };
 
-    //Sets entry mood to Meh
-    const isMeh = () => {
-        if (!mehMood) {
+    //Sets entry mood to Confused
+    const isConfused = () => {
+        if (!confusedMood) {
             setAngryMood(false);
             setSadMood(false);
-            setMehMood(true);
+            setConfusedMood(true);
             setHappyMood(false);
-            setEntryMood('Meh');
+            setMoodChosen('Confused');
         }
     };
 
@@ -454,9 +454,9 @@ export default function AddLifeEvent(props) {
         if (!happyMood) {
             setAngryMood(false);
             setSadMood(false);
-            setMehMood(false);
+            setConfusedMood(false);
             setHappyMood(true);
-            setEntryMood('Happy');
+            setMoodChosen('Happy');
         }
     };
 
@@ -469,7 +469,7 @@ export default function AddLifeEvent(props) {
            
                 
                 <Text style={storyStyles.subHeader}>Title</Text>
-                    <TextInput style={storyStyles.obsessionEntry}
+                    <TextInput style={storyStyles.storyTitle}
                         placeholder='Title'
                         numberOfLines={1}
                         multiline={true}
@@ -508,9 +508,9 @@ export default function AddLifeEvent(props) {
                         <Text style={styles.emojiLabels}>Sad</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={mehMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isMeh}>
-                    <Image source={require('../../assets/emojiMeh.png')} style={storyStyles.moodFaces} />
-                        <Text style={styles.emojiLabels}>Meh</Text>
+                    <TouchableOpacity style={confusedMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isConfused}>
+                    <Image source={require('../../assets/emojiConfused.png')} style={storyStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Confused</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity style={angryMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isAngry} >
@@ -524,7 +524,7 @@ export default function AddLifeEvent(props) {
             <View>
                     <Text style={storyStyles.subHeader}>Your Story: </Text>
                     
-                    <TextInput style={storyStyles.journalEntry}
+                    <TextInput style={storyStyles.storyEntry}
                         placeholder='Write your story here! '
                         numberOfLines={10}
                         multiline={true}

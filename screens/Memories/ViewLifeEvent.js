@@ -123,8 +123,8 @@ export default function ViewLifeEvent(props) {
                 <Image source={require('../../assets/sadEmoji2.png')} style={storyStyles.moodChosenFaces} />
                         
                 </View>
-                <View style={selectedMood === 'Meh' ? storyStyles.moodPicked : storyStyles.moodNotPicked}>
-                <Image source={require('../../assets/emojiMeh.png')} style={storyStyles.moodChosenFaces} />
+                <View style={selectedMood === 'Confused' ? storyStyles.moodPicked : storyStyles.moodNotPicked}>
+                <Image source={require('../../assets/emojiConfused.png')} style={storyStyles.moodChosenFaces} />
                 </View>
                 <View style={selectedMood === 'Angry' ? storyStyles.moodPicked : storyStyles.moodNotPicked}>
                 <Image source={require('../../assets/emojiAngry.png')} style={storyStyles.moodChosenFaces} />

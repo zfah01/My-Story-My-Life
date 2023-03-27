@@ -69,7 +69,7 @@ const storyStyles = StyleSheet.create({
         width: 66,
         alignItems: 'center',
     },
-    journalEntry: {
+    storyEntry: {
         marginTop: 5,
         marginBottom: 20,
         backgroundColor: '#ebebeb',
@@ -77,7 +77,7 @@ const storyStyles = StyleSheet.create({
         maxHeight: 250,
         height: 150,
     },
-    obsessionEntry: {
+    storyTitle: {
         marginTop: 5,
         marginBottom: 20,
         backgroundColor: '#ebebeb',
@@ -170,7 +170,7 @@ const timelineStyles = StyleSheet.create({
         color: '#000000',
         fontWeight: 'bold',
     },
-    entryMood: {
+    chosenMood: {
         paddingLeft: 10,
         paddingBottom: 5,
         fontSize: 14,
