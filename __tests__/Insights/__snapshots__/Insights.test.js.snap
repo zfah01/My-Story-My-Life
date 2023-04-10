@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test to check Insights is rendered 1`] = `
+<RCTSafeAreaView>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+            "marginTop": 30,
+          }
+        }
+      >
+        <ActivityIndicator
+          color="white"
+          size="large"
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "marginTop": 10,
+            }
+          }
+        >
+          Fetching mood...
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "500",
+              "marginBottom": 35,
+              "marginTop": 5,
+            }
+          }
+        >
+          It will take a few seconds
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;
+
+exports[`Test to check Insights is rendered Checks to see if the Home page renders 1`] = `
+<RCTSafeAreaView>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+            "marginTop": 30,
+          }
+        }
+      >
+        <ActivityIndicator
+          color="white"
+          size="large"
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "marginTop": 10,
+            }
+          }
+        >
+          Fetching mood...
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "500",
+              "marginBottom": 35,
+              "marginTop": 5,
+            }
+          }
+        >
+          It will take a few seconds
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;

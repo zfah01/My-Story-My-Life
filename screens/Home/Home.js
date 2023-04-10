@@ -559,7 +559,7 @@ export default function Home(props) {
                                  <Text style={styles.materialsHeader}>Materials</Text>
                                  <Text style={styles.materialsDesc}>Paper, pens and/or Coat of Arms template</Text>
                                  <Text style={styles.activityHeader}>Activity</Text>
-                                 <Text style={styles.activityDesc}>Either draw a coat of arms or use a template and split it into 4 sections “Happy, Sad, Meh and Angry”. In each section draw or write something which represents each feeling. Once you are done, use each section to create a new story in your digital passport. Take photos of your drawings and/or include your descriptions of each feeling.  </Text>
+                                 <Text style={styles.activityDesc}>Either draw a coat of arms or use a template and split it into 4 sections “Happy, Sad, Confused and Angry”. In each section draw or write something which represents each feeling. Once you are done, use each section to create a new story in your digital passport. Take photos of your drawings and/or include your descriptions of each feeling.  </Text>
                      
                                     
 

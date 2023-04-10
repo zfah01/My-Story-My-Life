@@ -119,10 +119,11 @@ export default function Settings(props) {
     
         try {
           await task;
-    
+
           user.updateProfile({
             photoURL: profilePicName
         });
+
     
           setUploading(false);
           setImage(null);
@@ -134,7 +135,7 @@ export default function Settings(props) {
       };
 
     return (
-
+        <View style={{backgroundColor: '#AFEEEE', width: '100%', height: '100%'}}>
             <SafeAreaView style={styles.mainView}>
                 <TouchableOpacity style={styles.backHome} onPress={returnHome} >
                     <Text style={[styles.buttonText, { color: '#448aff' }]}> {'>'} Return Home</Text>
@@ -181,5 +182,6 @@ export default function Settings(props) {
                     </View>
                 </ScrollView>
             </SafeAreaView>
+            </View>
     );
 }

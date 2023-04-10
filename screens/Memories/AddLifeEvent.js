@@ -462,7 +462,7 @@ export default function AddLifeEvent(props) {
 
     return (
         <View style={storyStyles.mainContainer}>
-          <Text style={storyStyles.date}>Today's Date: {displayDate}</Text>
+          <Text testID='dateID' style={storyStyles.date}>Today's Date: {displayDate}</Text>
         <View style={storyStyles.mainView}>
  
             <ScrollView>
@@ -475,6 +475,7 @@ export default function AddLifeEvent(props) {
                         multiline={true}
                         onChangeText={(text) => setTitle(text)}
                         value={title}
+                        testID='titleInput'
                     />
 
             <View style={styles.dateContainer}>
@@ -497,24 +498,24 @@ export default function AddLifeEvent(props) {
           <View style={storyStyles.moodModules}>
                   
                     <TouchableOpacity style={happyMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isHappy}>
-                    <Image source={require('../../assets/emojiHappy.png')} style={storyStyles.moodFaces} />
+                    <Image testID='happy' source={require('../../assets/emojiHappy.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Happy</Text>
 
                     </TouchableOpacity>
                     
 
                     <TouchableOpacity style={sadMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isSad}>
-                    <Image source={require('../../assets/sadEmoji2.png')} style={storyStyles.moodFaces} />
+                    <Image testID='sad' source={require('../../assets/sadEmoji2.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Sad</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={confusedMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isConfused}>
-                    <Image source={require('../../assets/emojiConfused.png')} style={storyStyles.moodFaces} />
+                    <Image testID='confused' source={require('../../assets/emojiConfused.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Confused</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity style={angryMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isAngry} >
-                     <Image source={require('../../assets/emojiAngry.png')} style={storyStyles.moodFaces} />
+                     <Image testID='angry' source={require('../../assets/emojiAngry.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Angry</Text>
                     </TouchableOpacity>
 
@@ -530,6 +531,7 @@ export default function AddLifeEvent(props) {
                         multiline={true}
                         onChangeText={(text) => setStoryEntry(text)}
                         value={storyEntry}
+                        testID='storyInput'
                     />
 
                 
@@ -589,7 +591,7 @@ export default function AddLifeEvent(props) {
                     
                         
                     <View style={storyStyles.submitView}>
-                        <TouchableOpacity style={storyStyles.submitButton} onPress={validateInput} accessibilityLabel='Submit Button'  >
+                        <TouchableOpacity style={storyStyles.submitButton} onPress={validateInput} accessibilityLabel='Submit Button' testID='buttonSubmit'  >
                             <Text style={storyStyles.submitText}>Submit</Text>
                         </TouchableOpacity>
                     </View>

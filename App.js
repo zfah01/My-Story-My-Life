@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LogBox } from 'react-native';
 import Welcome from './screens/Login/Welcome';
 import OnboardingScreen from './screens/Login/OnboardingScreen';
 import {auth, db} from './firebase/firebase';
@@ -14,8 +14,7 @@ export default function App() {
 
     //Initiate States
     const [user, setUser] = useState(null);
-    const [isFirstLaunch, setIsFirstLaunch] = useState(null);
-    let routeName = "Onboarding";
+  
 
    //If user is logged in then their data is saved to the state to be used throughout the application 
     useEffect(() => {
@@ -35,6 +34,8 @@ export default function App() {
             }
         });
     }, []);
+
+    LogBox.ignoreAllLogs();
     
 
     //Log out function to log user out of their account
@@ -50,25 +51,7 @@ export default function App() {
         });
     };
 
-    //Checks to see if it is the first time that a user is launching the app
-    useEffect(() => {
-		AsyncStorage.getItem("alreadyLaunched").then((value) => {
-			if (value == null) {
-				AsyncStorage.setItem("alreadyLaunched", "true");
-				setIsFirstLaunch(true);
-			} else {
-				setIsFirstLaunch(false);
-			}
-		});
-	}, []);
-
-	if (isFirstLaunch === null) {
-		return null;
-	} else if (isFirstLaunch === true) {
-		routeName = "Onboarding";
-	} else {
-		routeName = "Welcome";
-	}
+   
 
     //User is taken to the application if they exist else they are taken to Welcome Page 
     return (

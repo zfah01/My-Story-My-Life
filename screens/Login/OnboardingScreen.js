@@ -63,7 +63,7 @@ function OnboardingScreen({ navigation }) {
 						/>
 					),
 					title: "Easy to find timeline",
-					subtitle: "View your stories",
+					subtitle: "View your life stories",
 				},
 				{
 					backgroundColor: "#fff",

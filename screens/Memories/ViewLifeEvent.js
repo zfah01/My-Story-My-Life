@@ -4,7 +4,6 @@ import { storyStyles } from './Styles';
 import { db, st}from '../../firebase/firebase';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
-import { inMemoryPersistence } from "firebase/auth";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { Video, Audio } from 'expo-av';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -105,7 +104,7 @@ export default function ViewLifeEvent(props) {
     
 
     return (
-      <>
+      <View style={styles.mainBody}>
       <SafeAreaView> 
     <Text style={styles.date}>Date of Event: {eventDate} </Text>
     </SafeAreaView>
@@ -211,7 +210,7 @@ export default function ViewLifeEvent(props) {
             
         </ScrollView>
     </View>
-    </>
+    </View>
     );
 }
 
@@ -286,6 +285,13 @@ const styles = StyleSheet.create({
       marginTop: Platform.OS== "android" ? 40 : null,
       textAlign: 'center',
   
+      
+    },
+    mainBody: {
+      backgroundColor: '#AFEEEE',
+      width: "100%",
+      height: "100%",
+      
       
     },
     memoryButton: {

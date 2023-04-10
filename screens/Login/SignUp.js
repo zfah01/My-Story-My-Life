@@ -5,6 +5,7 @@ import { styles } from './Styles';
 import { auth, db }from '../../firebase/firebase';
 
 
+
 // Checks if an uppercase, lowercase, number, special character is contained in the password 
 export const passwordValid = (str) => {
     const passwordStrong = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
@@ -48,9 +49,9 @@ export default function SignUp({ navigation }) {
             alert('Please check your passwords are entered correctly as they dont match.');
             return;
         }
-        // Use createUserWithEmailAndPassword API to create a new  n
-        auth
-            .createUserWithEmailAndPassword(email, password)
+        // Use createUserWithEmailAndPassword API to create a new account 
+        auth.
+            createUserWithEmailAndPassword(email, password)
             .then((response) => {
                 const uid = response.user.uid;
                 const data = {
@@ -84,7 +85,7 @@ export default function SignUp({ navigation }) {
 
    
         return (
-                <>
+                <View style={{backgroundColor: '#AFEEEE', width: '100%', height: '100%'}}>
                 <View style={styles.intro}>
                 <Text style={styles.heading}>Welcome to My Story, My Life</Text>
                 <Text>Register for an account below:</Text>
@@ -99,6 +100,7 @@ export default function SignUp({ navigation }) {
                             onChangeText={(textName) => setName(textName)}
                             value={name}
                             autoCapitalize='none'
+                            testID='inputName'
                              />
 
                         <TextInput
@@ -108,6 +110,7 @@ export default function SignUp({ navigation }) {
                             onChangeText={(textEmail) => setEmail(textEmail)}
                             value={email}
                             autoCapitalize='none'
+                            testID='inputEmail'
                              />
 
                         <TextInput
@@ -118,6 +121,7 @@ export default function SignUp({ navigation }) {
                             onChangeText={(textPass) => setPassword(textPass)}
                             value={password}
                             autoCapitalize='none'
+                            testID='inputPassword'
                            />
 
                         <TextInput
@@ -128,6 +132,7 @@ export default function SignUp({ navigation }) {
                             onChangeText={(textPass) => setConfirmPassword(textPass)}
                             value={confirmPassword}
                             autoCapitalize='none'
+                            testID='inputConfirmPassword'
                              />
 
                         <Text style={passwordCheck ? [styles.passwordGuidelines, { color: 'red' }] : styles.passwordGuidelines}>Password must be 8 or more characters and contain an upper case letter, numbers and a special character {'(#?!@$%^&*-)'}. </Text>
@@ -135,16 +140,17 @@ export default function SignUp({ navigation }) {
                         <TouchableOpacity
                             style={styles.buttonLogin}
                             onPress={() => RegisterToApp()}
+                            testID='signUpButton'
                             accessibilityLabel='Create Account Button'>
                             <Text style={styles.loginText}> Create Account </Text>
                         </TouchableOpacity>
 
                         <View style={styles.footer}>
-                            <Text style={styles.accountText}> Already have an account? <Text onPress={() => navigation.navigate('Welcome')} style={styles.createAccountLink}> Log In</Text> </Text>
+                            <Text style={styles.accountText}> Already have an account? <Text testID='loginLink'onPress={() => navigation.navigate('Welcome')} style={styles.createLink}> Log In</Text> </Text>
                         </View>
                     </View>
                 </ScrollView>
-                </>
+                </View>
         );
     
 }

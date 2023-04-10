@@ -1,6 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-// Function used to store height of device being used for responsive design on the homescreen.
 const height = Dimensions.get('window').height;
 
 export const styles = StyleSheet.create({

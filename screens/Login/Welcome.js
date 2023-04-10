@@ -50,8 +50,8 @@ export default function Welcome({ navigation }) {
             return;
          }
          
-        auth
-            .signInWithEmailAndPassword(email, password)
+        auth.
+        signInWithEmailAndPassword(email, password)
             .then((response) => {
                 const uid = response.user.uid;
                 const usersRef = db.collection('users');
@@ -84,7 +84,7 @@ export default function Welcome({ navigation }) {
         );
     } else {
         return (
-                <>
+                <View style={{backgroundColor: '#AFEEEE', width: '100%', height: '100%'}}>
                 <View style={styles.intro}>
                 <Text style={styles.heading}>Welcome to My Story, My Life</Text>
                 <Text>Log into your account below:</Text>
@@ -99,7 +99,7 @@ export default function Welcome({ navigation }) {
                             onChangeText={(textEmail) => setEmail(textEmail)}
                             value={email}
                             autoCapitalize='none'
-                            testID='emailInput' />
+                            testID='inputEmail' />
 
                         <TextInput
                             style={styles.textInput}
@@ -109,22 +109,22 @@ export default function Welcome({ navigation }) {
                             onChangeText={(textPass) => setPassword(textPass)}
                             value={password}
                             autoCapitalize='none'
-                            testID='passwordInput' />
+                            testID='inputPassword' />
 
                         <TouchableOpacity
                             style={styles.buttonLogin}
                             onPress={() => onLoginPress()}
-                            testID='loginButton'
+                            testID='buttonLogin'
                             accessibilityLabel='Log In button'>
                             <Text style={styles.loginText}> Log In </Text>
                         </TouchableOpacity>
 
                         <View style={styles.footer}>
-                            <Text style={styles.accountText}>Don&apos;t have an account yet?<Text onPress={() => navigation.navigate('SignUp')} style={styles.createLink}> Sign up</Text> </Text>
+                            <Text style={styles.accountText}>Don&apos;t have an account yet?<Text testID='signUpLink' onPress={() => navigation.navigate('SignUp')} style={styles.createLink}> Sign up</Text> </Text>
                         </View>
                     </View>
                 </ScrollView>
-                </>
+                </View>
         );
     }
 }

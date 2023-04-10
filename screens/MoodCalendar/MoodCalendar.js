@@ -18,6 +18,7 @@ export default function MoodCalendar(props) {
     
     //Prop for userID
     const userID = props.extraData.id;
+    const entryID = props.currentEntryID;
 
    //Create arrays for each component in life stories 
     const allDates = [];
@@ -48,13 +49,13 @@ export default function MoodCalendar(props) {
                 querySnapshot => {
                     const newData = [];
                     querySnapshot.forEach(doc => {
-                        const userData = doc.data();
-                        const reference = ref(st, `/${userData.voice}`);
+                        const memory = doc.data();
+                        const reference = ref(st, `/${memory.voice}`);
                         getDownloadURL(reference).then((x) => {
                           setVoice(x);
                         });
-                        userData.id = doc.id;
-                        newData.push(userData);
+                        memory.id = doc.id;
+                        newData.push(memory);
                     });
                     setAllData(newData);
                 },
@@ -326,7 +327,7 @@ export default function MoodCalendar(props) {
               <><View style={styles.mainView}>
                       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             <View style={styles.keyContainer} >
-                                <Text  style={styles.keyTitle}>Mood Key:</Text>
+                                <Text testID='calendarKeyID' style={styles.keyTitle}>Mood Key:</Text>
                                 <View style={styles.keyContainer2}>
                                     <View style={[styles.moodContainer, { marginRight: 10 }]}>
                                         <Text style={styles.moodText}>Happy:</Text>
@@ -359,8 +360,10 @@ export default function MoodCalendar(props) {
                   minDate={'1950-01-01'}
                   enableSwipeMonths={true}
                   markedDates={allDatesObject}
-
+                  testID='idMoodCalendar'
                   onDayPress={(day) => displayMemory(day)} />
+                  
+                  
 
                
               </ScrollView>

@@ -21,7 +21,7 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 // Use these for db & auth
-const db = firebaseApp.firestore();
+const db = firebaseApp.firestore(); 
 const auth = firebase.auth();
 const st = firebase.storage();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();

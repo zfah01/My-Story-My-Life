@@ -13,13 +13,13 @@ export default function Help(props){
     const returnContacts = props.closeHelp;
 
     return(
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor: '#AFEEEE', width: '100%', height: '100%'}}>
         <TouchableOpacity  onPress={returnContacts} >
         <Text style={[styles.buttonText, { color: '#448aff' }]}> {'>'} Back to Contacts</Text>
     </TouchableOpacity>
 
     <View style={styles.contentContainer}>
-           <Text style={styles.blurb}>Find out how you can get further help once you leave care</Text>
+           <Text style={styles.blurb}>Find out how you could get help!</Text>
         </View>
 
 
