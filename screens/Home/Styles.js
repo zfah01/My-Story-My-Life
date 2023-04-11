@@ -21,10 +21,11 @@ export const  styles = StyleSheet.create({
         paddingTop: 4,
     },
     homeTitle: {
-        paddingTop: 5,
+        paddingTop: 20,
         paddingLeft: 5,
         paddingRight: 20,
-        textAlign: 'left',
+        textAlign: 'center',
+        marginLeft: Platform.OS === "ios" ? null :  10,
         fontSize: 22,
         fontWeight: 'bold',
         color: '#000000',
@@ -42,6 +43,7 @@ export const  styles = StyleSheet.create({
         alignSelf: 'center',
         height: 400,
         width: 200,
+        marginTop: 10,
         resizeMode: 'contain',
     },
     treeBody: {
@@ -94,6 +96,7 @@ export const  styles = StyleSheet.create({
     treeHeader: {
         fontSize: 17,
         fontStyle: 'italic',
+        fontWeight: 'bold',
         
     },
     actHeader: {
@@ -121,6 +124,19 @@ export const  styles = StyleSheet.create({
         width: '88%',
         height: Platform.OS == "ios" ? '65%' : '88%',
         backgroundColor: '#FFF', 
+        margin:28,
+        shadowColor:'#3E4985',
+        shadowRadius:10,
+        shadowOffset:10,
+        borderRadius:10,
+        padding:20,
+        alignItems:'center',
+        shadowColor:'#000',
+      },
+      modalViewTree:{
+        width: '88%',
+        height: Platform.OS == "ios" ? '65%' : '88%',
+        backgroundColor: '#87CEEB', 
         margin:28,
         shadowColor:'#3E4985',
         shadowRadius:10,
@@ -215,14 +231,22 @@ export const  styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 150,
+    },
+    modals2: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        
     },
     pic: {
         position: 'absolute',
-        margin: 60,
-        marginLeft: 54,
-        width: 60,
-        height: 60,
-        borderRadius: 40,
+        margin: 62,
+        marginLeft:  Platform.OS == "ios" ? 140 : 130,
+        marginBottom: 50,
+        width: 160,
+        height: 160,
+        borderRadius: 90,
 
     },
     AimHeader :{

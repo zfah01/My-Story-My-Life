@@ -4,10 +4,17 @@ import { StyleSheet, Platform } from 'react-native';
 export const styles = StyleSheet.create({
   mainView: {
         margin: 20,
-        padding: 10,
+        padding: Platform.OS === "ios" ? 10  : null,
         backgroundColor: '#FFFFFF',
         borderRadius: 25,
     },
+    mainView1: {
+      margin: Platform.OS === "ios" ? 20  : 15,
+      padding: 10,
+      marginTop:Platform.OS === "ios" ? null  : -18,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 25,
+  },
     moodTitle: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -34,8 +41,9 @@ export const styles = StyleSheet.create({
     },
     moodBackground: {
         borderRadius: 21,
-        width: 20,
-        height: 20,
+        width: 15,
+        marginTop: Platform.OS === "ios" ? 4 : 8,
+        height: 15,
     },
     moodContainer: {
         flexDirection: 'row',
@@ -45,12 +53,13 @@ export const styles = StyleSheet.create({
     touchableMod: {
         backgroundColor: '#00e676',
         margin: Platform.OS === "ios" ? 20 : null,
+        marginTop: -8,
         padding: 10,
-        width: Platform.OS === "ios" ? 200 : 300,
+        width: Platform.OS === "ios" ? 300 : 300,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
-        height: Platform.OS === "ios" ? 80 : 62,
+        height: Platform.OS === "ios" ? 50 : 62,
         //backgroundColor: '#FFFFFF',
         borderRadius: 25,
         shadowColor: 'rgba(0,0,0, .4)', // IOS
@@ -70,10 +79,16 @@ export const styles = StyleSheet.create({
     },
     keyContainer2: {
         flexDirection: 'row',
-        marginLeft: 20,
+        marginRight: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
+    keyContainer3: {
+      flexDirection: 'row',
+      marginLeft: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
     popupTitle: {
         fontSize: 16,
         textAlign: 'center',

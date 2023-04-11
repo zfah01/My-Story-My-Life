@@ -56,6 +56,7 @@
     "react-native-datepicker-expo": "^1.7.3",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-get-random-values": "^1.8.0",
+    "react-native-image-modal": "^1.0.16",
     "react-native-image-picker": "^5.0.2",
     "react-native-loading-spinner-overlay": "^3.0.1",
     "react-native-onboarding-swiper": "^1.2.0",

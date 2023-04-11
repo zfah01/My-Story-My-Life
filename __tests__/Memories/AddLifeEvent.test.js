@@ -32,11 +32,17 @@ describe('Check that the add new life event is rendered and elements are display
     const renderConfused = getByTestId('confused');
     const renderSad = getByTestId('sad');
     const renderAngry = getByTestId('angry');
+    const renderLoved = getByTestId('loved');
+    const renderScared = getByTestId('scared');
+    const renderFunny = getByTestId('funny');
 
     expect(renderHappy.type).toBe('Image');
     expect(renderConfused.type).toBe('Image');
     expect(renderSad.type).toBe('Image');
     expect(renderAngry.type).toBe('Image');
+    expect(renderLoved.type).toBe('Image');
+    expect(renderScared.type).toBe('Image');
+    expect(renderFunny.type).toBe('Image');
     
   });
 

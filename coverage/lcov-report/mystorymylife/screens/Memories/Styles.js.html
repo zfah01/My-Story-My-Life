@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -243,9 +243,17 @@
 <a name='L178'></a><a href='#L178'>178</a>
 <a name='L179'></a><a href='#L179'>179</a>
 <a name='L180'></a><a href='#L180'>180</a>
-<a name='L181'></a><a href='#L181'>181</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -385,9 +393,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -425,7 +441,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { StyleSheet, Dimensions, Platform } from 'react-native';
 &nbsp;
-const storyStyles = StyleSheet.create({
+const storyStyles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
     mainContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -446,13 +462,14 @@ const storyStyles = StyleSheet.create({
     date: {
         fontSize: 16,
         marginTop: 20,
-        marginBottom: Platform.OS === "ios" ? null : <span class="branch-1 cbranch-no" title="branch not covered" >-10,</span>
+        marginBottom: Platform.OS === "ios" ? null : -10,
         fontWeight: 'bold',
         color: '#000000',
         textAlign: 'center',
     },
     moodModules: {
         flexDirection: 'row',
+        marginLeft: -4,
         paddingBottom: 50,
     },
     moodNotSelected: {
@@ -466,7 +483,7 @@ const storyStyles = StyleSheet.create({
     },
     moodPicked: {
        
-      marginLeft: Platform.OS === "ios" ? 320 : <span class="branch-1 cbranch-no" title="branch not covered" >310</span>
+      marginLeft: Platform.OS === "ios" ? 320 : 310
       },
     moodChosenFaces: {
        height: 45,
@@ -490,8 +507,15 @@ const storyStyles = StyleSheet.create({
     },
     moodFaces: {
         marginTop: 10,
-        height: 50,
-        width: 66,
+        height: 30,
+        width: 35,
+        alignItems: 'center',
+    },
+    moodConfused: {
+        marginTop: 10,
+        marginLeft: 10,
+        height: 30,
+        width: 35,
         alignItems: 'center',
     },
     storyEntry: {
@@ -520,10 +544,10 @@ const storyStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        paddingTop: Platform.OS === "ios" ? 20 : <span class="branch-1 cbranch-no" title="branch not covered" >5,</span>
+        paddingTop: Platform.OS === "ios" ? 20 : 5,
     },
     submitButton: {
-        padding: Platform.OS === "ios" ? 15 : <span class="branch-1 cbranch-no" title="branch not covered" >10,</span>
+        padding: Platform.OS === "ios" ? 15 : 10,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#00e676',
@@ -565,9 +589,9 @@ const storyStyles = StyleSheet.create({
 &nbsp;
 &nbsp;
 &nbsp;
-const height = Dimensions.get('window').height;
+const height = <span class="cstat-no" title="statement not covered" >Dimensions.get('window').height;</span>
 &nbsp;
-const timelineStyles = StyleSheet.create({
+const timelineStyles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
     timelineContainer: {
         margin: 20,
         padding: 10,
@@ -610,7 +634,7 @@ export { timelineStyles, storyStyles };</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-28T23:12:32.475Z
+                at 2023-04-10T23:51:13.652Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

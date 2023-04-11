@@ -21,6 +21,9 @@ export default function AddLifeEvent(props) {
     const [angryMood, setAngryMood] = useState(false);
     const [sadMood, setSadMood] = useState(false);
     const [confusedMood, setConfusedMood] = useState(false);
+    const [lovedMood, setLovedMood] = useState(false);
+    const [scaredMood, setScaredMood] = useState(false);
+    const [funnyMood, setFunnyMood] = useState(false);
 
     const [title, setTitle] = useState('');
     const [storyEntry, setStoryEntry] = useState('');
@@ -342,7 +345,7 @@ export default function AddLifeEvent(props) {
     if(title == '') {
       emptyvals.push('a title')
     }
-    if(confusedMood == false && happyMood == false  && sadMood == false  && angryMood == false) {
+    if(confusedMood == false && happyMood == false  && sadMood == false  && angryMood == false && lovedMood == false && scaredMood == false && funnyMood == false) {
       emptyvals.push('a mood')
     }
      if(storyEntry == '') {
@@ -401,6 +404,9 @@ export default function AddLifeEvent(props) {
                     setRecording(null);
                     setSadMood(false);
                     setConfusedMood(false);
+                    setLovedMood(false);
+                    setScaredMood(false);
+                    setFunnyMood(false);
                     setHappyMood(false);
            
 
@@ -419,10 +425,13 @@ export default function AddLifeEvent(props) {
     //Sets entry mood to Angry
     const isAngry = () => {
         if (!angryMood) {
-            setAngryMood(true);
-            setSadMood(false);
-            setConfusedMood(false);
-            setHappyMood(false);
+          setAngryMood(true);
+          setSadMood(false);
+          setConfusedMood(false);
+          setHappyMood(false);
+          setLovedMood(false);
+          setScaredMood(false);
+          setFunnyMood(false);
             setMoodChosen('Angry');
         }
     };
@@ -430,10 +439,13 @@ export default function AddLifeEvent(props) {
     //Sets entry mood to Sad
     const isSad = () => {
         if (!sadMood) {
-            setAngryMood(false);
-            setSadMood(true);
-            setConfusedMood(false);
-            setHappyMood(false);
+          setAngryMood(false);
+          setSadMood(true);
+          setConfusedMood(false);
+          setHappyMood(false);
+          setLovedMood(false);
+          setScaredMood(false);
+          setFunnyMood(false);
             setMoodChosen('Sad');
         }
     };
@@ -441,10 +453,13 @@ export default function AddLifeEvent(props) {
     //Sets entry mood to Confused
     const isConfused = () => {
         if (!confusedMood) {
-            setAngryMood(false);
-            setSadMood(false);
-            setConfusedMood(true);
-            setHappyMood(false);
+          setAngryMood(false);
+          setSadMood(false);
+          setConfusedMood(true);
+          setHappyMood(false);
+          setLovedMood(false);
+          setScaredMood(false);
+          setFunnyMood(false);
             setMoodChosen('Confused');
         }
     };
@@ -452,13 +467,55 @@ export default function AddLifeEvent(props) {
     //Sets entry mood to Happy
     const isHappy = () => {
         if (!happyMood) {
-            setAngryMood(false);
-            setSadMood(false);
-            setConfusedMood(false);
-            setHappyMood(true);
+          setAngryMood(false);
+          setSadMood(false);
+          setConfusedMood(false);
+          setHappyMood(true);
+          setLovedMood(false);
+          setScaredMood(false);
+          setFunnyMood(false);
             setMoodChosen('Happy');
         }
     };
+
+    const isLoved= () => {
+      if (!lovedMood) {
+          setAngryMood(false);
+          setSadMood(false);
+          setConfusedMood(false);
+          setHappyMood(false);
+          setLovedMood(true);
+          setScaredMood(false);
+          setFunnyMood(false);
+          setMoodChosen('Loved');
+      }
+  };
+
+  const isScared = () => {
+    if (!scaredMood) {
+      setAngryMood(false);
+      setSadMood(false);
+      setConfusedMood(false);
+      setHappyMood(false);
+      setLovedMood(false);
+      setScaredMood(true);
+      setFunnyMood(false);
+      setMoodChosen('Scared');
+    }
+};
+
+const isFunny = () => {
+  if (!funnyMood) {
+    setAngryMood(false);
+    setSadMood(false);
+    setConfusedMood(false);
+    setHappyMood(false);
+    setLovedMood(false);
+    setScaredMood(false);
+    setFunnyMood(true);
+    setMoodChosen('Funny');
+  }
+};
 
     return (
         <View style={storyStyles.mainContainer}>
@@ -510,13 +567,28 @@ export default function AddLifeEvent(props) {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={confusedMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isConfused}>
-                    <Image testID='confused' source={require('../../assets/emojiConfused.png')} style={storyStyles.moodFaces} />
+                    <Image testID='confused' source={require('../../assets/emojiConfused.png')} style={storyStyles.moodConfused} />
                         <Text style={styles.emojiLabels}>Confused</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity style={angryMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isAngry} >
                      <Image testID='angry' source={require('../../assets/emojiAngry.png')} style={storyStyles.moodFaces} />
                         <Text style={styles.emojiLabels}>Angry</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={lovedMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isLoved} >
+                     <Image testID='loved' source={require('../../assets/lovedEmoji.png')} style={storyStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Loved</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={scaredMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isScared} >
+                     <Image testID='scared' source={require('../../assets/scared.png')} style={storyStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Scared</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={funnyMood ? storyStyles.moodSelected : storyStyles.moodNotSelected} onPress={isFunny} >
+                     <Image testID='funny' source={require('../../assets/funny.png')} style={storyStyles.moodFaces} />
+                        <Text style={styles.emojiLabels}>Funny</Text>
                     </TouchableOpacity>
 
                     
@@ -720,6 +792,7 @@ const styles=StyleSheet.create({
       }, 
       emojiLabels: {
         textAlign: 'center',
+        fontSize: 10,
         marginTop: 5,
       },
       

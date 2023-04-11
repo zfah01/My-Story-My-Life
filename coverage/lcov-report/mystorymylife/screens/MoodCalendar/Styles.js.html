@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -348,10 +348,26 @@
 <a name='L283'></a><a href='#L283'>283</a>
 <a name='L284'></a><a href='#L284'>284</a>
 <a name='L285'></a><a href='#L285'>285</a>
-<a name='L286'></a><a href='#L286'>286</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L286'></a><a href='#L286'>286</a>
+<a name='L287'></a><a href='#L287'>287</a>
+<a name='L288'></a><a href='#L288'>288</a>
+<a name='L289'></a><a href='#L289'>289</a>
+<a name='L290'></a><a href='#L290'>290</a>
+<a name='L291'></a><a href='#L291'>291</a>
+<a name='L292'></a><a href='#L292'>292</a>
+<a name='L293'></a><a href='#L293'>293</a>
+<a name='L294'></a><a href='#L294'>294</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -636,7 +652,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { StyleSheet, Platform } from 'react-native';
 &nbsp;
 &nbsp;
-export const styles = StyleSheet.create({
+export const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
   mainView: {
         margin: 20,
         padding: 10,
@@ -669,8 +685,9 @@ export const styles = StyleSheet.create({
     },
     moodBackground: {
         borderRadius: 21,
-        width: 20,
-        height: 20,
+        width: 15,
+        marginTop: 4,
+        height: 15,
     },
     moodContainer: {
         flexDirection: 'row',
@@ -679,13 +696,14 @@ export const styles = StyleSheet.create({
 &nbsp;
     touchableMod: {
         backgroundColor: '#00e676',
-        margin: Platform.OS === "ios" ? 20 : <span class="branch-1 cbranch-no" title="branch not covered" >null,</span>
+        margin: Platform.OS === "ios" ? 20 : null,
+        marginTop: -8,
         padding: 10,
-        width: Platform.OS === "ios" ? 200 : <span class="branch-1 cbranch-no" title="branch not covered" >300,</span>
+        width: Platform.OS === "ios" ? 300 : 300,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
-        height: Platform.OS === "ios" ? 80 : <span class="branch-1 cbranch-no" title="branch not covered" >62,</span>
+        height: Platform.OS === "ios" ? 50 : 62,
         //backgroundColor: '#FFFFFF',
         borderRadius: 25,
         shadowColor: 'rgba(0,0,0, .4)', // IOS
@@ -705,10 +723,16 @@ export const styles = StyleSheet.create({
     },
     keyContainer2: {
         flexDirection: 'row',
-        marginLeft: 20,
+        marginRight: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
+    keyContainer3: {
+      flexDirection: 'row',
+      marginLeft: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
     popupTitle: {
         fontSize: 16,
         textAlign: 'center',
@@ -925,7 +949,7 @@ export const styles = StyleSheet.create({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-28T23:12:32.475Z
+                at 2023-04-10T23:51:13.652Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

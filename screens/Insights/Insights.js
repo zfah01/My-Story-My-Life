@@ -17,6 +17,9 @@ export default function Insights(props){
     let [isSad, setIsSad] = useState();
     let [isConfused, setIsConfused] = useState();
     let [isAngry, setIsAngry] = useState();
+    let [isLoved, setIsLoved] = useState();
+    let [isScared, setIsScared] = useState();
+    let [isFunny, setIsFunny] = useState();
     let [isLoading, setIsLoading] = useState(true);
 
     //Get Current Month
@@ -25,6 +28,9 @@ export default function Insights(props){
     let countSad = 0;
     let countConfused = 0;
     let countAngry = 0;
+    let countLoved = 0;
+    let countScared = 0;
+    let countFunny = 0;
 
     // The life event is selected where the user ID matches the idUser and monthLog timestamp matches the current month
     // Mood counter is incremented when user selects mood, used to show monthly insights
@@ -53,12 +59,27 @@ export default function Insights(props){
                       if (memory.moodSelected === 'Angry') {
                           countAngry++;
                       }
+
+                      if (memory.moodSelected === 'Loved') {
+                        countLoved++;
+                    }
+
+                    if (memory.moodSelected === 'Scared') {
+                        countScared++;
+                    }
+
+                    if (memory.moodSelected === 'Funny') {
+                        countFunny++;
+                    }
                         
                     });
                     setIsHappy(countHappy);
                     setIsSad(countSad);
                     setIsConfused(countConfused);
                     setIsAngry(countAngry);
+                    setIsLoved(countLoved);
+                    setIsScared(countScared);
+                    setIsFunny(countFunny);
                     setIsLoading(false);
                 },
               
@@ -88,7 +109,7 @@ export default function Insights(props){
                         <TouchableOpacity  onPress={returnCalendar} >
                     <Text style={[styles.buttonText, { color: '#448aff' }]}> {'>'} Back to Calendar</Text>
                 </TouchableOpacity>
-                        <Text style={styles.trackerTitle}>Mood Tracker</Text>
+                        <Text style={styles.headingTracker}>Mood Tracker</Text>
 
                         <View style={{ borderRadius: 30, paddingBottom: 50, alignSelf: "center", alignItems: "center", alignContent: "center", backgroundColor: "#243E36", marginTop: 20 }}>
                             <Text style={{ marginTop: 35, fontSize: 16, color: colors.white, }}>As of:</Text>
@@ -196,14 +217,17 @@ export default function Insights(props){
 
                             <LineChart
                                 data={{
-                                    labels: ["😄", "😕", "😢","😡"],
+                                    labels: ["😄", "😕", "😢","😡", "😍", "😖", "😂"],
                                     datasets: [
                                         {
                                             data: [
                                                 isHappy,
                                                 isConfused,
                                                 isSad,
-                                                isAngry
+                                                isAngry,
+                                                isLoved,
+                                                isScared,
+                                                isFunny
                                             ]
                                         }
                                     ],
@@ -244,57 +268,93 @@ export default function Insights(props){
                                 if (Math.max(isHappy, isSad, isConfused, isAngry) == 0) {
                                     return (
                                         <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                            <Text style={styles.title}>Your mood tracker is empty.</Text>
+                                            <Text style={styles.heading}>Your mood tracker is empty.</Text>
 
                                         </View>
                                     )
                                 }
                                 else {
-                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isHappy) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry, isLoved, isScared, isFunny) == isHappy) {
                                         return (
 
 
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You have recorded many happy events this month!</Text>
-                                                <Text style={styles.title}>Check this out to maintain your happiness:</Text>
+                                                <Text style={styles.heading}>You have recorded many happy events this month!</Text>
+                                                <Text style={styles.heading}>Check this out to maintain your happiness:</Text>
                                                 <LinkPreview style={{ color: colors.blue }} text='https://www.healthshots.com/mind/happiness-hacks/become-a-happier-you-by-including-these-8-activities-in-your-daily-routine/' />
                                             </View>
 
                                         )
                                     }
 
-                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isSad) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry, isLoved, isScared, isFunny) == isSad) {
                                         return (
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You have logged in many sad events this month. Find something fun to do!</Text>
-                                                <Text style={styles.title}>OR</Text>
-                                                <Text style={styles.title}>Check this out:</Text>
+                                                <Text style={styles.heading}>You have logged in many sad events this month. Find something fun to do!</Text>
+                                                <Text style={styles.heading}>OR</Text>
+                                                <Text style={styles.heading}>Check this out:</Text>
                                                 <LinkPreview style={{ color: colors.blue }} text='https://www.nhs.uk/mental-health/self-help/tips-and-support/how-to-be-happier/#:~:text=Simple%20activities%20like%20watching%20sports,have%20a%20sense%20of%20achievement.' />
                                             </View>
                                         )
                                     }
 
-                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isConfused) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry, isLoved, isScared, isFunny) == isConfused) {
                                         return (
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You went through a lot of uncertainty this month. Why not do something fun?</Text>
-                                                <Text style={styles.title}>OR</Text>
-                                                <Text style={styles.title}>Learn to be happier:</Text>
+                                                <Text style={styles.heading}>You went through a lot of uncertainty this month. Why not do something fun?</Text>
+                                                <Text style={styles.heading}>OR</Text>
+                                                <Text style={styles.heading}>Learn to be happier:</Text>
                                                 <LinkPreview style={{ color: colors.blue }} text='https://www.lifehack.org/articles/money/30-absolutely-free-activities-that-can-make-you-happy-today.html' />
                                             </View>
                                         )
                                     }
 
-                                    if (Math.max(isHappy, isSad, isConfused, isAngry) == isAngry) {
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry, isLoved, isScared, isFunny) == isAngry) {
                                         return (
                                             <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
-                                                <Text style={styles.title}>You have recorded many events this month that make you angry. Learn to overcome your anger.</Text>
-                                                <Text style={styles.title}>OR</Text>
-                                                <Text style={styles.title}>Get some help:</Text>
+                                                <Text style={styles.heading}>You have recorded many events this month that make you angry. Learn to overcome your anger.</Text>
+                                                <Text style={styles.heading}>OR</Text>
+                                                <Text style={styles.heading}>Get some help:</Text>
                                                 <LinkPreview style={{ color: colors.blue }} text='https://www.mind.org.uk/information-support/types-of-mental-health-problems/anger/managing-outbursts/' />
                                             </View>
                                         )
                                     }
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry, isLoved, isScared, isFunny) == isLoved) {
+                                        return (
+                                            <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
+                                                <Text style={styles.heading}>You have recorded many events this month that make you feel loved. Learn to grow your love!</Text>
+                                                <Text style={styles.heading}>OR</Text>
+                                                <Text style={styles.heading}>Get some help:</Text>
+                                                <LinkPreview style={{ color: colors.blue }} text='https://psychcentral.com/blog/ways-to-love-yourself-more' />
+                                            </View>
+                                        )
+                                    }
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry, isLoved, isScared, isFunny) == isScared) {
+                                        return (
+                                            <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
+                                                <Text style={styles.heading}>You have recorded many events this month that make you feel scared. Learn to overcome your fear.</Text>
+                                                <Text style={styles.heading}>OR</Text>
+                                                <Text style={styles.heading}>Get some help:</Text>
+                                                <LinkPreview style={{ color: colors.blue }} text='https://www.nhsinform.scot/healthy-living/mental-wellbeing/fears-and-phobias/10-ways-to-fight-your-fears' />
+                                            </View>
+                                        )
+                                    }
+                                    if (Math.max(isHappy, isSad, isConfused, isAngry, isLoved, isScared, isFunny) == isFunny) {
+                                        return (
+                                            <View style={{ backgroundColor: "#FFFDFD", marginBottom: 25, borderRadius: 30, marginTop: 20, paddingBottom: 40, marginHorizontal: 10 }}>
+                                                <Text style={styles.heading}>You have recorded many events this month that you have found funny. Learn how laughter can be beneficial for you!</Text>
+                                                <Text style={styles.heading}>OR</Text>
+                                                <Text style={styles.heading}>Get some help:</Text>
+                                                <LinkPreview style={{ color: colors.blue }} text='https://www.verywellmind.com/the-stress-management-and-health-benefits-of-laughter-3145084' />
+                                            </View>
+                                        )
+                                    }
+
+                                    
+
+                                    
+
+                                    
 
 
                                 }

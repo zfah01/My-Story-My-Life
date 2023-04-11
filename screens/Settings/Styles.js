@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 const height = Dimensions.get('window').height;
 
 export const styles = StyleSheet.create({
-    mainView: {
+    settingsView: {
         marginTop: 80,
         margin: 20,
         padding: 10,
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         borderRadius: 25,
         height: height / 1.35,
     },
-    imageBox: {
+    profilePic: {
         width: 150,
         height: 150,
         borderRadius: 150,
@@ -21,18 +21,18 @@ export const styles = StyleSheet.create({
     progress: {
         alignSelf: 'center',
     },
-    mainTitle: {
+    settingTitle: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#000000',
         paddingTop: 15,
     },
-    titleText: {
+    settingSubText: {
         fontSize: 14,
         color: '#000000',
         paddingBottom: 10,
     },
-    pictureButton: {
+    settingButton: {
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -43,22 +43,22 @@ export const styles = StyleSheet.create({
         marginBottom: 5,
         marginTop: 5,
     },
-    logoutButton: {
+    buttonOut: {
         padding: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f57367',
+        backgroundColor: '#ff3333',
         borderRadius: 15,
         width: 250,
         alignSelf: 'center',
         marginTop: 10,
     },
-    backHome: {
+    homeReturn: {
         paddingTop: 10,
         paddingBottom: 10,
         alignSelf: 'flex-start',
     },
-    buttonText: {
+    settingButtonText: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 16,
@@ -68,10 +68,5 @@ export const styles = StyleSheet.create({
         paddingTop: 30,
         textAlign: 'center',
         color: '#bababa',
-    },
-    hyperLink: {
-        textDecorationLine: 'underline',
-        color: 'blue',
-        textAlign: 'center',
-    },
+    }
 });

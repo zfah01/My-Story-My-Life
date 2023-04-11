@@ -170,7 +170,7 @@ export default function MoodCalendar(props) {
             imageT:  chosenImages === [] ? false : true,
             videoT:  chosenVideos === [] ? false : true,
             audioT:  inputAudio === null ? false : true,
-            selectedColor: selectedMood === 'Happy' ? '#108206' : selectedMood === 'Confused' ? '#e38e07' : selectedMood === 'Sad' ? '#112dec' : selectedMood === 'Angry' ? '#f90505' : '#000000',
+            selectedColor: selectedMood === 'Happy' ? '#8fbc8f' : selectedMood === 'Confused' ? '#9F64B8' : selectedMood === 'Sad' ? '#0000ff' : selectedMood === 'Loved' ? '#FF647F' : selectedMood === 'Scared' ? '#dda0dd' : selectedMood === 'Funny' ? '#FEDD00' : selectedMood === 'Angry' ? '#ff0000' : '#000000',
         };
     });
 
@@ -331,26 +331,42 @@ export default function MoodCalendar(props) {
                                 <View style={styles.keyContainer2}>
                                     <View style={[styles.moodContainer, { marginRight: 10 }]}>
                                         <Text style={styles.moodText}>Happy:</Text>
-                                        <Text style={[styles.moodBackground, { backgroundColor: '#108206' }]} />
+                                        <Text style={[styles.moodBackground, { backgroundColor: '#8fbc8f' }]} />
                                     </View>
                                     <View style={[styles.moodContainer, { marginRight: 20 }]}>
                                         <Text style={styles.moodText}>Confused:</Text>
-                                        <Text style={[styles.moodBackground, { backgroundColor: '#e38e07' }]} />
+                                        <Text style={[styles.moodBackground, { backgroundColor: '#9F64B8' }]} />
                                     </View>
                                     <View style={styles.moodContainer}>
                                         <Text style={styles.moodText}> Sad: </Text>
-                                        <Text style={[styles.moodBackground, { backgroundColor: '#112dec', marginLeft: 8 }]} />
+                                        <Text style={[styles.moodBackground, { backgroundColor: '#0000ff' }]} />
                                     </View>
-                                    <View style={[styles.moodContainer, { paddingLeft: 10, paddingRight: 20 }]}>
+                                    <View style={[styles.moodContainer, { paddingLeft: 10 }]}>
                                         <Text style={styles.moodText}>Angry:</Text>
-                                        <Text style={[styles.moodBackground, { backgroundColor: '#f90505' }]} />
+                                        <Text style={[styles.moodBackground, { backgroundColor: '#ff0000' }]} />
                                     </View>
-                                </View>
+                                    </View>
+                                    <View style={styles.keyContainer3}>
+                                    <View style={[styles.moodContainer, { paddingLeft: 10}]}>
+                                        <Text style={styles.moodText}>Loved:</Text>
+                                        <Text style={[styles.moodBackground, { backgroundColor: '#FF647F' }]} />
+                                    </View>
+                                    <View style={[styles.moodContainer, { paddingLeft: 10, paddingRight: 2 }]}>
+                                        <Text style={styles.moodText}>Scared:</Text>
+                                        <Text style={[styles.moodBackground, { backgroundColor: '#dda0dd' }]} />
+                                    </View>
+                                    <View style={[styles.moodContainer, { paddingLeft: 10}]}>
+                                        <Text style={styles.moodText}>Funny:</Text>
+                                        <Text style={[styles.moodBackground, { backgroundColor: '#FEDD00' }]} />
+                                    </View>
+                                    </View>
+                                    
+                                
                             </View>
                             <Text style={styles.moodText}>If a date has been marked then a life story has been set. Press on the date to display it!</Text>
                         </View>
                 </View>
-                <View style={styles.mainView}>
+                <View style={styles.mainView1}>
 
               <ScrollView>
                 <Text style={styles.moodTitle}> Keep Track of Your Moods:  </Text>

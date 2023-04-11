@@ -739,7 +739,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      27
                     </Text>
                     <View
                       style={
@@ -810,7 +809,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      28
                     </Text>
                     <View
                       style={
@@ -1641,7 +1639,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-12"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1658,7 +1655,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      12
                     </Text>
                     <View
                       style={
@@ -1685,7 +1681,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Monday 13 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1710,7 +1705,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-13"
+
                   >
                     <Text
                       allowFontScaling={false}
@@ -1727,7 +1722,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      13
                     </Text>
                     <View
                       style={
@@ -1754,7 +1748,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Tuesday 14 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1779,7 +1772,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-14"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1796,7 +1788,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      14
                     </Text>
                     <View
                       style={
@@ -1823,7 +1814,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Wednesday 15 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1848,7 +1838,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-15"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1865,7 +1854,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      15
                     </Text>
                     <View
                       style={
@@ -1892,7 +1880,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Thursday 16 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1917,7 +1904,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-16"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1934,7 +1920,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      16
                     </Text>
                     <View
                       style={
@@ -1961,7 +1946,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Friday 17 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1986,7 +1970,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-17"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2003,7 +1986,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      17
                     </Text>
                     <View
                       style={
@@ -2030,7 +2012,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Saturday 18 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2247,7 +2228,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Tuesday 21 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2316,7 +2296,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Wednesday 22 March 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2740,8 +2719,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel="today Tuesday 28 March 2023 "
-                    accessibilityRole="button"
+
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -2760,8 +2738,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     style={
                       Object {
                         "alignItems": "center",
-                        "backgroundColor": undefined,
-                        "borderRadius": 16,
                         "height": 32,
                         "opacity": 1,
                         "width": 32,
@@ -2782,7 +2758,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                             "marginTop": 6,
                           },
                           Object {
-                            "color": "#00BBF2",
                           },
                         ]
                       }
@@ -2814,8 +2789,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Wednesday 29 March 2023 "
-                    accessibilityRole="button"
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -2977,7 +2950,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-31"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2994,7 +2966,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      31
                     </Text>
                     <View
                       style={
@@ -3021,7 +2992,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Saturday 1 April 2023 "
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -3045,7 +3015,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-04-01"
                   >
                     <Text
                       allowFontScaling={false}
@@ -3065,7 +3034,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      1
                     </Text>
                     <View
                       style={
@@ -3108,7 +3076,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
         "backgroundColor": "#00e676",
         "borderRadius": 25,
         "elevation": 2,
-        "height": 80,
         "justifyContent": "center",
         "margin": 20,
         "opacity": 1,
@@ -3120,7 +3087,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
         },
         "shadowOpacity": 1,
         "shadowRadius": 1,
-        "width": 200,
       }
     }
   >

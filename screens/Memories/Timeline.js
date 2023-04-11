@@ -132,7 +132,7 @@ export default function Timeline(props) {
 
                     </View>
                     </ScrollView>
-                    <Text style={[timelineStyles.chosenMood, { color: item.moodSelected === 'Happy' ? '#108206' : item.moodSelected === 'Confused' ? '#e38e07' : item.moodSelected === 'Sad' ? '#112dec' : '#f90505' }]}>Your mood: {item.moodSelected} </Text>
+                    <Text style={[timelineStyles.chosenMood, { color: item.moodSelected === 'Happy' ? '#8fbc8f' : item.moodSelected === 'Confused' ? '#9F64B8' : item.moodSelected === 'Loved' ? '#FF647F' : item.moodSelected === 'Scared' ? '#dda0dd' : item.moodSelected === 'Funny' ? '#FEDD00' : item.moodSelected === 'Sad' ? '#0000ff' : '#ff0000' }]}>Your mood: {item.moodSelected} </Text>
                 </TouchableOpacity>
                 } />
             </View>

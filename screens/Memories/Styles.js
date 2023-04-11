@@ -28,6 +28,7 @@ const storyStyles = StyleSheet.create({
     },
     moodModules: {
         flexDirection: 'row',
+        marginLeft: Platform.OS === "ios" ? -4 : -9,
         paddingBottom: 50,
     },
     moodNotSelected: {
@@ -61,12 +62,19 @@ const storyStyles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#00e676',
         borderRadius: 9,
-        paddingLeft: 10,
+        paddingLeft:  Platform.OS === "ios" ? 10 : 1,
     },
     moodFaces: {
         marginTop: 10,
-        height: 50,
-        width: 66,
+        height: 30,
+        width: 35,
+        alignItems: 'center',
+    },
+    moodConfused: {
+        marginTop: 10,
+        marginLeft: 10,
+        height: 30,
+        width: 35,
         alignItems: 'center',
     },
     storyEntry: {

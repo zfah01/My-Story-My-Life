@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">2.12% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/47</span>
+                <span class='fraction'>0/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/14</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">2.12% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/47</span>
+                <span class='fraction'>0/47</span>
             </div>
         
             
@@ -445,8 +445,22 @@
 <a name='L380'></a><a href='#L380'>380</a>
 <a name='L381'></a><a href='#L381'>381</a>
 <a name='L382'></a><a href='#L382'>382</a>
-<a name='L383'></a><a href='#L383'>383</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L383'></a><a href='#L383'>383</a>
+<a name='L384'></a><a href='#L384'>384</a>
+<a name='L385'></a><a href='#L385'>385</a>
+<a name='L386'></a><a href='#L386'>386</a>
+<a name='L387'></a><a href='#L387'>387</a>
+<a name='L388'></a><a href='#L388'>388</a>
+<a name='L389'></a><a href='#L389'>389</a>
+<a name='L390'></a><a href='#L390'>390</a>
+<a name='L391'></a><a href='#L391'>391</a>
+<a name='L392'></a><a href='#L392'>392</a>
+<a name='L393'></a><a href='#L393'>393</a>
+<a name='L394'></a><a href='#L394'>394</a>
+<a name='L395'></a><a href='#L395'>395</a>
+<a name='L396'></a><a href='#L396'>396</a>
+<a name='L397'></a><a href='#L397'>397</a>
+<a name='L398'></a><a href='#L398'>398</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -602,7 +616,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -622,6 +635,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -662,7 +676,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -833,7 +863,6 @@ import { storyStyles } from './Styles';
 import { db, st}from '../../firebase/firebase';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
-import { inMemoryPersistence } from "firebase/auth";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { Video, Audio } from 'expo-av';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -934,7 +963,7 @@ export default function <span class="fstat-no" title="function not covered" >Vie
     
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return (</span>
-      &lt;&gt;
+      &lt;View style={styles.mainBody}&gt;
       &lt;SafeAreaView&gt; 
     &lt;Text style={styles.date}&gt;Date of Event: {eventDate} &lt;/Text&gt;
     &lt;/SafeAreaView&gt;
@@ -957,6 +986,15 @@ export default function <span class="fstat-no" title="function not covered" >Vie
                 &lt;/View&gt;
                 &lt;View style={selectedMood === 'Angry' ? storyStyles.moodPicked : storyStyles.moodNotPicked}&gt;
                 &lt;Image source={require('../../assets/emojiAngry.png')} style={storyStyles.moodChosenFaces} /&gt;
+                &lt;/View&gt;
+                &lt;View style={selectedMood === 'Loved' ? storyStyles.moodPicked : storyStyles.moodNotPicked}&gt;
+                &lt;Image source={require('../../assets/lovedEmoji.png')} style={storyStyles.moodChosenFaces} /&gt;
+                &lt;/View&gt;
+                &lt;View style={selectedMood === 'Scared' ? storyStyles.moodPicked : storyStyles.moodNotPicked}&gt;
+                &lt;Image source={require('../../assets/scared.png')} style={storyStyles.moodChosenFaces} /&gt;
+                &lt;/View&gt;
+                &lt;View style={selectedMood === 'Funny' ? storyStyles.moodPicked : storyStyles.moodNotPicked}&gt;
+                &lt;Image source={require('../../assets/funny.png')} style={storyStyles.moodChosenFaces} /&gt;
                 &lt;/View&gt;
             &lt;/View&gt;
         
@@ -1040,11 +1078,11 @@ export default function <span class="fstat-no" title="function not covered" >Vie
             
         &lt;/ScrollView&gt;
     &lt;/View&gt;
-    &lt;/&gt;
+    &lt;/View&gt;
     );
 }
 &nbsp;
-const styles = StyleSheet.create({
+const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
     container: {
       width: "90%",
     },
@@ -1112,9 +1150,16 @@ const styles = StyleSheet.create({
       fontSize: 16,
       fontWeight: 'bold',
       color: '#000000',
-      marginTop: Platform.OS== "android" ? <span class="branch-0 cbranch-no" title="branch not covered" >40 </span>: null,
+      marginTop: Platform.OS== "android" ? 40 : null,
       textAlign: 'center',
   
+      
+    },
+    mainBody: {
+      backgroundColor: '#AFEEEE',
+      width: "100%",
+      height: "100%",
+      
       
     },
     memoryButton: {
@@ -1205,7 +1250,7 @@ const styles = StyleSheet.create({
       padding: 10,
       backgroundColor: '#FFFFFF',
       borderRadius: 25,
-      maxHeight: Platform.OS == "ios" ?'80%' : <span class="branch-1 cbranch-no" title="branch not covered" >'85%',</span>
+      maxHeight: Platform.OS == "ios" ?'80%' : '85%',
   },
 &nbsp;
   });
@@ -1216,7 +1261,7 @@ const styles = StyleSheet.create({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-28T23:12:32.475Z
+                at 2023-04-10T23:51:13.652Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

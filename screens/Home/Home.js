@@ -29,8 +29,8 @@ export default function Home(props) {
     const [past, setPast] = useState('');
     const [present, setPresent] = useState('');
     const [future, setFuture] = useState('');
-    const [dob, setDob] = useState('');
-    const [skills, setSkills] = useState('');
+    const [info, setInfo] = useState('');
+    const [status, setStatus] = useState('');
     const [tenseModal, setTenseModal] = useState(false);
     const [aboutModal, setAboutModal] = useState(false);
     const [activitiesModal, setActivitiesModal] = useState(false);
@@ -39,6 +39,7 @@ export default function Home(props) {
     const [act3Modal, setAct3Modal] = useState(false);
     const [act4Modal, setAct4Modal] = useState(false);
     const [act5Modal, setAct5Modal] = useState(false);
+    const [treeModal, setTreeModal] = useState(false);
     
 
     const[days, setDays] = useState(0);
@@ -141,11 +142,11 @@ export default function Home(props) {
 
     const onSaveAboutMe = async() => {
         
-        if ((dob && dob.length) || (skills && skills.length) > 0) {
+        if ((info && info.length) || (status && status.length) > 0) {
             const data = {
                idUser: userID,
-               dateOfBirth: dob,
-               skills: skills,
+               personalInfo: info,
+               status: status,
             };
             userDataRef
                 .add(data)
@@ -190,7 +191,7 @@ export default function Home(props) {
         
     };
 
-    //Get user's date of birth and skills from firebase 
+    //Get user's info and status from firebase 
 
     useEffect(() => {
         userDataRef
@@ -199,8 +200,8 @@ export default function Home(props) {
                 querySnapshot => {
                     querySnapshot.forEach((doc) => {
                         const userData = doc.data();
-                        setDob(userData.dateOfBirth);
-                        setSkills(userData.skills);
+                        setInfo(userData.personalInfo);
+                        setStatus(userData.status);
                         
                         
                     });
@@ -334,7 +335,7 @@ export default function Home(props) {
                         <View style={styles.heading} >
                             <Text style={styles.homeTitle}>Hello, {username}! </Text>
                             <TouchableOpacity onPress={() => setSettings(true)} >
-                                <Image style={styles.profilePic} source={{ uri: urlProfilePic }} />
+                                <Image style={styles.profilePic} source={require("../../assets/settings.png")} />
                             </TouchableOpacity>
                         </View>
                         <View>
@@ -345,12 +346,13 @@ export default function Home(props) {
                                 <Text style={styles.streakCount} > {streakStats} {numStreakDaily}</Text>
                             </TouchableOpacity>
                         </View>
+                        <Image style={styles.pic} source={{ uri: urlProfilePic}} />
                 <View style={styles.modals}>
                         <TouchableOpacity
                                 style={styles.touchableMod}
                                 onPress={() => setAboutModal(true)}>
                                     <Text style={styles.modHeader}>About Me</Text>
-                                    <Image style={styles.pic} source={{ uri: urlProfilePic}} />
+                                    
                          </TouchableOpacity>
 
                         <Modal
@@ -387,25 +389,25 @@ export default function Home(props) {
                              </View>
 
                              <View>
-                                <Text style={styles.tenseHeader}>Date of Birth</Text>
+                                <Text style={styles.tenseHeader}>Who Am I?</Text>
                                     <TextInput 
                                         style={styles.contentContainer}
-                                        placeholder='Please enter your date of birth'
+                                        placeholder='Please enter information about yourself'
                                         multiline={true}
-                                        onChangeText={(text) => setDob(text)}
-                                        value={dob}
+                                        onChangeText={(text) => setInfo(text)}
+                                        value={info}
                                     />
                                     </View>
 
                                 
                                     <View>
-                                    <Text style={styles.tenseHeader}>Skills and Hobbies</Text>
+                                    <Text style={styles.tenseHeader}>Status</Text>
                                     <TextInput 
                                         style={styles.contentContainer}
-                                        placeholder='What are your skills and hobbies?'
+                                        placeholder='Set your status'
                                         multiline={true}
-                                        onChangeText={(text) => setSkills(text)}
-                                        value={skills}
+                                        onChangeText={(text) => setStatus(text)}
+                                        value={status}
                                     />
                                     </View>
 
@@ -414,7 +416,7 @@ export default function Home(props) {
                                 <Button
                                 title='Save'
                                 //containerStyle={{width:'30%',borderRadius:30}}
-                                style={styles.modButton}
+                                style={[styles.modButton, { backgroundColor: "#FFFFFF"}]}
                                 onPress={onSaveAboutMe}
                                 
                                 />
@@ -496,12 +498,13 @@ export default function Home(props) {
                         </View>
                         </Modal>
                         </View>
+                        <View style={styles.modals2}>
                         <TouchableOpacity
-                                style={styles.touchableM}
+                                style={styles.touchableMod}
                                 onPress={() => setActivitiesModal(true)}>
-                                    <Text style={styles.modHHeader}>Activities</Text>
+                                    <Text style={styles.modHeader}>Activities</Text>
                          </TouchableOpacity>
-
+                
                         <Modal
                         animationType='fade'
                         visible={activitiesModal}
@@ -752,11 +755,45 @@ The image can be as creative or simple as you choose, once you have completed cr
                         </View>
                         </View>
                         </Modal>
+                        <TouchableOpacity
+                                style={styles.touchableMod}
+                                onPress={() => setTreeModal(true)}>
+                                    <Text style={styles.modHeader}>Tree of Growth</Text>
+                                    
+                         </TouchableOpacity>
 
-                        <View style={styles.treeBody}>
+                        <Modal
+                        animationType='fade'
+                        visible={treeModal}
+                        transparent={true}
+                        backgroundOpacity={0.5}
+                        backgroundColor={'#87CEEB'}
+                        onRequestClose={()=> setTreeModal(!treeModal)}>
+                        <View style={styles.centerView}>
+                            <View style={styles.modalViewTree}>
+                            <View style={styles.selfEnd}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setTreeModal(!treeModal);
+                            }}
+                            >
+                                <Ionicons
+                                style={{paddingRight: 270}}
+                                name='close'
+                                size={30}/>
+                            </TouchableOpacity>
+                            </View>
+                              <View style={styles.treeBody}>
                             <Text style={styles.treeHeader}>Watch your tree grow as you grow</Text>
                         <Image source={{ uri: growTree }} style={styles.tree} />
                         </View>
+                        </View>
+                        </View>
+                        </Modal>
+                        </View>
+
+
+                      
                     </View>
                 </ScrollView>
                 </SafeAreaView>

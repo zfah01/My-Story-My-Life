@@ -29,8 +29,8 @@ export default function Settings(props) {
           // The alert title
           'How to use this app?',
           // The alert message
-          'My Story, My Life is a platform that helps you to cherish your memories as well as helping you build an identity for yourself. '+
-          'Create life events and see how far you have come by watching your tree grow as you grow.',
+          'My Story, My Life is a platform where you can remember, reflect and record your life experiences.'+
+          'It is a safe and personalised digital space for you to record and visualise time periods in your life where life-forming events may have occurred. See how far you have come in your journey by watching your tree grow as you grow.',
           // brackets are required or android will giv an error message.
           [
               {
@@ -136,22 +136,22 @@ export default function Settings(props) {
 
     return (
         <View style={{backgroundColor: '#AFEEEE', width: '100%', height: '100%'}}>
-            <SafeAreaView style={styles.mainView}>
-                <TouchableOpacity style={styles.backHome} onPress={returnHome} >
-                    <Text style={[styles.buttonText, { color: '#448aff' }]}> {'>'} Return Home</Text>
+            <SafeAreaView style={styles.settingsView}>
+                <TouchableOpacity style={styles.homeReturn} onPress={returnHome} >
+                    <Text style={[styles.settingButtonText, { color: '#448aff' }]}> {'>'} Return Home</Text>
                 </TouchableOpacity>
-                <ScrollView>
-                    <Text style={styles.mainTitle}>Profile Picture:</Text>
-                    <Text style={styles.titleText}>Select a picture from your library or take a picture:</Text>
+                <ScrollView style={{marginLeft: 10}}>
+                    <Text style={styles.settingTitle}>Profile Picture:</Text>
+                    <Text style={styles.settingSubText}>Select a picture from your gallery or take a picture:</Text>
                
                     {image !== null ? (
-                        <Image source={{ uri: image }} style={styles.imageBox} />
+                        <Image source={{ uri: image }} style={styles.profilePic} />
                     ) : null}
-                    <TouchableOpacity style={styles.pictureButton} onPress={takePhotoFromCamera} >
-                        <Text style={styles.buttonText}>Take a picture</Text>
+                    <TouchableOpacity style={styles.settingButton} onPress={takePhotoFromCamera} >
+                        <Text style={styles.settingButtonText}>Take a picture</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.pictureButton} onPress={choosePhotoFromLibrary} >
-                        <Text style={styles.buttonText}>Select a profile picture</Text>
+                    <TouchableOpacity style={styles.settingButton} onPress={choosePhotoFromLibrary} >
+                        <Text style={styles.settingButtonText}>Select a profile picture</Text>
                     </TouchableOpacity>
           
                     {uploading ? (
@@ -160,21 +160,21 @@ export default function Settings(props) {
                         </View>
                     ) : (
                         <View>
-                            <TouchableOpacity style={styles.pictureButton} onPress={uploadImage} >
-                                <Text style={styles.buttonText}>Upload Image</Text>
+                            <TouchableOpacity style={styles.settingButton} onPress={uploadImage} >
+                                <Text style={styles.settingButtonText}>Upload Image</Text>
                             </TouchableOpacity>
                         </ View>
                     )}
-                       <Text style={styles.mainTitle}>How to use this app?</Text>
-                       <Text style={styles.titleText}>Learn how to use this app:</Text>
+                       <Text style={styles.settingTitle}>About</Text>
+                       <Text style={styles.titleText}>Learn how to use My Story, My Life:</Text>
 
-                      <TouchableOpacity style={styles.pictureButton} onPress={aboutApp} >
-                          <Text style={styles.buttonText}>About</Text>
+                      <TouchableOpacity style={styles.settingButton} onPress={aboutApp} >
+                          <Text style={styles.settingButtonText}>About</Text>
                       </TouchableOpacity>
-                    <Text style={styles.mainTitle}>Other Settings:</Text>
+                    <Text style={styles.settingTitle}>Other Settings:</Text>
 
-                    <TouchableOpacity style={styles.logoutButton} onPress={logout} >
-                        <Text style={styles.buttonText}>Logout</Text>
+                    <TouchableOpacity style={styles.buttonOut} onPress={logout} >
+                        <Text style={styles.settingButtonText}>Logout</Text>
                     </TouchableOpacity>
 
                     <View style={styles.footer}>
