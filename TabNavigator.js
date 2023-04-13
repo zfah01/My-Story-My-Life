@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Platform } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Import all Screens
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     addButton: {
         position: 'absolute',
         bottom: 5,
-        height: 58,
+        height: Platform.OS=== "ios" ? 58 : 60,
         width: 58,
         borderRadius: 58,
         justifyContent: 'center',

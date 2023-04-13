@@ -9,7 +9,7 @@ import {styles} from "./styles";
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Help(props){
-
+    //Prop to close Help screen 
     const returnContacts = props.closeHelp;
 
     return(

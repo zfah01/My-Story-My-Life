@@ -1,7 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test to check Sign Up page and its functions Test to check Sign Up page is rendered 1`] = `
-Array [
+<View
+  style={
+    Object {
+      "backgroundColor": "#AFEEEE",
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
   <View
     style={
       Object {
@@ -25,7 +33,7 @@ Array [
     <Text>
       Register for an account below:
     </Text>
-  </View>,
+  </View>
   <RCTScrollView>
     <View>
       <View
@@ -225,6 +233,6 @@ Array [
         </View>
       </View>
     </View>
-  </RCTScrollView>,
-]
+  </RCTScrollView>
+</View>
 `;

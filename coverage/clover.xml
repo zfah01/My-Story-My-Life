@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1681170673844" clover="3.2.0">
-  <project timestamp="1681170673844" name="All files">
-    <metrics statements="997" coveredstatements="2" conditionals="409" coveredconditionals="0" methods="269" coveredmethods="1" elements="1675" coveredelements="3" complexity="0" loc="997" ncloc="997" packages="11" files="26" classes="26"/>
+<coverage generated="1681189779631" clover="3.2.0">
+  <project timestamp="1681189779631" name="All files">
+    <metrics statements="997" coveredstatements="2" conditionals="427" coveredconditionals="0" methods="269" coveredmethods="1" elements="1693" coveredelements="3" complexity="0" loc="997" ncloc="997" packages="11" files="26" classes="26"/>
     <package name="mystorymylife">
-      <metrics statements="44" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="26" coveredmethods="0"/>
+      <metrics statements="44" coveredstatements="0" conditionals="24" coveredconditionals="0" methods="26" coveredmethods="0"/>
       <file name="App.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\App.js">
         <metrics statements="18" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
@@ -26,7 +26,7 @@
         <line num="63" count="0" type="stmt"/>
       </file>
       <file name="TabNavigator.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\TabNavigator.js">
-        <metrics statements="19" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="15" coveredmethods="0"/>
+        <metrics statements="19" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="15" coveredmethods="0"/>
         <line num="15" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -141,7 +141,7 @@
       </file>
     </package>
     <package name="mystorymylife.screens.Home">
-      <metrics statements="173" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="73" coveredmethods="0"/>
+      <metrics statements="173" coveredstatements="0" conditionals="50" coveredconditionals="0" methods="73" coveredmethods="0"/>
       <file name="Home.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\screens\Home\Home.js">
         <metrics statements="170" coveredstatements="0" conditionals="38" coveredconditionals="0" methods="73" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
@@ -316,7 +316,7 @@
         <line num="802" count="0" type="stmt"/>
       </file>
       <file name="Styles.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\screens\Home\Styles.js">
-        <metrics statements="3" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="3" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -533,7 +533,7 @@
       </file>
     </package>
     <package name="mystorymylife.screens.Memories">
-      <metrics statements="334" coveredstatements="0" conditionals="131" coveredconditionals="0" methods="77" coveredmethods="0"/>
+      <metrics statements="334" coveredstatements="0" conditionals="135" coveredconditionals="0" methods="77" coveredmethods="0"/>
       <file name="AddLifeEvent.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\screens\Memories\AddLifeEvent.js">
         <metrics statements="254" coveredstatements="0" conditionals="77" coveredconditionals="0" methods="48" coveredmethods="0"/>
         <line num="20" count="0" type="stmt"/>
@@ -792,7 +792,7 @@
         <line num="679" count="0" type="stmt"/>
       </file>
       <file name="Styles.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\screens\Memories\Styles.js">
-        <metrics statements="3" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="3" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
         <line num="151" count="0" type="stmt"/>
         <line num="153" count="0" type="stmt"/>
@@ -882,7 +882,7 @@
       </file>
     </package>
     <package name="mystorymylife.screens.MoodCalendar">
-      <metrics statements="136" coveredstatements="0" conditionals="76" coveredconditionals="0" methods="23" coveredmethods="0"/>
+      <metrics statements="136" coveredstatements="0" conditionals="84" coveredconditionals="0" methods="23" coveredmethods="0"/>
       <file name="MoodCalendar.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\screens\MoodCalendar\MoodCalendar.js">
         <metrics statements="135" coveredstatements="0" conditionals="70" coveredconditionals="0" methods="23" coveredmethods="0"/>
         <line num="14" count="0" type="stmt"/>
@@ -1022,7 +1022,7 @@
         <line num="405" count="0" type="stmt"/>
       </file>
       <file name="Styles.js" path="C:\Users\zainf\OneDrive\Documents\Final Year Project\mystorymylife\screens\MoodCalendar\Styles.js">
-        <metrics statements="1" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="1" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
       </file>
     </package>

@@ -29,7 +29,7 @@ export default function Contacts(props) {
         }
         checkAvailability();
     }, []);
-
+    //Function to compose email 
     const sendMail = ()=> {
       
       if(recipients.length !== 0){
@@ -61,7 +61,7 @@ export default function Contacts(props) {
 
   return validEmail.test(str);
 };
-
+//Checks if email exists and add it as a recipient for email
     const addRecipient= ()=> {
       let newRecipients = [...recipients];
       if (!checkEmail(email)) {
@@ -74,7 +74,7 @@ export default function Contacts(props) {
       setRecipients(newRecipients);
       setEmail(undefined);
     }
-
+    //Shows recipient once entered email
     const showRecipients = ()=> {
       if(recipients.length === 0){
         return <Text> No recipients added</Text>

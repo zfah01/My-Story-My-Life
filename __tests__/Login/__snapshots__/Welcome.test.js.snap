@@ -1,7 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing components and functions of Welcome Checks to see if the Welcome page renders 1`] = `
-Array [
+<View
+  style={
+    Object {
+      "backgroundColor": "#AFEEEE",
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
   <View
     style={
       Object {
@@ -25,7 +33,7 @@ Array [
     <Text>
       Log into your account below:
     </Text>
-  </View>,
+  </View>
   <RCTScrollView>
     <View>
       <View
@@ -168,6 +176,6 @@ Array [
         </View>
       </View>
     </View>
-  </RCTScrollView>,
-]
+  </RCTScrollView>
+</View>
 `;

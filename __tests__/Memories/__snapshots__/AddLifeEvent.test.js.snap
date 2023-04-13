@@ -25,7 +25,7 @@ exports[`Check that the add new life event is rendered and elements are displaye
     testID="dateID"
   >
     Today's Date: 
-    March 28, 2023
+    April 11, 2023
   </Text>
   <View
     style={
@@ -144,6 +144,7 @@ exports[`Check that the add new life event is rendered and elements are displaye
           style={
             Object {
               "flexDirection": "row",
+              "marginLeft": -4,
               "paddingBottom": 50,
             }
           }
@@ -174,9 +175,9 @@ exports[`Check that the add new life event is rendered and elements are displaye
               style={
                 Object {
                   "alignItems": "center",
-                  "height": 50,
+                  "height": 30,
                   "marginTop": 10,
-                  "width": 66,
+                  "width": 35,
                 }
               }
               testID="happy"
@@ -184,6 +185,7 @@ exports[`Check that the add new life event is rendered and elements are displaye
             <Text
               style={
                 Object {
+                  "fontSize": 10,
                   "marginTop": 5,
                   "textAlign": "center",
                 }
@@ -218,9 +220,9 @@ exports[`Check that the add new life event is rendered and elements are displaye
               style={
                 Object {
                   "alignItems": "center",
-                  "height": 50,
+                  "height": 30,
                   "marginTop": 10,
-                  "width": 66,
+                  "width": 35,
                 }
               }
               testID="sad"
@@ -228,6 +230,7 @@ exports[`Check that the add new life event is rendered and elements are displaye
             <Text
               style={
                 Object {
+                  "fontSize": 10,
                   "marginTop": 5,
                   "textAlign": "center",
                 }
@@ -262,9 +265,10 @@ exports[`Check that the add new life event is rendered and elements are displaye
               style={
                 Object {
                   "alignItems": "center",
-                  "height": 50,
+                  "height": 30,
+                  "marginLeft": 10,
                   "marginTop": 10,
-                  "width": 66,
+                  "width": 35,
                 }
               }
               testID="confused"
@@ -272,6 +276,7 @@ exports[`Check that the add new life event is rendered and elements are displaye
             <Text
               style={
                 Object {
+                  "fontSize": 10,
                   "marginTop": 5,
                   "textAlign": "center",
                 }
@@ -306,9 +311,9 @@ exports[`Check that the add new life event is rendered and elements are displaye
               style={
                 Object {
                   "alignItems": "center",
-                  "height": 50,
+                  "height": 30,
                   "marginTop": 10,
-                  "width": 66,
+                  "width": 35,
                 }
               }
               testID="angry"
@@ -316,12 +321,148 @@ exports[`Check that the add new life event is rendered and elements are displaye
             <Text
               style={
                 Object {
+                  "fontSize": 10,
                   "marginTop": 5,
                   "textAlign": "center",
                 }
               }
             >
               Angry
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="loved"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Loved
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="scared"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Scared
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="funny"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Funny
             </Text>
           </View>
         </View>

@@ -2,18 +2,19 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 
+//Function to skip onboarding screen
 const Skip = ({ ...props }) => (
 	<TouchableOpacity style={{ marginHorizontal: 10 }} {...props}>
 		<Text style={{ fontSize: 16 }}>Skip</Text>
 	</TouchableOpacity>
 );
-
+// Function to go to next boarding screen 
 const Next = ({ ...props }) => (
 	<TouchableOpacity style={{ marginHorizontal: 10 }} {...props}>
 		<Text style={{ fontSize: 16 }}>Next</Text>
 	</TouchableOpacity>
 );
-
+//Function for done viewing onboarding screen 
 const Done = ({ ...props }) => (
 	<TouchableOpacity style={{ marginHorizontal: 10 }} {...props}>
 		<Text style={{ fontSize: 16 }}>Done</Text>

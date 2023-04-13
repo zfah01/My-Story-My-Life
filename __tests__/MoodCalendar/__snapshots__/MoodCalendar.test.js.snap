@@ -58,7 +58,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
               "alignItems": "center",
               "flexDirection": "row",
               "justifyContent": "center",
-              "marginLeft": 20,
+              "marginRight": 10,
             }
           }
         >
@@ -96,11 +96,12 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                 Array [
                   Object {
                     "borderRadius": 21,
-                    "height": 20,
-                    "width": 20,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
                   },
                   Object {
-                    "backgroundColor": "#108206",
+                    "backgroundColor": "#8fbc8f",
                   },
                 ]
               }
@@ -140,11 +141,12 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                 Array [
                   Object {
                     "borderRadius": 21,
-                    "height": 20,
-                    "width": 20,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
                   },
                   Object {
-                    "backgroundColor": "#e38e07",
+                    "backgroundColor": "#9F64B8",
                   },
                 ]
               }
@@ -179,12 +181,12 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                 Array [
                   Object {
                     "borderRadius": 21,
-                    "height": 20,
-                    "width": 20,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
                   },
                   Object {
-                    "backgroundColor": "#112dec",
-                    "marginLeft": 8,
+                    "backgroundColor": "#0000ff",
                   },
                 ]
               }
@@ -199,7 +201,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                 },
                 Object {
                   "paddingLeft": 10,
-                  "paddingRight": 20,
                 },
               ]
             }
@@ -225,11 +226,159 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                 Array [
                   Object {
                     "borderRadius": 21,
-                    "height": 20,
-                    "width": 20,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
                   },
                   Object {
-                    "backgroundColor": "#f90505",
+                    "backgroundColor": "#ff0000",
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginLeft": 10,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "paddingLeft": 10,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Loved:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#FF647F",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "paddingLeft": 10,
+                  "paddingRight": 2,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Scared:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#dda0dd",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "paddingLeft": 10,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Funny:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#FEDD00",
                   },
                 ]
               }
@@ -261,6 +410,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
         "backgroundColor": "#FFFFFF",
         "borderRadius": 25,
         "margin": 20,
+        "marginTop": null,
         "padding": 10,
       }
     }
@@ -397,7 +547,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     }
                     testID="idMoodCalendar.header.title"
                   >
-                    March 2023
+                    April 2023
                   </Text>
                 </View>
                 <View
@@ -624,7 +774,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Sunday 26 February 2023 "
+                    accessibilityLabel=" Sunday 26 March 2023 "
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -648,7 +798,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-02-26"
+                    testID="idMoodCalendar.day_2023-03-26"
                   >
                     <Text
                       allowFontScaling={false}
@@ -695,7 +845,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Monday 27 February 2023 "
+                    accessibilityLabel=" Monday 27 March 2023 "
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -719,7 +869,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-02-27"
+                    testID="idMoodCalendar.day_2023-03-27"
                   >
                     <Text
                       allowFontScaling={false}
@@ -739,6 +889,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
+                      27
                     </Text>
                     <View
                       style={
@@ -765,7 +916,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Tuesday 28 February 2023 "
+                    accessibilityLabel=" Tuesday 28 March 2023 "
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -789,7 +940,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-02-28"
+                    testID="idMoodCalendar.day_2023-03-28"
                   >
                     <Text
                       allowFontScaling={false}
@@ -809,6 +960,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
+                      28
                     </Text>
                     <View
                       style={
@@ -835,7 +987,220 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Wednesday 1 March 2023 "
+                    accessibilityLabel=" Wednesday 29 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-29"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      29
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 30 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-30"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      30
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 31 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-31"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      31
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 1 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -860,7 +1225,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-01"
+                    testID="idMoodCalendar.day_2023-04-01"
                   >
                     <Text
                       allowFontScaling={false}
@@ -895,6 +1260,16 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     />
                   </View>
                 </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
                 <View
                   style={
                     Object {
@@ -904,7 +1279,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Thursday 2 March 2023 "
+                    accessibilityLabel=" Sunday 2 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -929,7 +1304,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-02"
+                    testID="idMoodCalendar.day_2023-04-02"
                   >
                     <Text
                       allowFontScaling={false}
@@ -973,7 +1348,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Friday 3 March 2023 "
+                    accessibilityLabel=" Monday 3 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -998,7 +1373,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-03"
+                    testID="idMoodCalendar.day_2023-04-03"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1042,7 +1417,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Saturday 4 March 2023 "
+                    accessibilityLabel=" Tuesday 4 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1067,7 +1442,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-04"
+                    testID="idMoodCalendar.day_2023-04-04"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1102,16 +1477,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     />
                   </View>
                 </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flexDirection": "row",
-                    "justifyContent": "space-around",
-                    "marginVertical": 7,
-                  }
-                }
-              >
                 <View
                   style={
                     Object {
@@ -1121,7 +1486,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Sunday 5 March 2023 "
+                    accessibilityLabel=" Wednesday 5 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1146,7 +1511,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-05"
+                    testID="idMoodCalendar.day_2023-04-05"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1190,7 +1555,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Monday 6 March 2023 "
+                    accessibilityLabel=" Thursday 6 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1215,7 +1580,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-06"
+                    testID="idMoodCalendar.day_2023-04-06"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1259,7 +1624,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Tuesday 7 March 2023 "
+                    accessibilityLabel=" Friday 7 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1284,7 +1649,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-07"
+                    testID="idMoodCalendar.day_2023-04-07"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1328,7 +1693,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Wednesday 8 March 2023 "
+                    accessibilityLabel=" Saturday 8 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1353,7 +1718,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-08"
+                    testID="idMoodCalendar.day_2023-04-08"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1388,6 +1753,16 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     />
                   </View>
                 </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
                 <View
                   style={
                     Object {
@@ -1397,7 +1772,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Thursday 9 March 2023 "
+                    accessibilityLabel=" Sunday 9 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1422,7 +1797,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-09"
+                    testID="idMoodCalendar.day_2023-04-09"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1466,7 +1841,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Friday 10 March 2023 "
+                    accessibilityLabel=" Monday 10 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1491,7 +1866,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-10"
+                    testID="idMoodCalendar.day_2023-04-10"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1535,7 +1910,81 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Saturday 11 March 2023 "
+                    accessibilityLabel="today Tuesday 11 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": undefined,
+                        "borderRadius": 16,
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-11"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#00BBF2",
+                          },
+                        ]
+                      }
+                    >
+                      11
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 12 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1560,7 +2009,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-11"
+                    testID="idMoodCalendar.day_2023-04-12"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1577,7 +2026,214 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
-                      11
+                      12
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 13 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-13"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      13
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 14 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-14"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      14
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 15 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-15"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      15
                     </Text>
                     <View
                       style={
@@ -1614,7 +2270,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Sunday 12 March 2023 "
+                    accessibilityLabel=" Sunday 16 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1639,6 +2295,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
+                    testID="idMoodCalendar.day_2023-04-16"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1655,6 +2312,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
+                      16
                     </Text>
                     <View
                       style={
@@ -1681,6 +2339,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
+                    accessibilityLabel=" Monday 17 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1705,7 +2364,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-
+                    testID="idMoodCalendar.day_2023-04-17"
                   >
                     <Text
                       allowFontScaling={false}
@@ -1722,6 +2381,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
+                      17
                     </Text>
                     <View
                       style={
@@ -1748,6 +2408,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
+                    accessibilityLabel=" Tuesday 18 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -1772,271 +2433,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "rgba(255, 255, 255, 0)",
-                            "color": "#2d4150",
-                            "fontFamily": "System",
-                            "fontSize": 16,
-                            "fontWeight": "300",
-                            "marginTop": 6,
-                          },
-                        ]
-                      }
-                    >
-                    </Text>
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "borderRadius": 2,
-                            "height": 4,
-                            "marginHorizontal": 1,
-                            "marginTop": 1,
-                            "opacity": 0,
-                            "width": 4,
-                          },
-                        ]
-                      }
-                    />
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      Object {
-                        "disabled": false,
-                      }
-                    }
-                    accessible={true}
-                    collapsable={false}
-                    focusable={true}
-                    onClick={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "height": 32,
-                        "opacity": 1,
-                        "width": 32,
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "rgba(255, 255, 255, 0)",
-                            "color": "#2d4150",
-                            "fontFamily": "System",
-                            "fontSize": 16,
-                            "fontWeight": "300",
-                            "marginTop": 6,
-                          },
-                        ]
-                      }
-                    >
-                    </Text>
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "borderRadius": 2,
-                            "height": 4,
-                            "marginHorizontal": 1,
-                            "marginTop": 1,
-                            "opacity": 0,
-                            "width": 4,
-                          },
-                        ]
-                      }
-                    />
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      Object {
-                        "disabled": false,
-                      }
-                    }
-                    accessible={true}
-                    collapsable={false}
-                    focusable={true}
-                    onClick={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "height": 32,
-                        "opacity": 1,
-                        "width": 32,
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "rgba(255, 255, 255, 0)",
-                            "color": "#2d4150",
-                            "fontFamily": "System",
-                            "fontSize": 16,
-                            "fontWeight": "300",
-                            "marginTop": 6,
-                          },
-                        ]
-                      }
-                    >
-                    </Text>
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "borderRadius": 2,
-                            "height": 4,
-                            "marginHorizontal": 1,
-                            "marginTop": 1,
-                            "opacity": 0,
-                            "width": 4,
-                          },
-                        ]
-                      }
-                    />
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      Object {
-                        "disabled": false,
-                      }
-                    }
-                    accessible={true}
-                    collapsable={false}
-                    focusable={true}
-                    onClick={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "height": 32,
-                        "opacity": 1,
-                        "width": 32,
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "rgba(255, 255, 255, 0)",
-                            "color": "#2d4150",
-                            "fontFamily": "System",
-                            "fontSize": 16,
-                            "fontWeight": "300",
-                            "marginTop": 6,
-                          },
-                        ]
-                      }
-                    >
-                    </Text>
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "borderRadius": 2,
-                            "height": 4,
-                            "marginHorizontal": 1,
-                            "marginTop": 1,
-                            "opacity": 0,
-                            "width": 4,
-                          },
-                        ]
-                      }
-                    />
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      Object {
-                        "disabled": false,
-                      }
-                    }
-                    accessible={true}
-                    collapsable={false}
-                    focusable={true}
-                    onClick={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "height": 32,
-                        "opacity": 1,
-                        "width": 32,
-                      }
-                    }
-                    testID="idMoodCalendar.day_2023-03-18"
+                    testID="idMoodCalendar.day_2023-04-18"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2071,16 +2468,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     />
                   </View>
                 </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flexDirection": "row",
-                    "justifyContent": "space-around",
-                    "marginVertical": 7,
-                  }
-                }
-              >
                 <View
                   style={
                     Object {
@@ -2090,7 +2477,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Sunday 19 March 2023 "
+                    accessibilityLabel=" Wednesday 19 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2115,7 +2502,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-19"
+                    testID="idMoodCalendar.day_2023-04-19"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2159,7 +2546,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Monday 20 March 2023 "
+                    accessibilityLabel=" Thursday 20 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2184,7 +2571,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-20"
+                    testID="idMoodCalendar.day_2023-04-20"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2228,6 +2615,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
+                    accessibilityLabel=" Friday 21 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2252,7 +2640,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-21"
+                    testID="idMoodCalendar.day_2023-04-21"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2296,6 +2684,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
+                    accessibilityLabel=" Saturday 22 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2320,7 +2709,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-22"
+                    testID="idMoodCalendar.day_2023-04-22"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2355,6 +2744,16 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     />
                   </View>
                 </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
                 <View
                   style={
                     Object {
@@ -2364,7 +2763,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Thursday 23 March 2023 "
+                    accessibilityLabel=" Sunday 23 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2389,7 +2788,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-23"
+                    testID="idMoodCalendar.day_2023-04-23"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2433,7 +2832,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Friday 24 March 2023 "
+                    accessibilityLabel=" Monday 24 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2458,7 +2857,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-24"
+                    testID="idMoodCalendar.day_2023-04-24"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2502,7 +2901,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Saturday 25 March 2023 "
+                    accessibilityLabel=" Tuesday 25 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2527,7 +2926,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-25"
+                    testID="idMoodCalendar.day_2023-04-25"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2562,16 +2961,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     />
                   </View>
                 </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flexDirection": "row",
-                    "justifyContent": "space-around",
-                    "marginVertical": 7,
-                  }
-                }
-              >
                 <View
                   style={
                     Object {
@@ -2581,7 +2970,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Sunday 26 March 2023 "
+                    accessibilityLabel=" Wednesday 26 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2606,7 +2995,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-26"
+                    testID="idMoodCalendar.day_2023-04-26"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2650,7 +3039,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Monday 27 March 2023 "
+                    accessibilityLabel=" Thursday 27 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2675,7 +3064,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-27"
+                    testID="idMoodCalendar.day_2023-04-27"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2719,7 +3108,8 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-
+                    accessibilityLabel=" Friday 28 April 2023 "
+                    accessibilityRole="button"
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -2743,7 +3133,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-28"
+                    testID="idMoodCalendar.day_2023-04-28"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2756,8 +3146,6 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                             "fontSize": 16,
                             "fontWeight": "300",
                             "marginTop": 6,
-                          },
-                          Object {
                           },
                         ]
                       }
@@ -2789,6 +3177,8 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
+                    accessibilityLabel=" Saturday 29 April 2023 "
+                    accessibilityRole="button"
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -2812,7 +3202,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-29"
+                    testID="idMoodCalendar.day_2023-04-29"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2847,6 +3237,16 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                     />
                   </View>
                 </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
                 <View
                   style={
                     Object {
@@ -2856,7 +3256,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Thursday 30 March 2023 "
+                    accessibilityLabel=" Sunday 30 April 2023 "
                     accessibilityRole="button"
                     accessibilityState={
                       Object {
@@ -2881,7 +3281,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
-                    testID="idMoodCalendar.day_2023-03-30"
+                    testID="idMoodCalendar.day_2023-04-30"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2925,8 +3325,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
-                    accessibilityLabel=" Friday 31 March 2023 "
-                    accessibilityRole="button"
+                    accessibilityLabel=" Monday 1 May 2023 "
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -2950,6 +3349,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
+                    testID="idMoodCalendar.day_2023-05-01"
                   >
                     <Text
                       allowFontScaling={false}
@@ -2963,9 +3363,13 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                             "fontWeight": "300",
                             "marginTop": 6,
                           },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
                         ]
                       }
                     >
+                      1
                     </Text>
                     <View
                       style={
@@ -2992,6 +3396,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                   }
                 >
                   <View
+                    accessibilityLabel=" Tuesday 2 May 2023 "
                     accessibilityState={
                       Object {
                         "disabled": false,
@@ -3015,6 +3420,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         "width": 32,
                       }
                     }
+                    testID="idMoodCalendar.day_2023-05-02"
                   >
                     <Text
                       allowFontScaling={false}
@@ -3034,6 +3440,291 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
                         ]
                       }
                     >
+                      2
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 3 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-03"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      3
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 4 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-04"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      4
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 5 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-05"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      5
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 6 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-06"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      6
                     </Text>
                     <View
                       style={
@@ -3076,8 +3767,10 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
         "backgroundColor": "#00e676",
         "borderRadius": 25,
         "elevation": 2,
+        "height": 50,
         "justifyContent": "center",
         "margin": 20,
+        "marginTop": -8,
         "opacity": 1,
         "padding": 10,
         "shadowColor": "rgba(0,0,0, .4)",
@@ -3087,6 +3780,7 @@ exports[`Testing that mood journal is rendered Test to check if home page is ren
         },
         "shadowOpacity": 1,
         "shadowRadius": 1,
+        "width": 300,
       }
     }
   >
