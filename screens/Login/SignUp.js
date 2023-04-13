@@ -140,7 +140,8 @@ export default function SignUp({ navigation }) {
                         <TouchableOpacity
                             style={styles.buttonLogin}
                             onPress={() => RegisterToApp()}
-                            testID='signUpButton'>
+                            testID='signUpButton'
+                            accessibilityLabel='Create Account Button'>
                             <Text style={styles.loginText}> Create Account </Text>
                         </TouchableOpacity>
 

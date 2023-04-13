@@ -46,7 +46,7 @@ const storyStyles = StyleSheet.create({
       },
     moodChosenFaces: {
        height: 42,
-       width:43,
+       width:40,
        marginBottom: -9,
     
       

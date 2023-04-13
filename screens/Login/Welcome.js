@@ -39,7 +39,7 @@ export default function Welcome({ navigation }) {
         };
 
 
-     //Handles login for user 
+
     const onLoginPress = () => {
         setLoading(true);
         //Checks if email and password exists if it does it directs user to Home 
