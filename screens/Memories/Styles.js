@@ -45,8 +45,8 @@ const storyStyles = StyleSheet.create({
       marginLeft: Platform.OS === "ios" ? 320 : 310
       },
     moodChosenFaces: {
-       height: 45,
-       width:40,
+       height: 42,
+       width:43,
        marginBottom: -9,
     
       
@@ -66,7 +66,7 @@ const storyStyles = StyleSheet.create({
     },
     moodFaces: {
         marginTop: 10,
-        height: 30,
+        height: 32,
         width: 35,
         alignItems: 'center',
     },

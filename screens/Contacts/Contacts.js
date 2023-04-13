@@ -17,7 +17,7 @@ export default function Contacts(props) {
     const contactsRef = db.collection('Contacts');
     const userID = props.extraData.id;
     const user = auth.currentUser;
-
+    
     const closeHelp = () => {
       setHelpPressed(false);
   };
