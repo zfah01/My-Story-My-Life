@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checks to see if the Loading Page renders 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": "70%",
+      "marginTop": 140,
+      "opacity": 50,
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": "70%",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Modal
+    animationType="none"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    statusBarTranslucent={true}
+    supportedOrientations={
+      Array [
+        "landscape",
+        "portrait",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  />
+</View>
+`;
+
+exports[`Test to check that Loading is rendered 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": "70%",
+      "marginTop": 140,
+      "opacity": 50,
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": "70%",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Modal
+    animationType="none"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    statusBarTranslucent={true}
+    supportedOrientations={
+      Array [
+        "landscape",
+        "portrait",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  />
+</View>
+`;

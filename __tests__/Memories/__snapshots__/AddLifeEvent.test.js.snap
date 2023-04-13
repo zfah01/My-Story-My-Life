@@ -1,0 +1,647 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check that the add new life event is rendered and elements are displayed and updateable. Checks to see if the Home page renders 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#AFEEEE",
+      "flex": 1,
+      "justifyContent": "center",
+      "paddingBottom": 25,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "marginBottom": null,
+        "marginTop": 20,
+        "textAlign": "center",
+      }
+    }
+    testID="dateID"
+  >
+    Today's Date: 
+    April 11, 2023
+  </Text>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 25,
+        "margin": 20,
+        "padding": 10,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 16,
+              "fontStyle": "italic",
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Title
+        </Text>
+        <TextInput
+          multiline={true}
+          numberOfLines={1}
+          onChangeText={[Function]}
+          placeholder="Title"
+          style={
+            Object {
+              "backgroundColor": "#ebebeb",
+              "borderRadius": 10,
+              "height": 40,
+              "marginBottom": 20,
+              "marginTop": 5,
+              "maxHeight": 40,
+            }
+          }
+          testID="titleInput"
+          value=""
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 0,
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Event Date: 
+          </Text>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "borderColor": "#2e64e5",
+                "borderRadius": 3,
+                "borderWidth": 2,
+                "marginBottom": 10,
+                "marginHorizontal": 5,
+                "opacity": 1,
+                "paddingHorizontal": 12,
+                "paddingVertical": 8,
+                "width": 100,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#2e64e5",
+                }
+              }
+            >
+              Set Date
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 16,
+              "fontStyle": "italic",
+              "fontWeight": "bold",
+            }
+          }
+        >
+          How are you feeling?
+        </Text>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "marginLeft": -4,
+              "paddingBottom": 50,
+            }
+          }
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="happy"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Happy
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="sad"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Sad
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginLeft": 10,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="confused"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Confused
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="angry"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Angry
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="loved"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Loved
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="scared"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Scared
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "marginLeft": 5,
+                "marginTop": 10,
+                "opacity": 1,
+                "paddingLeft": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 30,
+                  "marginTop": 10,
+                  "width": 35,
+                }
+              }
+              testID="funny"
+            />
+            <Text
+              style={
+                Object {
+                  "fontSize": 10,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Funny
+            </Text>
+          </View>
+        </View>
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Your Story: 
+          </Text>
+          <TextInput
+            multiline={true}
+            numberOfLines={10}
+            onChangeText={[Function]}
+            placeholder="Write your story here! "
+            style={
+              Object {
+                "backgroundColor": "#ebebeb",
+                "borderRadius": 10,
+                "height": 150,
+                "marginBottom": 20,
+                "marginTop": 5,
+                "maxHeight": 250,
+              }
+            }
+            testID="storyInput"
+            value=""
+          />
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": "3%",
+              }
+            }
+          >
+            <Text />
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={false}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text />
+            </View>
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={false}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text />
+            </View>
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={false}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text />
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginTop": 40,
+              }
+            }
+          >
+            <RCTScrollView
+              horizontal={true}
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "row",
+                    }
+                  }
+                />
+              </View>
+            </RCTScrollView>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "paddingTop": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            <View
+              accessibilityLabel="Submit Button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#00e676",
+                  "borderRadius": 15,
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "padding": 15,
+                  "width": 150,
+                }
+              }
+              testID="buttonSubmit"
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 18,
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Submit
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test to check Sign Up page and its functions Test to check Sign Up page is rendered 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#AFEEEE",
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "paddingTop": 70,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 25,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Welcome to My Story, My Life
+    </Text>
+    <Text>
+      Register for an account below:
+    </Text>
+  </View>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 25,
+            "justifyContent": "center",
+            "margin": 20,
+            "padding": 10,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "alignSelf": "center",
+              "height": 100,
+              "marginBottom": 10,
+              "marginTop": 20,
+              "width": 134,
+            }
+          }
+        />
+        <TextInput
+          autoCapitalize="none"
+          onChangeText={[Function]}
+          placeholder="enter your full name..."
+          placeholderTextColor="#aaaaaa"
+          style={
+            Object {
+              "backgroundColor": "#f0efed",
+              "borderRadius": 5,
+              "height": 50,
+              "marginBottom": 10,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 10,
+              "overflow": "hidden",
+              "paddingLeft": 10,
+            }
+          }
+          testID="inputName"
+          value=""
+        />
+        <TextInput
+          autoCapitalize="none"
+          onChangeText={[Function]}
+          placeholder="enter your email address..."
+          placeholderTextColor="#aaaaaa"
+          style={
+            Object {
+              "backgroundColor": "#f0efed",
+              "borderRadius": 5,
+              "height": 50,
+              "marginBottom": 10,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 10,
+              "overflow": "hidden",
+              "paddingLeft": 10,
+            }
+          }
+          testID="inputEmail"
+          value=""
+        />
+        <TextInput
+          autoCapitalize="none"
+          onChangeText={[Function]}
+          placeholder="enter a password..."
+          placeholderTextColor="#aaaaaa"
+          secureTextEntry={true}
+          style={
+            Object {
+              "backgroundColor": "#f0efed",
+              "borderRadius": 5,
+              "height": 50,
+              "marginBottom": 10,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 10,
+              "overflow": "hidden",
+              "paddingLeft": 10,
+            }
+          }
+          testID="inputPassword"
+          value=""
+        />
+        <TextInput
+          autoCapitalize="none"
+          onChangeText={[Function]}
+          placeholder="confirm your password..."
+          placeholderTextColor="#aaaaaa"
+          secureTextEntry={true}
+          style={
+            Object {
+              "backgroundColor": "#f0efed",
+              "borderRadius": 5,
+              "height": 50,
+              "marginBottom": 10,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 10,
+              "overflow": "hidden",
+              "paddingLeft": 10,
+            }
+          }
+          testID="inputConfirmPassword"
+          value=""
+        />
+        <Text
+          style={
+            Object {
+              "color": "#8f8f8f",
+              "fontSize": 14,
+              "fontStyle": "italic",
+              "textAlign": "center",
+            }
+          }
+        >
+          Password must be 8 or more characters and contain an upper case letter, numbers and a special character 
+          (#?!@$%^&*-)
+          . 
+        </Text>
+        <View
+          accessibilityLabel="Create Account Button"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "backgroundColor": "#00e676",
+              "borderRadius": 15,
+              "justifyContent": "center",
+              "marginTop": 20,
+              "opacity": 1,
+              "padding": 15,
+              "width": 150,
+            }
+          }
+          testID="signUpButton"
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              }
+            }
+          >
+             Create Account 
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "marginTop": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+              }
+            }
+          >
+             Already have an account? 
+            <Text
+              onPress={[Function]}
+              style={
+                Object {
+                  "color": "#6db8bf",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
+              }
+              testID="loginLink"
+            >
+               Log In
+            </Text>
+             
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

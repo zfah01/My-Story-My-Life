@@ -1,0 +1,3802 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing that mood journal is rendered Test to check if home page is rendered 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "backgroundColor": "#AFEEEE",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 25,
+        "margin": 20,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 5,
+            "justifyContent": "center",
+            "marginTop": 15,
+            "width": 380,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "padding": 10,
+              "textAlign": "center",
+            }
+          }
+          testID="calendarKeyID"
+        >
+          Mood Key:
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginRight": 10,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "marginRight": 10,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Happy:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#8fbc8f",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "marginRight": 20,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Confused:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#9F64B8",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "height": 40,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+               Sad: 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#0000ff",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "paddingLeft": 10,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Angry:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#ff0000",
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginLeft": 10,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "paddingLeft": 10,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Loved:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#FF647F",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "paddingLeft": 10,
+                  "paddingRight": 2,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Scared:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#dda0dd",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 40,
+                },
+                Object {
+                  "paddingLeft": 10,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignItems": "center",
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontStyle": "italic",
+                  "justifyContent": "center",
+                  "padding": 5,
+                  "paddingLeft": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Funny:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 21,
+                    "height": 15,
+                    "marginTop": 4,
+                    "width": 15,
+                  },
+                  Object {
+                    "backgroundColor": "#FEDD00",
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#000000",
+            "fontSize": 14,
+            "fontStyle": "italic",
+            "justifyContent": "center",
+            "padding": 5,
+            "paddingLeft": 10,
+            "textAlign": "center",
+          }
+        }
+      >
+        If a date has been marked then a life story has been set. Press on the date to display it!
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 25,
+        "margin": 20,
+        "marginTop": null,
+        "padding": 10,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "paddingBottom": 20,
+              "paddingTop": 20,
+            }
+          }
+        >
+           Keep Track of Your Moods:  
+        </Text>
+        <View
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          onSwipe={[Function]}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "white",
+                  "paddingLeft": 5,
+                  "paddingRight": 5,
+                },
+                undefined,
+              ]
+            }
+            testID="idMoodCalendar"
+          >
+            <View
+              accessibilityActions={
+                Array [
+                  Object {
+                    "label": "increment",
+                    "name": "increment",
+                  },
+                  Object {
+                    "label": "decrement",
+                    "name": "decrement",
+                  },
+                ]
+              }
+              accessibilityRole="adjustable"
+              accessible={true}
+              onAccessibilityAction={[Function]}
+              testID="idMoodCalendar.header"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "marginTop": 6,
+                      "paddingLeft": 10,
+                      "paddingRight": 10,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  hitSlop={
+                    Object {
+                      "bottom": 20,
+                      "left": 20,
+                      "right": 20,
+                      "top": 20,
+                    }
+                  }
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                      "padding": 10,
+                    }
+                  }
+                  testID="idMoodCalendar.header.leftArrow"
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "tintColor": "#00BBF2",
+                      }
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Object {
+                        "color": "#2d4150",
+                        "fontFamily": "System",
+                        "fontSize": 16,
+                        "fontWeight": "300",
+                        "margin": 10,
+                      }
+                    }
+                    testID="idMoodCalendar.header.title"
+                  >
+                    April 2023
+                  </Text>
+                </View>
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  hitSlop={
+                    Object {
+                      "bottom": 20,
+                      "left": 20,
+                      "right": 20,
+                      "top": 20,
+                    }
+                  }
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                      "padding": 10,
+                    }
+                  }
+                  testID="idMoodCalendar.header.rightArrow"
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "tintColor": "#00BBF2",
+                      }
+                    }
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "justifyContent": "space-around",
+                      "marginTop": 7,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="idMoodCalendar.header.dayNames"
+              >
+                <Text
+                  accessibilityLabel=""
+                  allowFontScaling={false}
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#b6c1cd",
+                        "fontFamily": "System",
+                        "fontSize": 13,
+                        "fontWeight": undefined,
+                        "marginBottom": 7,
+                        "marginTop": 2,
+                        "textAlign": "center",
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  Sun
+                </Text>
+                <Text
+                  accessibilityLabel=""
+                  allowFontScaling={false}
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#b6c1cd",
+                        "fontFamily": "System",
+                        "fontSize": 13,
+                        "fontWeight": undefined,
+                        "marginBottom": 7,
+                        "marginTop": 2,
+                        "textAlign": "center",
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  Mon
+                </Text>
+                <Text
+                  accessibilityLabel=""
+                  allowFontScaling={false}
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#b6c1cd",
+                        "fontFamily": "System",
+                        "fontSize": 13,
+                        "fontWeight": undefined,
+                        "marginBottom": 7,
+                        "marginTop": 2,
+                        "textAlign": "center",
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  Tue
+                </Text>
+                <Text
+                  accessibilityLabel=""
+                  allowFontScaling={false}
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#b6c1cd",
+                        "fontFamily": "System",
+                        "fontSize": 13,
+                        "fontWeight": undefined,
+                        "marginBottom": 7,
+                        "marginTop": 2,
+                        "textAlign": "center",
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  Wed
+                </Text>
+                <Text
+                  accessibilityLabel=""
+                  allowFontScaling={false}
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#b6c1cd",
+                        "fontFamily": "System",
+                        "fontSize": 13,
+                        "fontWeight": undefined,
+                        "marginBottom": 7,
+                        "marginTop": 2,
+                        "textAlign": "center",
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  Thu
+                </Text>
+                <Text
+                  accessibilityLabel=""
+                  allowFontScaling={false}
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#b6c1cd",
+                        "fontFamily": "System",
+                        "fontSize": 13,
+                        "fontWeight": undefined,
+                        "marginBottom": 7,
+                        "marginTop": 2,
+                        "textAlign": "center",
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  Fri
+                </Text>
+                <Text
+                  accessibilityLabel=""
+                  allowFontScaling={false}
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#b6c1cd",
+                        "fontFamily": "System",
+                        "fontSize": 13,
+                        "fontWeight": undefined,
+                        "marginBottom": 7,
+                        "marginTop": 2,
+                        "textAlign": "center",
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  Sat
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Sunday 26 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-26"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      26
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Monday 27 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-27"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      27
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Tuesday 28 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-28"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      28
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 29 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-29"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      29
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 30 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-30"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      30
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 31 March 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-03-31"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      31
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 1 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-01"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      1
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Sunday 2 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-02"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      2
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Monday 3 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-03"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      3
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Tuesday 4 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-04"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      4
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 5 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-05"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      5
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 6 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-06"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      6
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 7 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-07"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      7
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 8 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-08"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      8
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Sunday 9 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-09"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      9
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Monday 10 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-10"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      10
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel="today Tuesday 11 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": undefined,
+                        "borderRadius": 16,
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-11"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#00BBF2",
+                          },
+                        ]
+                      }
+                    >
+                      11
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 12 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-12"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      12
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 13 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-13"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      13
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 14 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-14"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      14
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 15 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-15"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      15
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Sunday 16 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-16"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      16
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Monday 17 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-17"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      17
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Tuesday 18 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-18"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      18
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 19 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-19"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      19
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 20 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-20"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      20
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 21 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-21"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      21
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 22 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-22"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      22
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Sunday 23 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-23"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      23
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Monday 24 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-24"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      24
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Tuesday 25 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-25"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      25
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 26 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-26"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      26
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 27 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-27"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      27
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 28 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-28"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      28
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 29 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-29"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      29
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "space-around",
+                    "marginVertical": 7,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Sunday 30 April 2023 "
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-04-30"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                        ]
+                      }
+                    >
+                      30
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Monday 1 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-01"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      1
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Tuesday 2 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-02"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      2
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Wednesday 3 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-03"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      3
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Thursday 4 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-04"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      4
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Friday 5 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-05"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      5
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=" Saturday 6 May 2023 "
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 32,
+                        "opacity": 1,
+                        "width": 32,
+                      }
+                    }
+                    testID="idMoodCalendar.day_2023-05-06"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0)",
+                            "color": "#2d4150",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                            "fontWeight": "300",
+                            "marginTop": 6,
+                          },
+                          Object {
+                            "color": "#d9e1e8",
+                          },
+                        ]
+                      }
+                    >
+                      6
+                    </Text>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 2,
+                            "height": 4,
+                            "marginHorizontal": 1,
+                            "marginTop": 1,
+                            "opacity": 0,
+                            "width": 4,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "center",
+        "backgroundColor": "#00e676",
+        "borderRadius": 25,
+        "elevation": 2,
+        "height": 50,
+        "justifyContent": "center",
+        "margin": 20,
+        "marginTop": -8,
+        "opacity": 1,
+        "padding": 10,
+        "shadowColor": "rgba(0,0,0, .4)",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 1,
+        },
+        "shadowOpacity": 1,
+        "shadowRadius": 1,
+        "width": 300,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "padding": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+       Monthly Mood Insights
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;

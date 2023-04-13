@@ -1,0 +1,336 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test to check Settings is rendered 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#AFEEEE",
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RCTSafeAreaView
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 25,
+        "height": 988.148148148148,
+        "margin": 20,
+        "marginTop": 80,
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "flex-start",
+          "opacity": 1,
+          "paddingBottom": 10,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#448aff",
+            },
+          ]
+        }
+      >
+         
+        &gt;
+         Return Home
+      </Text>
+    </View>
+    <RCTScrollView
+      style={
+        Object {
+          "marginLeft": 10,
+        }
+      }
+    >
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "paddingTop": 15,
+            }
+          }
+        >
+          Profile Picture:
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 14,
+              "paddingBottom": 10,
+            }
+          }
+        >
+          Select a picture from your gallery or take a picture:
+        </Text>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "backgroundColor": "#00e676",
+              "borderRadius": 15,
+              "justifyContent": "center",
+              "marginBottom": 5,
+              "marginTop": 5,
+              "opacity": 1,
+              "padding": 10,
+              "width": 250,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              }
+            }
+          >
+            Take a picture
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "backgroundColor": "#00e676",
+              "borderRadius": 15,
+              "justifyContent": "center",
+              "marginBottom": 5,
+              "marginTop": 5,
+              "opacity": 1,
+              "padding": 10,
+              "width": 250,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              }
+            }
+          >
+            Select a profile picture
+          </Text>
+        </View>
+        <View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "backgroundColor": "#00e676",
+                "borderRadius": 15,
+                "justifyContent": "center",
+                "marginBottom": 5,
+                "marginTop": 5,
+                "opacity": 1,
+                "padding": 10,
+                "width": 250,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#000000",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                }
+              }
+            >
+              Upload Image
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "paddingTop": 15,
+            }
+          }
+        >
+          About
+        </Text>
+        <Text>
+          Learn how to use My Story, My Life:
+        </Text>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "backgroundColor": "#00e676",
+              "borderRadius": 15,
+              "justifyContent": "center",
+              "marginBottom": 5,
+              "marginTop": 5,
+              "opacity": 1,
+              "padding": 10,
+              "width": 250,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              }
+            }
+          >
+            About
+          </Text>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "paddingTop": 15,
+            }
+          }
+        >
+          Other Settings:
+        </Text>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "backgroundColor": "#ff3333",
+              "borderRadius": 15,
+              "justifyContent": "center",
+              "marginTop": 10,
+              "opacity": 1,
+              "padding": 15,
+              "width": 250,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              }
+            }
+          >
+            Logout
+          </Text>
+        </View>
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#bababa",
+                "paddingTop": 30,
+                "textAlign": "center",
+              }
+            }
+          >
+             My Story, My Life
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </RCTSafeAreaView>
+</View>
+`;

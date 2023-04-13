@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "MyStoryMyLifePassport",
+    "slug": "MyStoryMyLifePassport",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "This app uses Face ID and Touch ID is used to verify the user's identity and protect sensitive data."
+      },
+      "bundleIdentifier": "com.zfah09.MyStoryMyLifePassport"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.zfah09.MyStoryMyLifePassport"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1f214b15-19f6-44f1-a83c-2b96cbf3dcc6"
+      }
+    }
+  }
+}
