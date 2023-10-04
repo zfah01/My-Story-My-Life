@@ -4,4 +4,6 @@ A mobile application build to help care-experienced, vulnerable and disadvantage
 ## Getting started
 In order to run this application you can download the provided apk file which you can run on an android mobile device or an emulator. Alternatively, you can run npm install in terminal when running this code and then npx expo start --tunnel. This will generate a barcode to run the application which you can scan by downloading Expo Go on your mobile device. 
 
+APK file can be found here: https://drive.google.com/file/d/1cNCxyuAJZmbi5ZLO3TzG2eVGyUVdJu8q/view?usp=sharing 
+
 
